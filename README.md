@@ -47,6 +47,6 @@
 
 ## copyright
 
-- Copyright 2019 R.Ohta
+- Copyright 2019 ROhta
 - apache2.0
 - ./LiCENSEに記載
