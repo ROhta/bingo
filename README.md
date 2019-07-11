@@ -44,9 +44,3 @@
 - LocalStorageによる履歴機能を実装
 - dom.tsでは、DOMに依存するeventを管理
 - numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
-
-## copyright
-
-- Copyright 2019 ROhta
-- apache2.0
-- ./LiCENSEに記載
