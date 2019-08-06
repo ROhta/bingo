@@ -10,10 +10,10 @@
 		"url": "https://github.com/ROhta/bingo"
 	},
 	"scripts": {
-		"build": "npx tsc"
+		"build": "npx tsc -b"
 	},
 	"devDependencies": {
-		"@types/jquery": "^3.3.29",
-		"typescript": "^3.2.4"
+		"@types/jquery": "^3.3.30",
+		"typescript": "^3.5.3"
 	}
 }
