@@ -22,7 +22,7 @@ const loadedHistories: number[] = numbers.getHistoryList()
 if (numbers.getRemainList().length === 0 && loadedHistories.length === 0) {
 	numbers.resetLists()
 } else {
-	for (let i: number = 0; i < loadedHistories.length; i++) addHistory(loadedHistories[i])
+	loadedHistories.forEach((value: number) => addHistory(value))
 }
 
 let isStarted: boolean = false
