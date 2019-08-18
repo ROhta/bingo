@@ -28,7 +28,7 @@ if (numbers.getRemainList().length === 0 && loadedHistories.length === 0) {
 let isStarted: boolean = false
 $startButton.focus().on("click", (): void => {
 	const chooseNumber =  (): void => {
-		if(!isStarted) return
+		if (!isStarted) return
 		$startButton.text(startText)
 
 		const remains: number[] = numbers.getRemainList()
