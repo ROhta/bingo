@@ -58,8 +58,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: commit files
         run: |
-          git config --local user.email "bingo_deployer@github.actions"
-          git config --local user.name "bingo deployer"
+          git config --local user.email ${{ secrets.EMAIL_ADDRESS }}
+          git config --local user.name ${GITHUB_ACTOR}
           git commit -m "deploy" -a
       - name: push changes
         uses: ad-m/github-push-action@v0.5.0

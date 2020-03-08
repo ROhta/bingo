@@ -61,6 +61,4 @@ typings/
 .next
 
 # costom
-docs/*
-!docs/.gitkeep
 .vscode/*
