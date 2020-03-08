@@ -1,14 +1,11 @@
 name: prepare-release-note
 
 on:
-  # push:
-  #   branches:
-  #     - master
-  #   tags:
-  #     - v*.*.*
   push:
     branches:
-      - actions追加
+      - master
+    tags:
+      - v*.*.*
 
 jobs:
   release-note-draft:

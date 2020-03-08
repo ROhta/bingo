@@ -14,10 +14,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: files check
         run: |
-          ls ${src-path} | grep index.html
-          ls ${src-path}/materials/ | grep cynmbals.mp3
-          ls ${src-path}/materials/ | grep drumroll.mp3
-          ls ${src-path}/materials/ | grep logo.ico
+          ls ${{ env.src-path }} | grep index.html
+          ls ${{ env.src-path }}/materials/ | grep cynmbals.mp3
+          ls ${{ env.src-path }}/materials/ | grep drumroll.mp3
+          ls ${{ env.src-path }}/materials/ | grep logo.ico
         env:
           src-path: ${GITHUB_WORKSPACE}/src
 
