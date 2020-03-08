@@ -1,0 +1,56 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*.*.*
+
+jobs:
+  file-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: if exists index.html
+        run: |
+          ls | grep src/index.html
+      - name: if exists materials
+        run: |
+          ls | grep src/materials/cynmbals.mp3
+          ls | grep src/materials/drumroll.mp3
+          ls | grep src/materials/logo.ico
+
+  file-copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: file delete and copy
+        run: |
+          mkdir -p docs/materials
+          cp -f src/index.html docs/
+          cp -f src/materials/* docs/materials/
+
+  ts-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install and build
+        run: |
+          npm ci
+          npm run build
+      - name: use cache
+        uses: actions/cache@v1.0.3
+        with:
+          path: ~/.npm
+          key: ${{ env.cache-version }-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ env.cache-version }-node-
+      - name: npm ci and build
+        run: |
+          npm ci
+          npm run build
