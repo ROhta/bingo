@@ -2,6 +2,9 @@ name: deploy
 
 on:
   push:
+    branches:
+      - master
+      - docs保持
     tags:
       - v*.*.*
 
