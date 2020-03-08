@@ -62,4 +62,5 @@ typings/
 
 # costom
 docs/*
+!docs/.gitkeep
 .vscode/*
