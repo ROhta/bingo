@@ -86,6 +86,10 @@ jobs:
         with:
           name: js
           path: docs/js
+      - name: diff
+        run: |
+          git diff
+          git status
       - name: commit files
         run: |
           git config --local user.name ${git-name}
