@@ -3,9 +3,6 @@ name: build-check
 on:
   schedule:
     - cron: 0 22 1 * *
-  push:
-    branches:
-      - actions追加
 
 jobs:
   file-check:

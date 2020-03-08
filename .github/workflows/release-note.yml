@@ -2,8 +2,6 @@ name: prepare-release-note
 
 on:
   push:
-    branches:
-      - master
     tags:
       - v*.*.*
 

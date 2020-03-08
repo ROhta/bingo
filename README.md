@@ -1,10 +1,14 @@
 # Bingo Machine
 
-## 使用方法
+## 本番環境
+
+- [github pages](https://rohta.github.io/bingo/)で構築
+
+## local環境構築
 
 - git clone
 - `npm ci`
-- `npm run build`
+- `npm run watch`
 - ブラウザでindex.htmlを開く
 
 ## 機能
@@ -44,3 +48,10 @@
 - LocalStorageによる履歴機能を実装
 - dom.tsでは、DOMに依存するeventを管理
 - numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
+
+### CI/CD
+
+- github actionsで以下を実装
+  - github pagesへのdeploy
+  - deploy可能か、build check
+  - tag付け時に、release noteのdraftを自動生成
