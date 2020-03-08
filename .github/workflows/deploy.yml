@@ -13,7 +13,6 @@ jobs:
     steps:
       - name: file delete and copy
         run: |
-          mkdir -p docs
           mkdir -p docs/materials
           cp -f src/index.html docs/
           cp -f src/materials/* docs/materials/
