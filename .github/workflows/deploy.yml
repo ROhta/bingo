@@ -13,7 +13,6 @@ jobs:
     steps:
       - name: if exists index.html
         run: |
-          echo ${ GITHUB_WORKSPACE }
           ls ${ GITHUB_WORKSPACE }/src/ | grep index.html
       - name: if exists materials
         run: |
@@ -24,13 +23,8 @@ jobs:
   file-copy:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{github.event.pull_request.head.ref}}
       - name: file delete and copy
         run: |
-          echo ${ GITHUB_WORKSPACE }
           mkdir -p ${ GITHUB_WORKSPACE }/docs/materials
           cp -f  ${ GITHUB_WORKSPACE }/src/index.html docs/
           cp -f  ${ GITHUB_WORKSPACE }/src/materials/* docs/materials/
