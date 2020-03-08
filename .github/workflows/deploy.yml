@@ -78,7 +78,7 @@ jobs:
           git add docs/*
           git commit -m "deploy"
         env:
-          git-name: ${GITHUB_ACTOR}
+          git-name: ${GITHUB_EVENT_NAME}
           git-email: ${{ secrets.EMAIL_ADDRESS }}
       - name: push changes
         uses: ad-m/github-push-action@v0.5.0
