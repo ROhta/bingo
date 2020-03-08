@@ -5,7 +5,7 @@
 	"description": "A Bingo Machine for Party",
 	"private": false,
 	"license": "GPL-3.0-or-later",
-	"homepage": "https://rohta.github.io/bingo/index.html",
+	"homepage": "https://rohta.github.io/bingo/",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ROhta/bingo"
