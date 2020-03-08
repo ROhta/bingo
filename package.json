@@ -1,16 +1,18 @@
 {
 	"name": "bingo-machine",
-	"version": "1.0.1",
+	"version": "1.1.1",
 	"author": "ROhta",
 	"description": "A Bingo Machine for Party",
 	"private": false,
 	"license": "GPL-3.0-or-later",
+	"homepage": "https://rohta.github.io/bingo/index.html",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ROhta/bingo"
 	},
 	"scripts": {
-		"build": "npx tsc -b"
+		"build": "npx tsc -b",
+		"watch": "npx tsc -b -w"
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.3.30",
