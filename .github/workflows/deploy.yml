@@ -13,12 +13,12 @@ jobs:
     steps:
       - name: if exists index.html
         run: |
-          ls | grep src/index.html
+          ls src/ | grep index.html
       - name: if exists materials
         run: |
-          ls | grep src/materials/cynmbals.mp3
-          ls | grep src/materials/drumroll.mp3
-          ls | grep src/materials/logo.ico
+          ls src/materials/ | grep cynmbals.mp3
+          ls src/materials/ | grep drumroll.mp3
+          ls src/materials/ | grep logo.ico
 
   file-copy:
     runs-on: ubuntu-latest
