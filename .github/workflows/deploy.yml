@@ -13,7 +13,6 @@ jobs:
     steps:
       - name: if exists index.html
         run: |
-          ls ${GITHUB_WORKSPACE}
           ls ${GITHUB_WORKSPACE}/src/ | grep index.html
       - name: if exists materials
         run: |
