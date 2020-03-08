@@ -56,7 +56,7 @@ jobs:
       - name: upload materials
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: materials
+          name: js
           path: src/js
 
   deploy:
