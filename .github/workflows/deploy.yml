@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: debug
-        run: echo ${GITHUB_WORKSPACE}
+        run: echo ${ GITHUB_WORKSPACE }
       - name: if exists index.html
         run: |
           ls ${ GITHUB_WORKSPACE }/src/ | grep index.html
