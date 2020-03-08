@@ -59,7 +59,7 @@ jobs:
           name: js
           path: src/js
 
-  deploy:
+  make-docs:
     runs-on: ubuntu-latest
     needs: ["html-and-materials", "ts-build"]
     steps:
@@ -75,7 +75,7 @@ jobs:
         uses: actions/download-artifact@v1.0.0
         with:
           name: html
-          path: docs/
+          path: docs
       - name: download materials
         uses: actions/download-artifact@v1.0.0
         with:
@@ -85,7 +85,7 @@ jobs:
         uses: actions/download-artifact@v1.0.0
         with:
           name: js
-          path: ${{ env.docs-path }}/js
+          path: docs/js
       - name: commit files
         run: |
           git config --local user.name ${git-name}
