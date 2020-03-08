@@ -2,8 +2,8 @@ name: deploy
 
 on:
   push:
-    branches-ignore:
-      - "!master"
+    branches:
+      - master
     tags:
       - v*.*.*
 
@@ -13,10 +13,10 @@ jobs:
     steps:
       - name: file delete and copy
         run: |
-          rm docs/index.html
-          rm docs/materials/*
-          cp src/index.html docs/
-          cp src/materials/* docs/materials/
+          mkdir -p docs
+          mkdir -p docs/materials
+          cp -f src/index.html docs/
+          cp -f src/materials/* docs/materials/
   ts-build:
     runs-on: ubuntu-latest
     steps:
