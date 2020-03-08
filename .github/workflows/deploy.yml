@@ -8,19 +8,29 @@ on:
     tags:
       - v*.*.*
 
+env:
+  ref: ${{ github.event.pull_request.head.ref }}
+  src-path: ${GITHUB_WORKSPACE}/src
+  docs-path: ${GITHUB_WORKSPACE}/docs
+
 jobs:
-  copy:
+  html-and-materials:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: file delete and copy
-        run: |
-          mkdir -p ${GITHUB_WORKSPACE}/docs/materials
-          cp -f  ${GITHUB_WORKSPACE}/src/index.html docs/
-          cp -f  ${GITHUB_WORKSPACE}/src/materials/* docs/materials/
+          ref: ${{ env.ref }}
+      - name: upload html
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: html
+          path: ${{ src-path }}/index.html
+      - name: upload materials
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: materials
+          path: ${{ src-path }}/materials/*
 
   ts-build:
     runs-on: ubuntu-latest
@@ -28,25 +38,28 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: Use Node.js ${{ matrix.node-version }}
+          ref: ${{ env.ref }}
+      - name: use node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1.4.0
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install and build
-        run: |
-          npm ci
-          npm run build
       - name: use cache
         uses: actions/cache@v1.1.2
         with:
           path: ~/.npm
-          key: ${{ env.cache-version }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ env.cache-version }}-node-
+          key: ${cache-version}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${cache-version}-node-
+        env:
+          cache-version: v1
       - name: npm ci and build
         run: |
           npm ci
           npm run build
+      - name: upload materials
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: materials
+          path: ${{ src-path }}/js/*
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,15 +68,34 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ env.ref }}
+      - name: mkdir
+        run: |
+          mkdir -p ${{ env.docs-path}}/materials
+          mkdir -p ${{ env.docs-path}}/js
+      - name: download html
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: html
+          path: ${{ env.docs-path }}
+      - name: download materials
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: materials
+          path: ${{ env.docs-path }}/materials
+      - name: download js
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: js
+          path: ${{ env.docs-path }}/js
       - name: commit files
         run: |
-          git config --local user.name ${name}
-          git config --local user.email ${email}
+          git config --local user.name ${git-name}
+          git config --local user.email ${git-email}
           git commit -m "deploy" -a
         env:
-          name: ${GITHUB_ACTOR}
-          email: ${{ secrets.EMAIL_ADDRESS }}
+          git-name: ${GITHUB_ACTOR}
+          git-email: ${{ secrets.EMAIL_ADDRESS }}
       - name: push changes
         uses: ad-m/github-push-action@v0.5.0
         with:

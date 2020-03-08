@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"target": "es2018",
 		"module": "umd",
-		"outDir": "docs/js",
+		"outDir": "src/js",
 		"sourceMap": true,
 		"removeComments": true,
 		"strict": true,
