@@ -37,7 +37,7 @@ jobs:
         with:
           ref: ${{github.event.pull_request.head.ref}}
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v1.4.0
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install and build
@@ -45,7 +45,7 @@ jobs:
           npm ci
           npm run build
       - name: use cache
-        uses: actions/cache@v1.0.3
+        uses: actions/cache@v1.1.2
         with:
           path: ~/.npm
           key: ${{ env.cache-version }}-node-${{ hashFiles('**/package-lock.json') }}
