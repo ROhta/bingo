@@ -49,7 +49,7 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ env.cache-version }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ env.cache-version }-node-
+          restore-keys: ${{ env.cache-version }}-node-
       - name: npm ci and build
         run: |
           npm ci
