@@ -18,7 +18,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ env.ref }}
+          ref: ${ref}
       - name: upload html
         uses: actions/upload-artifact@v1.0.0
         with:
@@ -36,7 +36,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ env.ref }}
+          ref: ${ref}
       - name: use node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1.4.0
         with:
@@ -66,7 +66,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ env.ref }}
+          ref: ${ref}
       - name: mkdir
         run: |
           mkdir -p ${GITHUB_WORKSPACE}/docs/materials
@@ -86,17 +86,11 @@ jobs:
         with:
           name: js
           path: docs/js
-      - name: add
-        run: |
-          git add docs/*
-      - name: diff
-        run: |
-          git diff
-          git status
       - name: commit files
         run: |
           git config --local user.name ${git-name}
           git config --local user.email ${git-email}
+          git add docs/*
           git commit -m "deploy"
         env:
           git-name: ${GITHUB_ACTOR}
@@ -105,4 +99,4 @@ jobs:
         uses: ad-m/github-push-action@v0.5.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # branch: "master"
+          branch: "docs保持"
