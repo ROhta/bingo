@@ -86,6 +86,9 @@ jobs:
         with:
           name: js
           path: docs/js
+      - name: add
+        run: |
+          git add docs/*
       - name: diff
         run: |
           git diff
@@ -94,7 +97,7 @@ jobs:
         run: |
           git config --local user.name ${git-name}
           git config --local user.email ${git-email}
-          git commit -m "deploy" -a
+          git commit -m "deploy"
         env:
           git-name: ${GITHUB_ACTOR}
           git-email: ${{ secrets.EMAIL_ADDRESS }}
