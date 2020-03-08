@@ -6,57 +6,82 @@ on:
       - v*.*.*
 
 jobs:
-  file-check:
+  html-and-materials:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: upload html
+        uses: actions/upload-artifact@v1.0.0
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: if exists index.html
-        run: |
-          ls ${GITHUB_WORKSPACE}/src/ | grep index.html
-      - name: if exists materials
-        run: |
-          ls ${GITHUB_WORKSPACE}/src/materials/ | grep cynmbals.mp3
-          ls ${GITHUB_WORKSPACE}/src/materials/ | grep drumroll.mp3
-          ls ${GITHUB_WORKSPACE}/src/materials/ | grep logo.ico
-
-  file-copy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
+          name: html
+          path: src/index.html
+      - name: upload materials
+        uses: actions/upload-artifact@v1.0.0
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: file delete and copy
-        run: |
-          mkdir -p ${GITHUB_WORKSPACE}/docs/materials
-          cp -f  ${GITHUB_WORKSPACE}/src/index.html docs/
-          cp -f  ${GITHUB_WORKSPACE}/src/materials/* docs/materials/
+          name: materials
+          path: src/materials
 
   ts-build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: Use Node.js ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - name: use node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1.4.0
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install and build
-        run: |
-          npm ci
-          npm run build
       - name: use cache
         uses: actions/cache@v1.1.2
         with:
           path: ~/.npm
-          key: ${{ env.cache-version }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ env.cache-version }}-node-
+          key: ${cache-version}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${cache-version}-node-
+        env:
+          cache-version: v1
       - name: npm ci and build
         run: |
           npm ci
           npm run build
+      - name: upload materials
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: js
+          path: src/js
+
+  make-docs:
+    runs-on: ubuntu-latest
+    needs: ["html-and-materials", "ts-build"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: mkdir
+        run: |
+          mkdir -p ${GITHUB_WORKSPACE}/docs/materials
+          mkdir -p ${GITHUB_WORKSPACE}/docs/js
+      - name: download html
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: html
+          path: docs
+      - name: download materials
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: materials
+          path: docs/materials
+      - name: download js
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: js
+          path: docs/js
+      - name: commit files
+        run: |
+          git config --local user.name ${git-name}
+          git config --local user.email ${git-email}
+          git add docs/*
+          git commit -m "deploy"
+        env:
+          git-name: ${GITHUB_EVENT_NAME}
+          git-email: ${{ secrets.EMAIL_ADDRESS }}
+      - name: push changes
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "master"
