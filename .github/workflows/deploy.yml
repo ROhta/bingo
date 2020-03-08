@@ -2,8 +2,10 @@ name: deploy
 
 on:
   push:
-    tags:
-      - v*.*.*
+    branches:
+      - master
+    paths:
+      - src/*
 
 jobs:
   html-and-materials:
@@ -21,7 +23,7 @@ jobs:
           name: materials
           path: src/materials
 
-  ts-build:
+  ts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
