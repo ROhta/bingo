@@ -13,21 +13,21 @@ jobs:
     steps:
       - name: if exists index.html
         run: |
-          ls src/ | grep index.html
+          ls ${{ GITHUB_WORKSPACE }}/src/ | grep index.html
       - name: if exists materials
         run: |
-          ls src/materials/ | grep cynmbals.mp3
-          ls src/materials/ | grep drumroll.mp3
-          ls src/materials/ | grep logo.ico
+          ls ${{ GITHUB_WORKSPACE }}/src/materials/ | grep cynmbals.mp3
+          ls ${{ GITHUB_WORKSPACE }}/src/materials/ | grep drumroll.mp3
+          ls ${{ GITHUB_WORKSPACE }}/src/materials/ | grep logo.ico
 
   file-copy:
     runs-on: ubuntu-latest
     steps:
       - name: file delete and copy
         run: |
-          mkdir -p docs/materials
-          cp -f src/index.html docs/
-          cp -f src/materials/* docs/materials/
+          mkdir -p ${{ GITHUB_WORKSPACE }}/docs/materials
+          cp -f  ${{ GITHUB_WORKSPACE }}/src/index.html docs/
+          cp -f  ${{ GITHUB_WORKSPACE }}/src/materials/* docs/materials/
 
   ts-build:
     runs-on: ubuntu-latest
