@@ -10,8 +10,6 @@ on:
 
 env:
   ref: ${{ github.event.pull_request.head.ref }}
-  src-path: ${GITHUB_WORKSPACE}/src
-  docs-path: ${GITHUB_WORKSPACE}/docs
 
 jobs:
   html-and-materials:
@@ -25,12 +23,12 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: html
-          path: ${{ env.src-path }}/index.html
+          path: src/index.html
       - name: upload materials
         uses: actions/upload-artifact@v1.0.0
         with:
           name: materials
-          path: ${{ env.src-path }}/materials/*
+          path: src/materials/*
 
   ts-build:
     runs-on: ubuntu-latest
@@ -59,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: materials
-          path: ${{ env.src-path }}/js/*
+          path: src/js/*
 
   deploy:
     runs-on: ubuntu-latest
@@ -71,18 +69,18 @@ jobs:
           ref: ${{ env.ref }}
       - name: mkdir
         run: |
-          mkdir -p ${{ env.docs-path}}/materials
-          mkdir -p ${{ env.docs-path}}/js
+          mkdir -p ${GITHUB_WORKSPACE}/docs/materials
+          mkdir -p ${GITHUB_WORKSPACE}/docs/js
       - name: download html
         uses: actions/download-artifact@v1.0.0
         with:
           name: html
-          path: ${{ env.docs-path }}
+          path: docs/
       - name: download materials
         uses: actions/download-artifact@v1.0.0
         with:
           name: materials
-          path: ${{ env.docs-path }}/materials
+          path: docs/materials
       - name: download js
         uses: actions/download-artifact@v1.0.0
         with:
