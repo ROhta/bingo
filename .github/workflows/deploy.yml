@@ -23,7 +23,7 @@ jobs:
           name: materials
           path: src/materials
 
-  ts:
+  build-ts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
 
   make-docs:
     runs-on: ubuntu-latest
-    needs: ["html-and-materials", "ts-build"]
+    needs: ["html-and-materials", "build-ts"]
     steps:
       - uses: actions/checkout@v2
       - name: mkdir
