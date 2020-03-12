@@ -12,7 +12,7 @@ jobs:
       - name: files check
         run: |
           ls ${{ env.src-path }} | grep index.html
-          ls ${{ env.src-path }}/materials/ | grep cynmbals.mp3
+          ls ${{ env.src-path }}/materials/ | grep cymbals.mp3
           ls ${{ env.src-path }}/materials/ | grep drumroll.mp3
           ls ${{ env.src-path }}/materials/ | grep logo.ico
         env:

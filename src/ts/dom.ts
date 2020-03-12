@@ -9,7 +9,7 @@ const $bingoNumber: JQuery = $("#bingo-number")
 const $startButton: JQuery = $("#start-button")
 const $histories: JQuery = $("#histories")
 const $drum: any = $("#drum").get(0)
-const $cynmbals: any = $("#cynmbals").get(0)
+const $cymbals: any = $("#cymbals").get(0)
 
 const numbers = new NumberList()
 
@@ -27,7 +27,7 @@ if (numbers.getRemainList().length === 0 && loadedHistories.length === 0) {
 
 let isStarted: boolean = false
 $startButton.focus().on("click", (): void => {
-	const chooseNumber =  (): void => {
+	const chooseNumber = (): void => {
 		if (!isStarted) return
 		$startButton.text(startText)
 
@@ -46,14 +46,14 @@ $startButton.focus().on("click", (): void => {
 		addHistory(randomNum)
 
 		$drum.pause()
-		$cynmbals.currentTime = 0
-		$cynmbals.play()
+		$cymbals.currentTime = 0
+		$cymbals.play()
 
 		isStarted = false
 	}
 
 	const roulette = (): void => {
-		if(!isStarted) return
+		if (!isStarted) return
 		if ($drum.currentTime < $drum.duration) {
 			const rouletteNumbers: number[] = numbers.getRemainList()
 			$bingoNumber.text(String(rouletteNumbers[numbers.getRandomNumber(rouletteNumbers.length)]).padStart(2, "0"))
@@ -68,7 +68,7 @@ $startButton.focus().on("click", (): void => {
 	} else {
 		$startButton.text(stopText)
 
-		$cynmbals.pause()
+		$cymbals.pause()
 		$drum.currentTime = 0
 		$drum.play()
 
