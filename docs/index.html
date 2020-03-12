@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,13 @@
 	<meta name="robots" content="noindex, nofollow">
 	<title>Bingo Machine</title>
 	<link rel="icon" href="./materials/logo.ico">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=MedievalSharp&amp;subset=latin-ext" rel="stylesheet">
 </head>
+
 <body class="bg-dark text-white h-100" style="font-family: 'MedievalSharp', cursive;">
 	<section class="float-left text-center w-50">
-		<p id="bingo-number" style="font-size: 20rem;">00</p>
+		<p id="bingo-number" style="font-size: 55vmin;">00</p>
 		<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4">START</button>
 		<button type="button" id="reset-button" class="btn btn-lg btn-secondary px-1 py-4">RESET</button>
 	</section>
@@ -24,12 +26,14 @@
 	</section>
 
 	<audio id="drum" preload="auto" src="./materials/drumroll.mp3" type="audio/mp3"></audio>
-	<audio id="cynmbals" preload="auto" src="./materials/cynmbals.mp3" type="audio/mp3"></audio>
+	<audio id="cymbals" preload="auto" src="./materials/cymbals.mp3" type="audio/mp3"></audio>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
 
 	<script src="./js/numberList.js" defer></script>
 	<script src="./js/dom.js" defer></script>
 </body>
+
 </html>

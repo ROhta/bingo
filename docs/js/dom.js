@@ -6,7 +6,7 @@ const $bingoNumber = $("#bingo-number");
 const $startButton = $("#start-button");
 const $histories = $("#histories");
 const $drum = $("#drum").get(0);
-const $cynmbals = $("#cynmbals").get(0);
+const $cymbals = $("#cymbals").get(0);
 const numbers = new NumberList();
 const addHistory = (n) => {
     $histories.append(`<p class="col-md-2">${String(n).padStart(2, "0")}</p>`);
@@ -35,8 +35,8 @@ $startButton.focus().on("click", () => {
         $bingoNumber.text(String(randomNum).padStart(2, "0"));
         addHistory(randomNum);
         $drum.pause();
-        $cynmbals.currentTime = 0;
-        $cynmbals.play();
+        $cymbals.currentTime = 0;
+        $cymbals.play();
         isStarted = false;
     };
     const roulette = () => {
@@ -56,7 +56,7 @@ $startButton.focus().on("click", () => {
     }
     else {
         $startButton.text(stopText);
-        $cynmbals.pause();
+        $cymbals.pause();
         $drum.currentTime = 0;
         $drum.play();
         isStarted = true;
