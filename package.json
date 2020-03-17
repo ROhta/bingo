@@ -23,6 +23,12 @@
 			"git add"
 		]
 	},
+	"prettier": {
+		"singleQuote": false,
+		"semi": false,
+		"tabWidth": 4,
+		"useTabs": true
+	},
 	"devDependencies": {
 		"@types/jquery": "^3.3.33",
 		"husky": "^4.2.3",
