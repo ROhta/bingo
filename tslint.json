@@ -13,7 +13,10 @@
         "no-duplicate-variable": true,
         "no-duplicate-key": true,
         "no-unused-variable": true,
-        "curly": true,
+        "curly": [
+            true,
+            "ignore-same-line"
+        ],
         "class-name": true,
         "triple-equals": true,
         "arrow-parens": [
