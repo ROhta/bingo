@@ -12,10 +12,31 @@
 	},
 	"scripts": {
 		"build": "npx tsc -b",
-		"watch": "npx tsc -b -w"
+		"watch": "npx tsc -b -w",
+		"pre-commit": "lint-staged",
+		"tslint-check": "npx tslint-config-prettier-check ./tslint.json"
+	},
+	"lint-staged": {
+		"*.{ts}": [
+			"tsc --noEmit",
+			"tslint -p tsconfig.json -c tslint.json --fix",
+			"git add"
+		]
+	},
+	"prettier": {
+		"singleQuote": false,
+		"semi": false,
+		"tabWidth": 4,
+		"useTabs": true
 	},
 	"devDependencies": {
-		"@types/jquery": "^3.3.33",
-		"typescript": "^3.8.3"
+		"@types/jquery": "^3.3.38",
+		"husky": "^4.2.5",
+		"lint-staged": "^10.2.7",
+		"prettier": "^2.0.5",
+		"tslint": "^6.1.2",
+		"tslint-config-prettier": "^1.18.0",
+		"tslint-plugin-prettier": "^2.3.0",
+		"typescript": "^3.9.3"
 	}
 }
