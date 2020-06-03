@@ -3,7 +3,6 @@ const startText: string = "START"
 const stopText: string = "STOP"
 const rouletteInterval: number = 150
 
-
 // DOM
 const $bingoNumber: JQuery = $("#bingo-number")
 const $startButton: JQuery = $("#start-button")
