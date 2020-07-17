@@ -37,8 +37,7 @@
             }
         ],
         "member-access": [
-            true,
-            "no-public"
+            true
         ],
         "no-any": true,
         "no-irregular-whitespace": true,
