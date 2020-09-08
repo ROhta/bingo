@@ -55,7 +55,13 @@ $startButton.focus().on("click", (): void => {
 		if (!isStarted) return
 		if ($drum.currentTime < $drum.duration) {
 			const rouletteNumbers: number[] = numbers.getRemainList()
-			$bingoNumber.text(String(rouletteNumbers[numbers.getRandomNumber(rouletteNumbers.length)]).padStart(2, "0"))
+			$bingoNumber.text(
+				String(
+					rouletteNumbers[
+					numbers.getRandomNumber(rouletteNumbers.length)
+					]
+				).padStart(2, "0")
+			)
 			setTimeout(roulette, rouletteInterval)
 		} else {
 			chooseNumber()

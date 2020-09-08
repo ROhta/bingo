@@ -9,8 +9,9 @@ class NumberList {
 
 		this.allNumberList = []
 		const maxBingoNumber: number = 75
-		// tslint:disable-next-line: prettier
-		for (let i: number = 1; i <= maxBingoNumber; i++) this.allNumberList.push(i)
+		for (let i: number = 1; i <= maxBingoNumber; i++) {
+			this.allNumberList.push(i)
+		}
 	}
 
 	public getRandomNumber(n: number): number {
@@ -23,8 +24,8 @@ class NumberList {
 	}
 
 	public getHistoryList(): number[] {
-		// tslint:disable-next-line: prettier
-		const histories: string = localStorage.getItem(this.historyListKey) || ""
+		const histories: string =
+			localStorage.getItem(this.historyListKey) || ""
 		return histories === "" ? [] : JSON.parse(histories)
 	}
 
