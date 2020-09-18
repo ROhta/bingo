@@ -7,7 +7,9 @@ const rouletteInterval: number = 150
 const $bingoNumber: JQuery = $("#bingo-number")
 const $startButton: JQuery = $("#start-button")
 const $histories: JQuery = $("#histories")
+// tslint:disable-next-line: no-any
 const $drum: any = $("#drum").get(0)
+// tslint:disable-next-line: no-any
 const $cymbals: any = $("#cymbals").get(0)
 
 const numbers = new NumberList()

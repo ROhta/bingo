@@ -24,8 +24,7 @@ class NumberList {
 	}
 
 	public getHistoryList(): number[] {
-		const histories: string =
-			localStorage.getItem(this.historyListKey) || ""
+		const histories: string = localStorage.getItem(this.historyListKey) || ""
 		return histories === "" ? [] : JSON.parse(histories)
 	}
 
