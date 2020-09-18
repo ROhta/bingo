@@ -1,17 +1,15 @@
 class NumberList {
-	private remainListKey: string
-	private historyListKey: string
-	private allNumberList: number[]
+	private remainListKey
+	private historyListKey
+	private allNumberList
 
 	constructor() {
 		this.remainListKey = "remainNumberList"
 		this.historyListKey = "historiesNumberList"
 
 		this.allNumberList = []
-		const maxBingoNumber: number = 75
-		for (let i: number = 1; i <= maxBingoNumber; i++) {
-			this.allNumberList.push(i)
-		}
+		const maxBingoNumber = 75
+		for (let i = 1; i <= maxBingoNumber; i++) this.allNumberList.push(i)
 	}
 
 	public getRandomNumber(n: number): number {
@@ -19,12 +17,12 @@ class NumberList {
 	}
 
 	public getRemainList(): number[] {
-		const remains: string = localStorage.getItem(this.remainListKey) || ""
+		const remains = localStorage.getItem(this.remainListKey) || ""
 		return remains === "" ? [] : JSON.parse(remains)
 	}
 
 	public getHistoryList(): number[] {
-		const histories: string = localStorage.getItem(this.historyListKey) || ""
+		const histories = localStorage.getItem(this.historyListKey) || ""
 		return histories === "" ? [] : JSON.parse(histories)
 	}
 

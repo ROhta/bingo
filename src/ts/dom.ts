@@ -1,12 +1,12 @@
 // config
-const startText: string = "START"
-const stopText: string = "STOP"
+const startText = "START"
+const stopText = "STOP"
 const rouletteInterval: number = 150
 
 // DOM
-const $bingoNumber: JQuery = $("#bingo-number")
-const $startButton: JQuery = $("#start-button")
-const $histories: JQuery = $("#histories")
+const $bingoNumber = $("#bingo-number")
+const $startButton = $("#start-button")
+const $histories = $("#histories")
 // tslint:disable-next-line: no-any
 const $drum: any = $("#drum").get(0)
 // tslint:disable-next-line: no-any
@@ -23,7 +23,7 @@ const loadedHistories: number[] = numbers.getHistoryList()
 if (numbers.getRemainList().length === 0 && loadedHistories.length === 0) {
 	numbers.resetLists()
 } else {
-	loadedHistories.forEach((value: number) => addHistory(value))
+	loadedHistories.forEach((n: number) => addHistory(n))
 }
 
 let isStarted: boolean = false
@@ -32,14 +32,14 @@ $startButton.focus().on("click", (): void => {
 		if (!isStarted) return
 		$startButton.text(startText)
 
-		const remains: number[] = numbers.getRemainList()
-		const i: number = numbers.getRandomNumber(remains.length)
-		const randomNum: number = remains.length === 0 ? -1 : remains[i]
+		const remains = numbers.getRemainList()
+		const i = numbers.getRandomNumber(remains.length)
+		const randomNum = remains.length === 0 ? -1 : remains[i]
 
 		remains.splice(i, 1)
 		numbers.setRemainList(remains)
 
-		const histories: number[] = numbers.getHistoryList()
+		const histories = numbers.getHistoryList()
 		histories.push(randomNum)
 		numbers.setHistoryList(histories)
 
@@ -56,7 +56,7 @@ $startButton.focus().on("click", (): void => {
 	const roulette = (): void => {
 		if (!isStarted) return
 		if ($drum.currentTime < $drum.duration) {
-			const rouletteNumbers: number[] = numbers.getRemainList()
+			const rouletteNumbers = numbers.getRemainList()
 			$bingoNumber.text(
 				String(
 					rouletteNumbers[
