@@ -44,9 +44,8 @@
 		"number-literal-format": true,
 		"object-literal-sort-keys": [
 			true,
-			"match-declaration-order-only"
+			"match-declaration-order"
 		],
-		"prettier": true,
 		"quotemark": [
 			true,
 			"double"
@@ -54,6 +53,15 @@
 		"semicolon": [
 			true,
 			"never"
+		],
+		"arrow-return-shorthand": [
+			true,
+			"multiline"
+		],
+		"indent": [
+			true,
+			"tabs",
+			4
 		]
 	},
 	"rulesDirectory": []
