@@ -7,7 +7,7 @@
 ## local環境構築
 
 - git clone
-- `npm ci`****
+- `npm ci`
 - `npm run watch`
 - ブラウザでindex.htmlを開く
 
@@ -49,9 +49,17 @@
 - dom.tsでは、DOMに依存するeventを管理
 - numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
 
-### CI/CD
+### Github
 
-- GitHub actionsで以下を実装
-  - GitHub pagesへのdeploy
-  - deploy可能か、build check
-  - tag付け時に、release noteのdraftを自動生成
+#### GitHub actions
+
+- GitHub pagesへのdeploy
+- tag付け時に、release noteのdraftを自動生成
+- Pull Request作成時に以下を検査
+  - deploy可能か、buildのテスト
+  - CodeQLで脆弱性を含むコードの検出（TypeScriptのみ）
+
+#### 脆弱性対応
+
+- dependabot.yml
+  - module udpateのPull Requestが週一で最大10件作成されるように設定
