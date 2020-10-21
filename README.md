@@ -14,26 +14,26 @@
 ## 機能
 
 - startを押す
-	- ドラムロールが鳴る
-	- 左上部の数字が一定間隔でランダム表示される
-	- start/stopボタンは`stop`となる
-	- ドラムロールが鳴り終わると自動的に数字が選択され、`stop`表示になる
+  - ドラムロールが鳴る
+  - 左上部の数字が一定間隔でランダム表示される
+  - start/stopボタンは`stop`となる
+  - ドラムロールが鳴り終わると自動的に数字が選択され、`stop`表示になる
 - stopを押す
-	- ドラムロールを停止する
-	- シンバルが鳴動する
-	- 左上部の数字のランダム表示を停止する
-	- 止まった=選択された数字をHistoriesに追加する
-	- start/stopボタンは`start`となる
+  - ドラムロールを停止する
+  - シンバルが鳴動する
+  - 左上部の数字のランダム表示を停止する
+  - 止まった=選択された数字をHistoriesに追加する
+  - start/stopボタンは`start`となる
 - resetを押す
-	- confirmを出す
-	- Historiesに表示されている数字を全消去する
-	- 左上部の数字は00となる
-	- confirm中、画面の変動はない
-		- 数字選択中にresetを押下した場合、ドラムロールは鳴り続けるが、数字のランダム表示は停止する
+  - confirmを出す
+  - Historiesに表示されている数字を全消去する
+  - 左上部の数字は00となる
+  - confirm中、画面の変動はない
+    - 数字選択中にresetを押下した場合、ドラムロールは鳴り続けるが、数字のランダム表示は停止する
 - reload時
-	- start/stopボタンは`start`となる
-	- 左上部の数字は00となる
-	- Historiesはresetされず、表示されたままとなる
+  - start/stopボタンは`start`となる
+  - 左上部の数字は00となる
+  - Historiesはresetされず、表示されたままとなる
 
 ## 技術
 
@@ -49,9 +49,17 @@
 - dom.tsでは、DOMに依存するeventを管理
 - numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
 
-### CI/CD
+### Github
 
-- GitHub actionsで以下を実装
-	- GitHub pagesへのdeploy
-	- deploy可能か、build check
-	- tag付け時に、release noteのdraftを自動生成
+#### GitHub actions
+
+- GitHub pagesへのdeploy
+- tag付け時に、release noteのdraftを自動生成
+- Pull Request作成時に以下を検査
+  - deploy可能か、buildのテスト
+  - CodeQLで脆弱性を含むコードの検出（TypeScriptのみ）
+
+#### 脆弱性対応
+
+- dependabot.yml
+  - module udpateのPull Requestが週一で最大10件作成されるように設定
