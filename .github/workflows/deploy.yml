@@ -3,7 +3,8 @@ name: deploy
 on:
   push:
     branches:
-      - master
+      - fix_deploy
+        # - master
     paths:
       - docs/index.html
       - docs/ts/*
