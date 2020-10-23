@@ -16,7 +16,7 @@ jobs:
           ls ${{ env.src-path }}/materials/ | grep drumroll.mp3
           ls ${{ env.src-path }}/materials/ | grep logo.ico
         env:
-          src-path: ${GITHUB_WORKSPACE}/src
+          src-path: ${GITHUB_WORKSPACE}/docs
 
   build-check:
     runs-on: ubuntu-latest

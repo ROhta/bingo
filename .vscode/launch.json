@@ -5,7 +5,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "file:///${workspaceFolder}/src/index.html",
+            "url": "file:///${workspaceFolder}/docs/index.html",
             "webRoot": "${workspaceFolder}"
         },
         {
@@ -13,13 +13,13 @@
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "file": "${workspaceFolder}/src/index.html"
+            "file": "${workspaceFolder}/docs/index.html"
         },
         {
             "name": "Launch Edge",
             "request": "launch",
             "type": "pwa-msedge",
-            "url": "file:///${workspaceFolder}/src/index.html",
+            "url": "file:///${workspaceFolder}/docs/index.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
