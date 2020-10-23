@@ -12,7 +12,8 @@ jobs:
   html-and-materials:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
       - name: upload html
         uses: actions/upload-artifact@v1.0.0
         with:
@@ -27,13 +28,14 @@ jobs:
   build-ts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: use node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1.4.0
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.1.2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: use cache
-        uses: actions/cache@v1.1.2
+      - name: Cache
+        uses: actions/cache@v2.1.2
         with:
           path: ~/.npm
           key: ${cache-version}-node-${{ hashFiles('**/package-lock.json') }}
@@ -54,7 +56,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: ["html-and-materials", "build-ts"]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
       - name: mkdir
         run: |
           mkdir -p ${GITHUB_WORKSPACE}/docs/materials
@@ -69,8 +72,8 @@ jobs:
         with:
           name: materials
           path: docs/materials
-      - name: download js
-        uses: actions/download-artifact@v1.0.0
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2
         with:
           name: js
           path: docs/js
@@ -83,8 +86,8 @@ jobs:
         env:
           git-name: ${GITHUB_EVENT_NAME}
           git-email: ${{ secrets.EMAIL_ADDRESS }}
-      - name: push changes
-        uses: ad-m/github-push-action@v0.5.0
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: "master"
