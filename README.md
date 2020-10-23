@@ -49,7 +49,7 @@
 - dom.tsでは、DOMに依存するeventを管理
 - numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
 
-### Github
+### GitHub
 
 #### GitHub actions
 
