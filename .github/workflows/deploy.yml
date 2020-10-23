@@ -81,6 +81,7 @@ jobs:
         run: |
           git config --local user.name ${git-name}
           git config --local user.email ${git-email}
+          git pull
           git add docs/*
           git commit -m "deploy"
         env:
