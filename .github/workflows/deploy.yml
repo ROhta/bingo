@@ -3,10 +3,11 @@ name: deploy
 on:
   push:
     branches:
-      - fix_deploy
-      # - maste
-    # paths:
-    # - src/*
+      - master
+    paths:
+      - docs/index.html
+      - docs/ts/*
+      - docs/materials/*
 
 jobs:
   build-ts:
