@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: files check
+      - name: Files check
         run: |
           ls ${{ env.src-path }} | grep index.html
           ls ${{ env.src-path }}/materials/ | grep cymbals.mp3
@@ -18,16 +18,17 @@ jobs:
         env:
           src-path: ${GITHUB_WORKSPACE}/docs
 
-  build-check:
+  build-ts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: use node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1.4.0
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.1.2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: use cache
-        uses: actions/cache@v1.1.2
+      - name: Cache
+        uses: actions/cache@v2.1.2
         with:
           path: ~/.npm
           key: ${cache-version}-node-${{ hashFiles('**/package-lock.json') }}
