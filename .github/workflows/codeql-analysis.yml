@@ -1,4 +1,4 @@
-name: "CodeQL"
+name: codeQL
 
 on:
   push:
@@ -18,15 +18,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ["typescript"]
+        language: [typescript]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
         with:
           fetch-depth: 2
       - run: git checkout HEAD^2
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == "pull_request" }}
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
