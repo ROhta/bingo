@@ -83,7 +83,7 @@ jobs:
           git config --local user.email ${git-email}
           git pull
           git add docs/*
-          git commit -m "deploy"
+          git commit --allow-empty -m "deploy"
         env:
           git-name: ${GITHUB_EVENT_NAME}
           git-email: ${{ secrets.EMAIL_ADDRESS }}
