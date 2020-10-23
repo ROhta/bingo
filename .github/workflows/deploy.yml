@@ -9,22 +9,6 @@ on:
     # - src/*
 
 jobs:
-  html-and-materials:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.3
-      - name: upload html
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: html
-          path: src/index.html
-      - name: upload materials
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: materials
-          path: src/materials
-
   build-ts:
     runs-on: ubuntu-latest
     steps:
@@ -46,38 +30,17 @@ jobs:
         run: |
           npm ci
           npm run build
-      - name: upload materials
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: js
-          path: src/js
 
-  make-docs:
+  git-push:
     runs-on: ubuntu-latest
-    needs: ["html-and-materials", "build-ts"]
+    needs: ["build-ts"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
       - name: mkdir
         run: |
-          mkdir -p ${GITHUB_WORKSPACE}/docs/materials
           mkdir -p ${GITHUB_WORKSPACE}/docs/js
-      - name: download html
-        uses: actions/download-artifact@v1.0.0
-        with:
-          name: html
-          path: docs
-      - name: download materials
-        uses: actions/download-artifact@v1.0.0
-        with:
-          name: materials
-          path: docs/materials
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: js
-          path: docs/js
-      - name: commit files
+      - name: Commit
         run: |
           git config --local user.name ${git-name}
           git config --local user.email ${git-email}
@@ -87,7 +50,7 @@ jobs:
         env:
           git-name: ${GITHUB_EVENT_NAME}
           git-email: ${{ secrets.EMAIL_ADDRESS }}
-      - name: GitHub Push
+      - name: Push
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
