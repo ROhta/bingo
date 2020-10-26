@@ -2,9 +2,12 @@ name: codeQL
 
 on:
   push:
-    branches: [develop, master]
+    branches:
+      - main
+      - release
   pull_request:
-    branches: [develop]
+    branches:
+      - main
     paths:
       - docs/ts/
   schedule:
