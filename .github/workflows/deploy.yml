@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - release
+      - main
     paths:
       - docs/index.html
       - docs/ts/*
@@ -50,7 +51,7 @@ jobs:
 
   git-push:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true }}
+    if: github.ref == "main"
     needs:
       - "file-check"
       - "build-ts"
