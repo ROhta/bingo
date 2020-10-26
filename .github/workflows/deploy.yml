@@ -3,12 +3,13 @@ name: deploy
 on:
   push:
     branches:
-      - release
-      - main
-    paths:
-      - docs/index.html
-      - docs/ts/*
-      - docs/materials/*
+      - fix_deploy
+    #   - release
+    #   - main
+    # paths:
+    #   - docs/index.html
+    #   - docs/ts/*
+    #   - docs/materials/*
   schedule:
     - cron: 0 22 1 * *
 

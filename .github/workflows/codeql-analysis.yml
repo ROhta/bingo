@@ -7,9 +7,10 @@ on:
       - release
   pull_request:
     branches:
-      - main
-    paths:
-      - docs/ts/
+      - fix_deploy
+    #   - main
+    # paths:
+    #   - docs/ts/
   schedule:
     - cron: 0 22 1 * *
 
