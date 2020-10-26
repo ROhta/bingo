@@ -53,10 +53,10 @@ jobs:
   GitPush:
     runs-on: ubuntu-latest
     # if: ${{ github.ref == 'main' }}
-    if: ${{ github.ref == 'fix_deploy' }}
+    if: github.ref == 'fix_deploy'
     needs:
-      - file-check
-      - build-ts
+      - FileCheck
+      - BuildTs
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
