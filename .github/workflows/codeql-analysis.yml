@@ -3,8 +3,9 @@ name: codeQL
 on:
   push:
     branches:
-      - main
-      - release
+      - fix_deploy
+      # - main
+      # - release
   pull_request:
     branches:
       - fix_deploy
