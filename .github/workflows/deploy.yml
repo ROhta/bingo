@@ -3,17 +3,57 @@ name: deploy
 on:
   push:
     branches:
-      - fix_deploy
-        # - master
-    # paths:
-    #   - docs/index.html
-    #   - docs/ts/*
-    #   - docs/materials/*
+      - release
+    paths:
+      - docs/index.html
+      - docs/ts/*
+      - docs/materials/*
+  schedule:
+    - cron: 0 22 1 * *
 
 jobs:
+  file-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+      - name: Files check
+        run: |
+          ls ${{ env.src-path }} | grep index.html
+          ls ${{ env.src-path }}/materials/ | grep cymbals.mp3
+          ls ${{ env.src-path }}/materials/ | grep drumroll.mp3
+          ls ${{ env.src-path }}/materials/ | grep logo.ico
+        env:
+          src-path: ${GITHUB_WORKSPACE}/docs
+
+  build-ts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache
+        uses: actions/cache@v2.1.2
+        with:
+          path: ~/.npm
+          key: ${cache-version}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${cache-version}-node-
+        env:
+          cache-version: v1
+      - name: npm ci and build
+        run: |
+          npm ci
+          npm run build
+
   git-push:
     runs-on: ubuntu-latest
-    needs: ["file-check", "build-ts"]
+    if: ${{ github.event.pull_request.merged == true }}
+    needs:
+      - "file-check"
+      - "build-ts"
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
