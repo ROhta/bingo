@@ -3,6 +3,7 @@ name: Deploy
 on:
   push:
     branches:
+      - fix_deploy
     #   - release
     #   - main
     # paths:
@@ -51,7 +52,8 @@ jobs:
 
   GitPush:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'main' }}
+    # if: ${{ github.ref == 'main' }}
+    if: ${{ github.ref == 'fix_deploy' }}
     needs:
       - file-check
       - build-ts
