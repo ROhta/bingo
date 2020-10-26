@@ -3,15 +3,13 @@ name: CodeQL
 on:
   push:
     branches:
-      - fix_deploy
-      # - main
-      # - release
+      - main
+      - release
   pull_request:
     branches:
-      - fix_deploy
-    #   - main
-    # paths:
-    #   - docs/ts/
+      - main
+    paths:
+      - docs/ts/
   schedule:
     - cron: 0 22 1 * *
 
@@ -32,7 +30,7 @@ jobs:
         with:
           fetch-depth: 2
       - run: git checkout HEAD^2
-        if: ${{ github.event_name == 'pull_request' }}
+        if: github.event_name == 'pull_request'
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
