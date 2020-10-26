@@ -52,7 +52,7 @@ jobs:
 
   git-push:
     runs-on: ubuntu-latest
-    if: github.ref == main
+    if: github.ref == "main"
     needs:
       - "file-check"
       - "build-ts"
