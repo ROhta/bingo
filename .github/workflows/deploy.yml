@@ -3,13 +3,10 @@ name: Deploy
 on:
   pull_request:
     branches:
-      - fix_deploy
-    # - main
-    #   - release
-    # paths:
-    #   - docs/index.html
-    #   - docs/ts/*
-    #   - docs/materials/*
+      - main
+      - release
+    paths:
+      - docs/*
 
 jobs:
   BuildTS:
@@ -34,8 +31,7 @@ jobs:
           npm ci
           npm run build
       - name: upload materials
-        # if: github.base_ref == 'release'
-        if: github.base_ref == 'fix_deploy'
+        if: github.base_ref == 'release'
         uses: actions/upload-artifact@v1.0.0
         with:
           name: js
@@ -43,8 +39,7 @@ jobs:
 
   MoveHTMLAndMaterials:
     runs-on: ubuntu-latest
-    # if: github.base_ref == 'release'
-    if: github.base_ref == 'fix_deploy'
+    if: github.base_ref == 'release'
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
@@ -61,8 +56,7 @@ jobs:
 
   GitPush:
     runs-on: ubuntu-latest
-    # if: github.base_ref == 'release'
-    if: github.base_ref == 'fix_deploy'
+    if: github.base_ref == 'release'
     needs:
       - BuildTs
       - MoveHTMLAndMaterials
@@ -71,8 +65,6 @@ jobs:
         uses: actions/checkout@v2.3.3
         with:
           ref: ${{ github.base_ref }}
-      # - name: Pull
-      #   run: git pull --ff
       - name: MkDir
         run: |
           mkdir -p ${GITHUB_WORKSPACE}/docs/materials
