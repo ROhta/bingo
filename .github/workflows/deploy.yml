@@ -3,12 +3,13 @@ name: Deploy
 on:
   push:
     branches:
-      - release
-      - main
-    paths:
-      - docs/index.html
-      - docs/ts/*
-      - docs/materials/*
+      - fix_deploy
+    #   - release
+    #   - main
+    # paths:
+    #   - docs/index.html
+    #   - docs/ts/*
+    #   - docs/materials/*
   schedule:
     - cron: 0 22 1 * *
 
@@ -51,7 +52,8 @@ jobs:
 
   GitPush:
     runs-on: ubuntu-latest
-    if: github.ref == 'release'
+    # if: github.ref == 'release'
+    if: github.base_ref == 'fix_deploy'
     needs:
       - FileCheck
       - BuildTs
