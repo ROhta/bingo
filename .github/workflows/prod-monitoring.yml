@@ -14,9 +14,8 @@ jobs:
           ref: "release"
       - name: Files check
         run: |
-          ls ${{ env.src-path }} | grep index.html
-          ls ${{ env.src-path }}/materials/ | grep cymbals.mp3
-          ls ${{ env.src-path }}/materials/ | grep drumroll.mp3
-          ls ${{ env.src-path }}/materials/ | grep logo.ico
+          [ -e ${{ env.src-path }}/index.html ] && echo exists index.html
+          [ -e ${{ env.src-path }}/materials/cymbals.mp3 -o -e ${{ env.src-path }}/materials/drumroll.mp3 -o -e ${{ env.src-path }}/materials/logo.ico ] && exists materials
+          [ -e ${{ env.src-path }}/js/dom.js -o -e ${{ env.src-path }}/js/numberList.js ] && exists js
         env:
           src-path: ${GITHUB_WORKSPACE}/docs
