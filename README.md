@@ -49,7 +49,7 @@
 - dom.tsでは、DOMに依存するeventを管理
 - numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
 
-### Github
+### GitHub
 
 #### GitHub actions
 
@@ -62,4 +62,4 @@
 #### 脆弱性対応
 
 - dependabot.yml
-  - module udpateのPull Requestが週一で最大10件作成されるように設定
+  - module updateのPull Requestが週一で最大10件作成されるように設定

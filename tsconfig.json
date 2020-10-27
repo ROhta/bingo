@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"target": "es2018",
 		"module": "umd",
-		"outDir": "src/js",
+		"outDir": "docs/js",
 		"sourceMap": true,
 		"removeComments": true,
 		"strict": true,
@@ -16,7 +16,7 @@
 		"forceConsistentCasingInFileNames": true,
 	},
 	"include": [
-		"src/ts/*"
+		"docs/ts/*"
 	],
 	"exclude": [
 		"node_modules/*"
