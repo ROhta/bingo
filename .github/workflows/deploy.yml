@@ -10,8 +10,8 @@ on:
     #   - docs/index.html
     #   - docs/ts/*
     #   - docs/materials/*
-  schedule:
-    - cron: 0 22 1 * *
+  # schedule:
+  #   - cron: 0 22 1 * *
 
 jobs:
   FileCheck:
