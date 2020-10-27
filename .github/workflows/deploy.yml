@@ -42,7 +42,7 @@ jobs:
 
   MoveHTMLAndMaterials:
     runs-on: ubuntu-latest
-    if: github.head_ref == 'fix_deploy'
+    if: github.base_ref == 'fix_deploy'
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
@@ -60,7 +60,7 @@ jobs:
   GitPush:
     runs-on: ubuntu-latest
     # if: github.ref == 'release'
-    if: github.head_ref == 'fix_deploy'
+    if: github.ref == 'fix_deploy'
     needs:
       - BuildTs
       - MoveHTMLAndMaterials
