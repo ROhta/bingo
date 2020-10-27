@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths:
-      - src/ts/
+      - src/ts/*
   schedule:
     - cron: 0 22 1 * *
 
