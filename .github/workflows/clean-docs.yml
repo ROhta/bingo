@@ -1,0 +1,35 @@
+name: Monitoring
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  RemoveDocsFiles:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+        with:
+          ref: "main"
+      - name: Files check
+        run: |
+          rm -r ${{ env.src-path }}
+        env:
+          src-path: ${GITHUB_WORKSPACE}/docs
+      - name: Commit
+        run: |
+          git config --local user.name ${git-name}
+          git config --local user.email ${git-email}
+          git add ${{ env.src-path }}/*
+          git commit --allow-empty -m 'clean docs'
+        env:
+          git-name: ${GITHUB_EVENT_NAME}
+          git-email: ${{ secrets.EMAIL_ADDRESS }}
+          src-path: ${GITHUB_WORKSPACE}/docs
+      - name: Push
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

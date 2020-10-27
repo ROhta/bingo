@@ -1,11 +1,10 @@
 name: Deploy
 
 on:
-  push:
+  pull_request:
     branches:
       - fix_deploy
     #   - release
-    #   - main
     # paths:
     #   - docs/index.html
     #   - docs/ts/*
@@ -93,11 +92,12 @@ jobs:
         run: |
           git config --local user.name ${git-name}
           git config --local user.email ${git-email}
-          git add docs/*
+          git add git add ${{ env.src-path }}/*
           git commit --allow-empty -m 'deploy'
         env:
           git-name: ${GITHUB_EVENT_NAME}
           git-email: ${{ secrets.EMAIL_ADDRESS }}
+          src-path: ${GITHUB_WORKSPACE}/docs
       - name: Push
         uses: ad-m/github-push-action@v0.6.0
         with:
