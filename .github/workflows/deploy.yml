@@ -12,60 +12,60 @@ on:
     #   - docs/materials/*
 
 jobs:
-  BuildTS:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.3
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.1.2
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Cache
-        uses: actions/cache@v2.1.2
-        with:
-          path: ~/.npm
-          key: ${cache-version}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${cache-version}-node-
-        env:
-          cache-version: v1
-      - name: npm ci and build
-        run: |
-          npm ci
-          npm run build
-      - name: upload materials
-        # if: github.base_ref == 'release'
-        if: github.base_ref == 'fix_deploy'
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: js
-          path: src/js
+  # BuildTS:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2.3.3
+  #     - name: Setup Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v2.1.2
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - name: Cache
+  #       uses: actions/cache@v2.1.2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${cache-version}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: ${cache-version}-node-
+  #       env:
+  #         cache-version: v1
+  #     - name: npm ci and build
+  #       run: |
+  #         npm ci
+  #         npm run build
+  #     - name: upload materials
+  #       # if: github.base_ref == 'release'
+  #       if: github.base_ref == 'fix_deploy'
+  #       uses: actions/upload-artifact@v1.0.0
+  #       with:
+  #         name: js
+  #         path: src/js
 
-  MoveHTMLAndMaterials:
-    runs-on: ubuntu-latest
-    # if: github.base_ref == 'release'
-    if: github.base_ref == 'fix_deploy'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.3
-      - name: Upload HTML
-        uses: actions/upload-artifact@v2
-        with:
-          name: html
-          path: src/index.html
-      - name: Upload Materials
-        uses: actions/upload-artifact@v2
-        with:
-          name: materials
-          path: src/materials
+  # MoveHTMLAndMaterials:
+  #   runs-on: ubuntu-latest
+  #   # if: github.base_ref == 'release'
+  #   if: github.base_ref == 'fix_deploy'
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2.3.3
+  #     - name: Upload HTML
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: html
+  #         path: src/index.html
+  #     - name: Upload Materials
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: materials
+  #         path: src/materials
 
   GitPush:
     runs-on: ubuntu-latest
     # if: github.base_ref == 'release'
     if: github.base_ref == 'fix_deploy'
-    needs:
-      - BuildTs
-      - MoveHTMLAndMaterials
+    # needs:
+    #   - BuildTs
+    #   - MoveHTMLAndMaterials
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
