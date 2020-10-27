@@ -32,6 +32,10 @@ jobs:
         run: |
           npm ci
           npm run build
+      - run: |
+          echo ${{ github.ref }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.head_ref }}
       - name: upload materials
         if: github.base_ref == 'fix_deploy'
         uses: actions/upload-artifact@v1.0.0
