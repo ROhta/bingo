@@ -51,7 +51,7 @@ jobs:
 
   GitPush:
     runs-on: ubuntu-latest
-    if: github.ref == 'main'
+    if: github.ref == 'release'
     needs:
       - FileCheck
       - BuildTs
