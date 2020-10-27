@@ -56,7 +56,7 @@
 - GitHub pagesへのdeploy
 - tag付け時に、release noteのdraftを自動生成
 - Pull Request作成時に以下を検査
-  - deploy可能か、buildのテスト
+  - build可否
   - CodeQLで脆弱性を含むコードの検出（TypeScriptのみ）
 
 #### 脆弱性対応

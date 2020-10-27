@@ -1,0 +1,21 @@
+name: Monitoring
+
+on:
+  schedule:
+    - cron: 0 22 * * 5
+
+jobs:
+  FileCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+        with:
+          ref: "release"
+      - name: Check Files
+        run: |
+          [ -e ${{ env.src-path }}/index.html ] && echo exists index.html
+          [ -e ${{ env.src-path }}/materials/cymbals.mp3 -o -e ${{ env.src-path }}/materials/drumroll.mp3 -o -e ${{ env.src-path }}/materials/logo.ico ] && echo exists materials
+          [ -e ${{ env.src-path }}/js/dom.js -o -e ${{ env.src-path }}/js/numberList.js ] && echo exists js
+        env:
+          src-path: ${GITHUB_WORKSPACE}/docs
