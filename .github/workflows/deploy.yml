@@ -1,17 +1,23 @@
 name: Deploy
 
 on:
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - release
+  #   paths:
+  #     - src/*
+  # push:
+  #   branches:
+  #     - release
+  #   paths:
+  #     - src/*
   pull_request:
     branches:
-      - main
-      - release
-    paths:
-      - src/*
+      - deploy_fix
   push:
     branches:
-      - release
-    paths:
-      - src/*
+      - deploy_fix
 
 jobs:
   BuildTS:
@@ -51,7 +57,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.3
         with:
-          ref: ${{ github.ref }}
+          ref: release
       - name: Upload HTML
         uses: actions/upload-artifact@v2
         with:
@@ -73,7 +79,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.3
         with:
-          ref: ${{ github.ref }}
+          ref: release
       - name: MkDir
         run: |
           mkdir -p ${GITHUB_WORKSPACE}/docs/materials
