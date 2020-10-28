@@ -97,7 +97,7 @@ jobs:
         uses: EndBug/add-and-commit@v5.1.0
         with:
           add: $docs/ -r
-          author_name: ${{ github.event_name} }}
+          author_name: ${{ github.event_name }}
           author_email: ${{ secrets.EMAIL_ADDRESS }}
           branch: release
           message: "deploy"
