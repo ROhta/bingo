@@ -4,12 +4,12 @@ on:
   # pull_request:
   #   branches:
   #     - main
-  #     - release
+  #     - deploy_fix
   #   paths:
   #     - src/*
   # push:
   #   branches:
-  #     - release
+  #     - deploy_fix
   #   paths:
   #     - src/*
   pull_request:
@@ -44,7 +44,7 @@ jobs:
           npm ci
           npm run build
       - name: upload materials
-        if: github.ref == 'release'
+        if: github.ref == 'deploy_fix'
         uses: actions/upload-artifact@v1.0.0
         with:
           name: js
@@ -52,12 +52,12 @@ jobs:
 
   MoveHTMLAndMaterials:
     runs-on: ubuntu-latest
-    if: github.ref == 'release'
+    if: github.ref == 'deploy_fix'
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
         with:
-          ref: release
+          ref: deploy_fix
       - name: Upload HTML
         uses: actions/upload-artifact@v2
         with:
@@ -71,7 +71,7 @@ jobs:
 
   GitPush:
     runs-on: ubuntu-latest
-    if: github.ref == 'release'
+    if: github.ref == 'deploy_fix'
     needs:
       - BuildTs
       - MoveHTMLAndMaterials
@@ -79,7 +79,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.3
         with:
-          ref: release
+          ref: deploy_fix
       - name: MkDir
         run: |
           mkdir -p ${GITHUB_WORKSPACE}/docs/materials
@@ -105,7 +105,7 @@ jobs:
           add: $docs/ -r
           author_name: ${GITHUB_EVENT_NAME}
           author_email: ${{ secrets.EMAIL_ADDRESS }}
-          branch: release
+          branch: deploy_fix
           message: "deploy"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
