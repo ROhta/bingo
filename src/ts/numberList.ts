@@ -12,9 +12,7 @@ class NumberList {
 		for (let i = 1; i <= maxBingoNumber; i++) this.allNumberList.push(i)
 	}
 
-	public getRandomNumber(n: number): number {
-		return Math.floor(Math.random() * n)
-	}
+	public getRandomNumber = (n: number): number => Math.floor(Math.random() * n)
 
 	public getRemainList(): number[] {
 		const remains = localStorage.getItem(this.remainListKey) || ""
@@ -26,13 +24,9 @@ class NumberList {
 		return histories === "" ? [] : JSON.parse(histories)
 	}
 
-	public setRemainList(remains: number[]): void {
-		localStorage.setItem(this.remainListKey, JSON.stringify(remains))
-	}
+	public setRemainList = (remains: number[]): void => localStorage.setItem(this.remainListKey, JSON.stringify(remains))
 
-	public setHistoryList(histories: number[]): void {
-		localStorage.setItem(this.historyListKey, JSON.stringify(histories))
-	}
+	public setHistoryList = (histories: number[]): void => localStorage.setItem(this.historyListKey, JSON.stringify(histories))
 
 	public resetLists(): void {
 		localStorage.removeItem(this.historyListKey)

@@ -1,4 +1,4 @@
-name: prepare-release-note
+name: PrepareReleaseNote
 
 on:
   push:

@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths:
-      - docs/ts/
+      - src/ts/**
   schedule:
     - cron: 0 22 1 * *
 
@@ -35,6 +35,5 @@ jobs:
         uses: github/codeql-action/init@v1
         with:
           languages: ${{ matrix.language }}
-
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1

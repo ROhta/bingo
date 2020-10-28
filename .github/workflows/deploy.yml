@@ -1,37 +1,26 @@
 name: Deploy
 
 on:
+  pull_request:
+    branches:
+      - main
+      - release
+    paths:
+      - src/**
   push:
     branches:
       - release
-      - main
     paths:
-      - docs/index.html
-      - docs/ts/*
-      - docs/materials/*
-  schedule:
-    - cron: 0 22 1 * *
+      - src/**
 
 jobs:
-  FileCheck:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.3
-      - name: Files check
-        run: |
-          ls ${{ env.src-path }} | grep index.html
-          ls ${{ env.src-path }}/materials/ | grep cymbals.mp3
-          ls ${{ env.src-path }}/materials/ | grep drumroll.mp3
-          ls ${{ env.src-path }}/materials/ | grep logo.ico
-        env:
-          src-path: ${GITHUB_WORKSPACE}/docs
-
   BuildTS:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
+        with:
+          ref: ${{ github.ref }}
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2.1.2
         with:
@@ -48,31 +37,74 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: upload materials
+        if: github.ref == 'refs/heads/release'
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: js
+          path: src/js
 
-  GitPush:
+  MoveHTMLAndMaterials:
     runs-on: ubuntu-latest
-    if: github.ref == 'release'
-    needs:
-      - FileCheck
-      - BuildTs
+    if: github.ref == 'refs/heads/release'
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.3
-      - name: mkdir
+        with:
+          ref: release
+      - name: Upload HTML
+        uses: actions/upload-artifact@v2
+        with:
+          name: html
+          path: src/index.html
+      - name: Upload Materials
+        uses: actions/upload-artifact@v2
+        with:
+          name: materials
+          path: src/materials
+
+  GitPush:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/release'
+    needs:
+      - BuildTs
+      - MoveHTMLAndMaterials
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+        with:
+          ref: release
+      - name: MkDir
         run: |
-          mkdir -p ${GITHUB_WORKSPACE}/docs/js
-      - name: Commit
-        run: |
-          git config --local user.name ${git-name}
-          git config --local user.email ${git-email}
-          git pull
-          git add docs/*
-          git commit --allow-empty -m 'deploy'
+          mkdir -p docs/materials
+          mkdir -p docs/js
+      - name: Download HTML
+        uses: actions/download-artifact@v2
+        with:
+          name: html
+          path: docs
+      - name: Download Materials
+        uses: actions/download-artifact@v2
+        with:
+          name: materials
+          path: docs/materials
+      - name: Download JavaScript
+        uses: actions/download-artifact@v2
+        with:
+          name: js
+          path: docs/js
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v5.1.0
+        with:
+          add: docs/*
+          author_name: ${{ github.event_name }}
+          author_email: ${{ secrets.EMAIL_ADDRESS }}
+          branch: release
+          message: "deploy"
         env:
-          git-name: ${GITHUB_EVENT_NAME}
-          git-email: ${{ secrets.EMAIL_ADDRESS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Push
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: release
