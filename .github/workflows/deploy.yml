@@ -1,23 +1,17 @@
 name: Deploy
 
 on:
-  # pull_request:
-  #   branches:
-  #     - main
-  #     - release
-  #   paths:
-  #     - src/*
-  # push:
-  #   branches:
-  #     - release
-  #   paths:
-  #     - src/*
   pull_request:
     branches:
+      - main
       - release
+    paths:
+      - src/*
   push:
     branches:
       - release
+    paths:
+      - src/*
 
 jobs:
   BuildTS:
