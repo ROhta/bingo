@@ -7,6 +7,11 @@ on:
       - release
     paths:
       - src/*
+  push:
+    branches:
+      - release
+    paths:
+      - src/*
 
 jobs:
   BuildTS:
