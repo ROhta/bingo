@@ -21,14 +21,14 @@ jobs:
           bash
           # gitの仕様上、ディレクトリがあれば配下にファイルが存在する
         run: |
-          [ -d ${GITHUB_WORKSPACE}/docs/ ] && echo exists docs
+          [ -d docs/ ] && echo exists docs
         continue-on-error: true
       - name: Remove & Commit
         if: ${{ success() }}
         uses: EndBug/add-and-commit@v5.1.0
         with:
           remove: docs/ -r
-          author_name: ${GITHUB_EVENT_NAME}
+          author_name: ${{ github.event_name} }}
           author_email: ${{ secrets.EMAIL_ADDRESS }}
           branch: main
           message: "clean docs"
