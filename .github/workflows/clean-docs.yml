@@ -28,7 +28,7 @@ jobs:
         uses: EndBug/add-and-commit@v5.1.0
         with:
           remove: docs/ -r
-          author_name: ${{ github.event_name} }}
+          author_name: ${{ github.event_name }}
           author_email: ${{ secrets.EMAIL_ADDRESS }}
           branch: main
           message: "clean docs"
