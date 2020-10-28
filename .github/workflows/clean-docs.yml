@@ -1,4 +1,4 @@
-name: Monitoring
+name: CleanDocs
 
 on:
   pull_request:
@@ -14,8 +14,12 @@ jobs:
         with:
           ref: ${{ github.base_ref }}
       - name: Check Files
+        shell:
+          bash
+          # gitの仕様上、ディレクトリがあれば配下にファイルが存在する
         run: |
           [ -d ${GITHUB_WORKSPACE}/docs/ ] && echo exists docs
+        continue-on-error: true
       - name: Remove & Commit
         if: ${{ success() }}
         uses: EndBug/add-and-commit@v5.1.0

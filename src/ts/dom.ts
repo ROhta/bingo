@@ -26,7 +26,7 @@ if (numbers.getRemainList().length === 0 && loadedHistories.length === 0) {
 	loadedHistories.forEach((n: number) => addHistory(n))
 }
 
-let isStarted: boolean = false
+let isStarted = false
 $startButton.focus().on("click", (): void => {
 	const chooseNumber = (): void => {
 		if (!isStarted) return
@@ -57,13 +57,7 @@ $startButton.focus().on("click", (): void => {
 		if (!isStarted) return
 		if ($drum.currentTime < $drum.duration) {
 			const rouletteNumbers = numbers.getRemainList()
-			$bingoNumber.text(
-				String(
-					rouletteNumbers[
-					numbers.getRandomNumber(rouletteNumbers.length)
-					]
-				).padStart(2, "0")
-			)
+			$bingoNumber.text(String(rouletteNumbers[numbers.getRandomNumber(rouletteNumbers.length)]).padStart(2, "0"))
 			setTimeout(roulette, rouletteInterval)
 		} else {
 			chooseNumber()
