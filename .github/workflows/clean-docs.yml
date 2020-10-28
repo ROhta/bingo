@@ -3,10 +3,10 @@ name: CleanDocs
 on:
   pull_request:
     branches:
-      - deploy_fix
+      - main
   push:
     branches:
-      - deploy_fix
+      - main
 
 jobs:
   RemoveDocsFiles:
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.3
         with:
-          ref: deploy_fix
+          ref: main
       - name: Check Files
         shell:
           bash
@@ -30,7 +30,7 @@ jobs:
           remove: docs/ -r
           author_name: ${GITHUB_EVENT_NAME}
           author_email: ${{ secrets.EMAIL_ADDRESS }}
-          branch: deploy_fix
+          branch: main
           message: "clean docs"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,4 +38,4 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: deploy_fix
+          branch: main
