@@ -6,12 +6,12 @@ on:
       - main
       - release
     paths:
-      - src/*
+      - src/**
   push:
     branches:
       - release
     paths:
-      - src/*
+      - src/**
 
 jobs:
   BuildTS:
