@@ -27,7 +27,7 @@ jobs:
         if: ${{ success() }}
         uses: EndBug/add-and-commit@v5.1.0
         with:
-          remove: -r ${GITHUB_WORKSPACE}/docs/
+          remove: docs/ -r
           author_name: ${GITHUB_EVENT_NAME}
           author_email: ${{ secrets.EMAIL_ADDRESS }}
           branch: ${{ github.base_ref }}
