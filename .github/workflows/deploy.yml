@@ -9,10 +9,9 @@ on:
       - src/*
   push:
     branches:
-      - deploy_fix
-    #   - release
-    # paths:
-    #   - src/*
+      - release
+    paths:
+      - src/*
 
 jobs:
   BuildTS:
