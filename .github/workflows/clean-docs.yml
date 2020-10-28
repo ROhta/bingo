@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
 
 jobs:
   RemoveDocsFiles:
@@ -12,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.3
         with:
-          ref: ${{ github.base_ref }}
+          ref: main
       - name: Check Files
         shell:
           bash
@@ -24,10 +27,10 @@ jobs:
         if: ${{ success() }}
         uses: EndBug/add-and-commit@v5.1.0
         with:
-          remove: ${GITHUB_WORKSPACE}/docs/*
+          remove: docs/ -r
           author_name: ${GITHUB_EVENT_NAME}
           author_email: ${{ secrets.EMAIL_ADDRESS }}
-          branch: ${{ github.base_ref }}
+          branch: main
           message: "clean docs"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,4 +38,4 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.base_ref }}
+          branch: main
