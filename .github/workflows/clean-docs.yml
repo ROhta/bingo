@@ -6,7 +6,8 @@ on:
       - main
   push:
     branches:
-      - main
+      - deploy_fix
+        # - main
 
 jobs:
   RemoveDocsFiles:
