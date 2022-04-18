@@ -1,7 +1,6 @@
 name: Synthetic Monitoring
 
 on:
-  push:
   schedule:
     - cron: 0 22 * * 5
 
