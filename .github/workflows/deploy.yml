@@ -18,6 +18,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: clean up
+        run: rm -r src/ts
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2.6.0
         with:
