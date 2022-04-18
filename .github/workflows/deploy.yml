@@ -1,6 +1,6 @@
 name: Deploy pages
 on:
-  push;
+  push:
   pull_request:
     types: [opened, reopened, ready_for_review]
     branches:
