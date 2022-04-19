@@ -2,7 +2,8 @@ name: PrepareReleaseNote
 
 on:
   pull_requests:
-    - synchronize
+    types:
+      - synchronize
   push:
     branches:
       - release
