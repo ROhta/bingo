@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - release
-      - release-note
 
 jobs:
   create-release-draft:
