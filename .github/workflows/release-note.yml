@@ -6,7 +6,10 @@ on:
       - v*.*.*
 
 jobs:
-- name: Release Drafter
-  uses: release-drafter/release-drafter@v5.19.0
-  env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  create-release-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Drafter
+        uses: release-drafter/release-drafter@v5.19.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
