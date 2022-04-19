@@ -37,10 +37,13 @@ exclude-labels:
   - 'close-1 お見送り'
   - 'close-2 重複'
   - 'close-3 再現不能'
+prerelease: true
 template: |
   ## 概要
   -
   ## 本リリースに含まれる修正
   $CHANGES
+  ## 修正者
+  $CONTRIBUTORS
   ## 備考
   -
