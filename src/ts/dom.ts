@@ -4,18 +4,18 @@ const stopText = "STOP"
 const rouletteInterval: number = 150
 
 // DOM
-const $bingoNumber = $("#bingo-number")
-const $startButton = $("#start-button")
-const $histories = $("#histories")
-// tslint:disable-next-line: no-any
-const $drum: any = $("#drum").get(0)
-// tslint:disable-next-line: no-any
-const $cymbals: any = $("#cymbals").get(0)
+const bingoNumber = document.querySelector("#bingo-number") as HTMLElement
+const startButton = document.querySelector("#start-button") as HTMLElement
+const resetButton = document.querySelector("#reset-button") as HTMLElement
+const histories = document.querySelector("#histories") as HTMLElement
+
+const drum = document.querySelector("#drum") as HTMLMediaElement
+const cymbals = document.querySelector("#cymbals") as HTMLMediaElement
 
 const numbers = new NumberList()
 
 const addHistory = (n: number): void => {
-	$histories.append(`<p class="col-md-2">${String(n).padStart(2, "0")}</p>`)
+	histories.insertAdjacentElement("beforeend", document.createElement(`<p class="col-md-2">${String(n).padStart(2, "0")}</p>))
 }
 
 // reload時にlocalStorageの情報を引き継ぐ
@@ -27,10 +27,11 @@ if (numbers.getRemainList().length === 0 && loadedHistories.length === 0) {
 }
 
 let isStarted = false
-$startButton.focus().on("click", (): void => {
+startButton.focus()
+startButton.addEventListener("click", (): void => {
 	const chooseNumber = (): void => {
 		if (!isStarted) return
-		$startButton.text(startText)
+		startButton.innerHTML = startText
 
 		const remains = numbers.getRemainList()
 		const i = numbers.getRandomNumber(remains.length)
@@ -43,21 +44,21 @@ $startButton.focus().on("click", (): void => {
 		histories.push(randomNum)
 		numbers.setHistoryList(histories)
 
-		$bingoNumber.text(String(randomNum).padStart(2, "0"))
+		bingoNumber.innerHTML = (String(randomNum).padStart(2, "0"))
 		addHistory(randomNum)
 
-		$drum.pause()
-		$cymbals.currentTime = 0
-		$cymbals.play()
+		drum.pause()
+		cymbals.currentTime = 0
+		cymbals.play()
 
 		isStarted = false
 	}
 
 	const roulette = (): void => {
 		if (!isStarted) return
-		if ($drum.currentTime < $drum.duration) {
+		if (drum.currentTime < drum.duration) {
 			const rouletteNumbers = numbers.getRemainList()
-			$bingoNumber.text(String(rouletteNumbers[numbers.getRandomNumber(rouletteNumbers.length)]).padStart(2, "0"))
+			bingoNumber.innerHTML = String(rouletteNumbers[numbers.getRandomNumber(rouletteNumbers.length)]).padStart(2, "0")
 			setTimeout(roulette, rouletteInterval)
 		} else {
 			chooseNumber()
@@ -67,26 +68,26 @@ $startButton.focus().on("click", (): void => {
 	if (isStarted) {
 		chooseNumber()
 	} else {
-		$startButton.text(stopText)
+		startButton.innerHTML = stopText
 
-		$cymbals.pause()
-		$drum.currentTime = 0
-		$drum.play()
+		cymbals.pause()
+		drum.currentTime = 0
+		drum.play()
 
 		isStarted = true
 		roulette()
 	}
 })
 
-$("#reset-button").on("click", (): void => {
+resetButton.addEventListener("click", (): void => {
 	if (confirm("Do you really want to reset?")) {
 		numbers.resetLists()
 		isStarted = false
 
-		$histories.empty()
-		$drum.pause()
-		$startButton.text(startText)
-		$bingoNumber.text("00")
-		$startButton.focus()
+		histories.innerHTML = ""
+		drum.pause()
+		startButton.innerHTML = startText
+		bingoNumber.innerHTML = "00"
+		startButton.focus()
 	}
 })
