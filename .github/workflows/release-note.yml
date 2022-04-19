@@ -2,8 +2,8 @@ name: PrepareReleaseNote
 
 on:
   push:
-    tags:
-      - v*.*.*
+    branches:
+      - release
 
 jobs:
   create-release-draft:
