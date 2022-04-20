@@ -1,8 +1,21 @@
 class DomManipulation {
-	private isStarted = false
 	private loadedHistories
+	private isStarted = false
+	private startText = "START"
+	private stopText = "STOP"
+	private firstDisplayNumber = "00"
 
-	constructor(private numbers: NumberList) {
+	constructor(
+		private numbers: NumberList,
+		private bingoNumber: HTMLElement,
+		private historyDisplay: HTMLElement,
+		private startButton: HTMLElement,
+		private drum: HTMLMediaElement,
+		private cymbals: HTMLMediaElement,
+		private rouletteInterval: number
+	) {
+		if (this.rouletteInterval <= 0) console.error("Interval should be positive number!")
+
 		this.loadedHistories = this.numbers.getHistoryList()
 		if (this.numbers.getRemainList().length === 0 && this.loadedHistories.length === 0) {
 			this.numbers.resetLists()
@@ -12,12 +25,13 @@ class DomManipulation {
 	}
 
 	private addHistory = (n: number): void => {
-		histories.insertAdjacentHTML("afterbegin", `<p class="col-md-2"> ${String(n).padStart(2, "0")} </p>`)
+		this.historyDisplay.insertAdjacentHTML("afterbegin", `<p class="col-md-2"> ${String(n).padStart(2, "0")} </p>`)
 	}
 
 	private chooseNumber = (): void => {
 		if (!this.isStarted) return
-		startButton.innerHTML = startText
+
+		this.startButton.innerHTML = this.startText
 
 		const remains = this.numbers.getRemainList()
 		const i = this.numbers.getRandomNumber(remains.length)
@@ -30,22 +44,22 @@ class DomManipulation {
 		histories.push(randomNum)
 		this.numbers.setHistoryList(histories)
 
-		bingoNumber.innerHTML = (String(randomNum).padStart(2, "0"))
+		this.bingoNumber.innerHTML = (String(randomNum).padStart(2, "0"))
 		this.addHistory(randomNum)
 
-		drum.pause()
-		cymbals.currentTime = 0
-		cymbals.play()
+		this.drum.pause()
+		this.cymbals.currentTime = 0
+		this.cymbals.play()
 
 		this.isStarted = false
 	}
 
 	private roulette = (): void => {
 		if (!this.isStarted) return
-		if (drum.currentTime < drum.duration) {
+		if (this.drum.currentTime < this.drum.duration) {
 			const rouletteNumbers = this.numbers.getRemainList()
-			bingoNumber.innerHTML = String(rouletteNumbers[this.numbers.getRandomNumber(rouletteNumbers.length)]).padStart(2, "0")
-			setTimeout(this.roulette, rouletteInterval)
+			this.bingoNumber.innerHTML = String(rouletteNumbers[this.numbers.getRandomNumber(rouletteNumbers.length)]).padStart(2, "0")
+			setTimeout(this.roulette, this.rouletteInterval)
 		} else {
 			this.chooseNumber()
 		}
@@ -55,11 +69,11 @@ class DomManipulation {
 		if (this.isStarted) {
 			this.chooseNumber()
 		} else {
-			startButton.innerHTML = stopText
+			this.startButton.innerHTML = this.stopText
 
-			cymbals.pause()
-			drum.currentTime = 0
-			drum.play()
+			this.cymbals.pause()
+			this.drum.currentTime = 0
+			this.drum.play()
 
 			this.isStarted = true
 			this.roulette()
@@ -71,11 +85,11 @@ class DomManipulation {
 			this.numbers.resetLists()
 			this.isStarted = false
 
-			histories.innerHTML = ""
-			drum.pause()
-			startButton.innerHTML = startText
-			bingoNumber.innerHTML = "00"
-			startButton.focus()
+			this.historyDisplay.innerHTML = ""
+			this.drum.pause()
+			this.startButton.innerHTML = this.startText
+			this.bingoNumber.innerHTML = this.firstDisplayNumber
+			this.startButton.focus()
 		}
 	}
 }
