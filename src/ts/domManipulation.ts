@@ -1,20 +1,29 @@
 class DomManipulation {
 	private loadedHistories
 	private isStarted = false
+	private firstDisplayNumber = "00"
 	private startText = "START"
 	private stopText = "STOP"
-	private firstDisplayNumber = "00"
+	private resetText = "RESET"
+	private historyTitleText = "Hit Numbers"
 
 	constructor(
 		private numbers: NumberList,
 		private bingoNumber: HTMLElement,
-		private historyDisplay: HTMLElement,
 		private startButton: HTMLElement,
+		private resetButton: HTMLElement,
+		private historyTitle: HTMLElement,
+		private historyDisplay: HTMLElement,
 		private drum: HTMLMediaElement,
 		private cymbals: HTMLMediaElement,
 		private rouletteInterval: number
 	) {
 		if (this.rouletteInterval <= 0) console.error("Interval should be positive number!")
+
+		this.bingoNumber.innerHTML = this.firstDisplayNumber
+		this.startButton.innerHTML = this.startText
+		this.resetButton.innerHTML = this.resetText
+		this.historyTitle.innerHTML = this.historyTitleText
 
 		this.loadedHistories = this.numbers.getHistoryList()
 		if (this.numbers.getRemainList().length === 0 && this.loadedHistories.length === 0) {

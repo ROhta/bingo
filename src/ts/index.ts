@@ -6,8 +6,10 @@ const numberList = new NumberList()
 const doms = new DomManipulation(
     numberList,
     document.querySelector("#bingo-number") as HTMLElement,
-    document.querySelector("#histories") as HTMLElement,
     startButton,
+    resetButton,
+    document.querySelector("#history-title") as HTMLElement,
+    document.querySelector("#history-display") as HTMLElement,
     document.querySelector("#drum") as HTMLMediaElement,
     document.querySelector("#cymbals") as HTMLMediaElement,
     150
