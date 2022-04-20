@@ -15,7 +15,7 @@ const cymbals = document.querySelector("#cymbals") as HTMLMediaElement
 const numbers = new NumberList()
 
 const addHistory = (n: number): void => {
-	histories.insertAdjacentElement("beforeend", document.createElement(`<p class="col-md-2">${String(n).padStart(2, "0")}</p>))
+	histories.insertAdjacentHTML("afterbegin", `<p class="col-md-2"> ${String(n).padStart(2, "0")} </p>`)
 }
 
 // reload時にlocalStorageの情報を引き継ぐ
