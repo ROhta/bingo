@@ -1,0 +1,20 @@
+changelog:
+  categories:
+    - title: 新機能
+      labels:
+        - enhance-2 新機能
+    - title: 後方互換性の破壊
+      labels:
+        - enhance-3 破壊的変更
+    - title: バグ修正
+      labels:
+        - bug-1 重大バグ
+        - bug-2 バグ
+    - title: メンテナンス
+      labels:
+        - bug-3 改善
+        - refactor
+        - dependencies
+  exclude:
+    labels:
+      - topic-1 参考情報
