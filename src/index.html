@@ -14,16 +14,18 @@
 	<link href="https://fonts.googleapis.com/css?family=MedievalSharp&amp;subset=latin-ext" rel="stylesheet">
 </head>
 
-<body class="bg-dark text-white h-100" style="font-family: 'MedievalSharp', cursive;">
-	<section class="float-left text-center w-50">
-		<p id="bingo-number" style="font-size: 55vmin;"></p>
-		<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4"></button>
-		<button type="button" id="reset-button" class="btn btn-lg btn-secondary px-1 py-4"></button>
-	</section>
-	<section class="float-left w-50 h1">
-		<p id="history-title" class="py-5"></p>
-		<div id="history-display" class="row"></div>
-	</section>
+<body class="container bg-dark text-white h-100" style="font-family: 'MedievalSharp', cursive;">
+	<div class="row">
+		<section class="col-sm text-center">
+			<p id="bingo-number" class="" style="font-size: 55vmin;"></p>
+			<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4"></button>
+			<button type="button" id="reset-button" class="btn btn-lg btn-secondary px-1 py-4"></button>
+		</section>
+		<section class="col-sm h1">
+			<p id="history-title" class="py-5"></p>
+			<div id="history-display" class="row"></div>
+		</section>
+	</div>
 
 	<audio id="drum" preload="auto" src="./materials/drumroll.mp3" type="audio/mp3"></audio>
 	<audio id="cymbals" preload="auto" src="./materials/cymbals.mp3" type="audio/mp3"></audio>
