@@ -14,14 +14,44 @@
 		"build": "npx tsc -b",
 		"watch": "npx tsc -b -w"
 	},
+	"lint-staged": {
+		"*.{ts}": [
+			"tsc --noEmit",
+			"tslint -p tsconfig.json -c tslint.json --fix",
+			"git add"
+		]
+	},
+	"prettier": {
+		"singleQuote": false,
+		"semi": false,
+		"tabWidth": 4,
+		"useTabs": true,
+		"proseWrap": "never",
+		"printWidth": 80,
+		"tabWidth": 2,
+		"useTabs": false,
+		"semi": true,
+		"singleQuote": false,
+		"quoteProps": "as-needed",
+		"jsxSingleQuote": false,
+		"trailingComma": "none",
+		"bracketSpacing": true,
+		"jsxBracketSameLine": false,
+		"arrowParens": "avoid",
+		"rangeStart": 0,
+		"rangeEnd": Infinity,
+		"parser": "none",
+		"filepath": "none",
+		"requirePragma": false,
+		"insertPragma": false,
+		"proseWrap": "preserve",
+		"htmlWhitespaceSensitivity": "css",
+		"vueIndentScriptAndStyle": false,
+		"endOfLine": "auto"
+	},
 	"devDependencies": {
-		"@types/jquery": "^3.5.14",
-		"husky": "^7.0.4",
 		"lint-staged": "^12.3.8",
 		"prettier": "^2.6.2",
-		"tslint": "^6.1.3",
-		"tslint-config-prettier": "^1.18.0",
-		"tslint-plugin-prettier": "^2.3.0",
 		"typescript": "^4.6.3"
 	}
 }
