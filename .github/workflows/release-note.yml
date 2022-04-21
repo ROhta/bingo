@@ -2,14 +2,15 @@ name: PrepareReleaseNote
 
 on:
   push:
-    branches:
-      - release
+    tags:
+      - v*.*.*
 
 jobs:
   create-release-draft:
     runs-on: ubuntu-latest
     steps:
       - name: Release Drafter
+        if: contains(github.ref, "main")
         uses: release-drafter/release-drafter@v5.19.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
