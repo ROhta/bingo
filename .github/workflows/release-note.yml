@@ -2,6 +2,8 @@ name: PrepareReleaseNote
 
 on:
   push:
+    branches:
+      - draft
     tags:
       - v*.*.*
 
