@@ -22,44 +22,59 @@
   - ドラムロールを停止する
   - シンバルが鳴動する
   - 左上部の数字のランダム表示を停止する
-  - 止まった=選択された数字をHistoriesに追加する
+  - 止まった=選択された数字をHit Numbersに追加する
   - start/stopボタンは`start`となる
 - resetを押す
   - confirmを出す
-  - Historiesに表示されている数字を全消去する
+  - Hit Numbersに表示されている数字を全消去する
   - 左上部の数字は00となる
   - confirm中、画面の変動はない
     - 数字選択中にresetを押下した場合、ドラムロールは鳴り続けるが、数字のランダム表示は停止する
 - reload時
   - start/stopボタンは`start`となる
   - 左上部の数字は00となる
-  - Historiesはresetされず、表示されたままとなる
+  - Hit Numbersはresetされず、表示されたままとなる
 
 ## 技術
 
 ### styling
 
 - cssファイルは存在しない
-- bootstrap4に完全依存
+- bootstrap5に完全依存
+    - レスポンシブ対応
 - bootstrapで賄えない部分のみ、style要素で指定
 
 ### TypeScript
 
-- LocalStorageによる履歴機能を実装
-- dom.tsでは、DOMに依存するeventを管理
+- localStorageによる履歴機能を実装
+- domManipulation.tsでは、DOMに依存するメソッドをclassに紐づけて管理
 - numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
+    - 固定想定の値はこちらで管理
+- index.tsで可変値を設定
 
 ### GitHub
 
 #### GitHub actions
 
 - GitHub Pagesへのdeploy
-- GItHub Pages用のファイル存在確認による簡易監視
-- tag付け時に、release noteのdraftを自動生成
-- build可否
+- 外形監視
 - CodeQLで脆弱性を含むコードの検出（TypeScriptのみ）
 
 #### 脆弱性対応
 
 - dependabot.yml
   - module updateのPull Requestが週一で最大10件作成されるように設定
+
+#### 各種テンプレート
+
+- issue
+- pull requests
+- security policy
+
+#### リリースノート
+
+- GitHubの機能を利用
+
+#### コードオーナー
+
+- すべて @ROhta
