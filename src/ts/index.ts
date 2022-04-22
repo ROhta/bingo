@@ -3,6 +3,7 @@ const startButton = document.querySelector("#start-button") as HTMLElement
 const resetButton = document.querySelector("#reset-button") as HTMLElement
 
 // 可変な設定値を引数として渡す
+// prettier-ignore
 const doms = new DomManipulation(
     new NumberList(),
     document.querySelector("#bingo-number") as HTMLElement,

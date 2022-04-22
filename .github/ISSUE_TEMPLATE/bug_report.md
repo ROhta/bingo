@@ -1,11 +1,11 @@
 ---
 name: バグ報告
 about: ラベル必須
-title: ''
-labels: ''
+title: ""
+labels: ""
 assignees: ROhta
-
 ---
+
 ## 再現方法
 
 1.

@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="description" content="Bingo Machine" />
+		<meta name="author" content="ROhta" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>Bingo Machine</title>
+		<link rel="icon" href="./materials/logo.ico" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+		<link href="https://fonts.googleapis.com/css?family=MedievalSharp&amp;subset=latin-ext" rel="stylesheet" />
+	</head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="description" content="Bingo Machine">
-	<meta name="author" content="ROhta">
-	<meta name="robots" content="noindex, nofollow">
-	<title>Bingo Machine</title>
-	<link rel="icon" href="./materials/logo.ico">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=MedievalSharp&amp;subset=latin-ext" rel="stylesheet">
-</head>
+	<body class="container bg-dark text-white h-100" style="font-family: 'MedievalSharp', cursive">
+		<div class="row">
+			<section class="col-sm text-center">
+				<p id="bingo-number" class="" style="font-size: 55vmin"></p>
+				<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4"></button>
+				<button type="button" id="reset-button" class="btn btn-lg btn-secondary px-1 py-4"></button>
+			</section>
+			<section class="col-sm h1">
+				<p id="history-title" class="py-5"></p>
+				<div id="history-display" class="row"></div>
+			</section>
+		</div>
 
-<body class="container bg-dark text-white h-100" style="font-family: 'MedievalSharp', cursive;">
-	<div class="row">
-		<section class="col-sm text-center">
-			<p id="bingo-number" class="" style="font-size: 55vmin;"></p>
-			<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4"></button>
-			<button type="button" id="reset-button" class="btn btn-lg btn-secondary px-1 py-4"></button>
-		</section>
-		<section class="col-sm h1">
-			<p id="history-title" class="py-5"></p>
-			<div id="history-display" class="row"></div>
-		</section>
-	</div>
+		<audio id="drum" preload="auto" src="./materials/drumroll.mp3" type="audio/mp3"></audio>
+		<audio id="cymbals" preload="auto" src="./materials/cymbals.mp3" type="audio/mp3"></audio>
 
-	<audio id="drum" preload="auto" src="./materials/drumroll.mp3" type="audio/mp3"></audio>
-	<audio id="cymbals" preload="auto" src="./materials/cymbals.mp3" type="audio/mp3"></audio>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-	<script src="./js/numberList.js" defer></script>
-	<script src="./js/domManipulation.js" defer></script>
-	<script src="./js/index.js" defer></script>
-</body>
-
+		<script src="./js/numberList.js" defer></script>
+		<script src="./js/domManipulation.js" defer></script>
+		<script src="./js/index.js" defer></script>
+	</body>
 </html>

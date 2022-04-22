@@ -1,24 +1,24 @@
 {
 	"compileOnSave": true,
 	"compilerOptions": {
-		"target": "es2018",
-		"module": "umd",
+		"target": "es2022",
+		"module": "es2022",
 		"outDir": "src/js",
 		"sourceMap": true,
 		"removeComments": true,
+		"isolatedModules": false,
+		"skipLibCheck": true,
 		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 		"noEmitOnError": true,
 		"experimentalDecorators": true,
-		"forceConsistentCasingInFileNames": true,
+		"forceConsistentCasingInFileNames": true
 	},
-	"include": [
-		"src/ts/*"
-	],
-	"exclude": [
-		"node_modules/*"
-	]
+	"include": ["src/ts/*"],
+	"exclude": ["node_modules"]
 }

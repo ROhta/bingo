@@ -1,39 +1,39 @@
 name: CodeQL
 
 on:
-  push:
-    branches:
-      - main
-      - release
-  pull_request:
-    branches:
-      - main
-    paths:
-      - src/ts/**
-  schedule:
-    - cron: 0 22 1 * *
+    push:
+        branches:
+            - main
+            - release
+    pull_request:
+        branches:
+            - main
+        paths:
+            - src/ts/**
+    schedule:
+        - cron: 0 22 1 * *
 
 jobs:
-  analyze:
-    name: Analyze
-    runs-on: ubuntu-latest
+    analyze:
+        name: Analyze
+        runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language:
-          - typescript
+        strategy:
+            fail-fast: false
+            matrix:
+                language:
+                    - typescript
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.3
-        with:
-          fetch-depth: 2
-      - run: git checkout HEAD^2
-        if: github.event_name == 'pull_request'
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: ${{ matrix.language }}
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3.0.1
+              with:
+                  fetch-depth: 2
+            - run: git checkout HEAD^2
+              if: github.event_name == 'pull_request'
+            - name: Initialize CodeQL
+              uses: github/codeql-action/init@v1
+              with:
+                  languages: ${{ matrix.language }}
+            - name: Perform CodeQL Analysis
+              uses: github/codeql-action/analyze@v1
