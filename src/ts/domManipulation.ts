@@ -8,7 +8,19 @@ class DomManipulation {
 	private historyTitleText = "Hit Numbers"
 	private loadedHistories = this.numbers.getHistoryList()
 
-	constructor(private numbers: NumberList, private bingoNumber: HTMLElement, private startButton: HTMLElement, private resetButton: HTMLElement, private historyTitle: HTMLElement, private historyDisplay: HTMLElement, private historyDisplayClassName: string, private drum: HTMLMediaElement, private cymbals: HTMLMediaElement, private rouletteInterval: number) {
+	// prettier-ignore
+	constructor(
+		private numbers: NumberList,
+		private bingoNumber: HTMLElement,
+		private startButton: HTMLElement,
+		private resetButton: HTMLElement,
+		private historyTitle: HTMLElement,
+		private historyDisplay: HTMLElement,
+		private historyDisplayClassName: string,
+		private drum: HTMLMediaElement,
+		private cymbals: HTMLMediaElement,
+		private rouletteInterval: number
+	) {
 		if (this.rouletteInterval <= 0) console.error("Interval should be natural number!")
 
 		this.bingoNumber.innerHTML = this.firstDisplayNumber
