@@ -1,11 +1,11 @@
 ---
 name: 設定変更
 about: リポジトリ設定変更等
-title: ''
-labels: ''
+title: ""
+labels: ""
 assignees: ROhta
-
 ---
+
 ## 詳細
 
 -

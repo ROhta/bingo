@@ -4,7 +4,9 @@ class NumberList {
 	private maxBingoNumber = 75
 	private allNumberList: number[] = []
 
-	constructor() { for (let i = 1; i <= this.maxBingoNumber; i++) this.allNumberList.push(i) }
+	constructor() {
+		for (let i = 1; i <= this.maxBingoNumber; i++) this.allNumberList.push(i)
+	}
 
 	private getListFromLocalStorage(key: string): number[] {
 		const value = localStorage.getItem(key) || ""

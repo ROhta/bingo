@@ -1,10 +1,6 @@
 {
 	"defaultSeverity": "error",
-	"extends": [
-		"tslint:recommended",
-		"tslint-plugin-prettier",
-		"tslint-config-prettier"
-	],
+	"extends": ["tslint:recommended", "tslint-plugin-prettier", "tslint-config-prettier"],
 	"jsRules": {
 		"no-unused-expression": true
 	},
@@ -13,56 +9,27 @@
 		"no-duplicate-variable": true,
 		"no-duplicate-key": true,
 		"no-unused-variable": true,
-		"curly": [
-			true,
-			"ignore-same-line"
-		],
+		"curly": [true, "ignore-same-line"],
 		"class-name": true,
 		"triple-equals": true,
-		"arrow-parens": [
-			true,
-			"ban-single-arg-parens"
-		],
-		"interface-name": [
-			false
-		],
-		"linebreak-style": [
-			true,
-			"LF"
-		],
+		"arrow-parens": [true, "ban-single-arg-parens"],
+		"interface-name": [false],
+		"linebreak-style": [true, "LF"],
 		"max-line-length": [
 			true,
 			{
 				"ignore-pattern": "<\\w+>"
 			}
 		],
-		"member-access": [
-			true
-		],
+		"member-access": [true],
 		"no-any": true,
 		"no-irregular-whitespace": true,
 		"number-literal-format": true,
-		"object-literal-sort-keys": [
-			true,
-			"match-declaration-order"
-		],
-		"quotemark": [
-			true,
-			"double"
-		],
-		"semicolon": [
-			true,
-			"never"
-		],
-		"arrow-return-shorthand": [
-			true,
-			"multiline"
-		],
-		"indent": [
-			true,
-			"tabs",
-			4
-		]
+		"object-literal-sort-keys": [true, "match-declaration-order"],
+		"quotemark": [true, "double"],
+		"semicolon": [true, "never"],
+		"arrow-return-shorthand": [true, "multiline"],
+		"indent": [true, "tabs", 4]
 	},
 	"rulesDirectory": []
 }

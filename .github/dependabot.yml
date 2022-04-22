@@ -1,25 +1,25 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    schedule:
-      interval: "weekly"
-      day: "friday"
-      time: "10:00"
-      timezone: "Asia/Tokyo"
-    directory: "/"
-    allow:
-      - dependency-type: "all"
-    commit-message:
-      prefix: "fix_Dep."
-      prefix-development: "fix_DevDep."
-      include: "scope"
-    labels:
-      - "dependencies"
-    open-pull-requests-limit: 10
-    pull-request-branch-name:
-      separator: "_"
-    rebase-strategy: "auto"
-    reviewers:
-      - "ROhta"
-    target-branch: "develop"
-    versioning-strategy: increase-if-necessary
+    - package-ecosystem: "npm"
+      schedule:
+          interval: "weekly"
+          day: "friday"
+          time: "10:00"
+          timezone: "Asia/Tokyo"
+      directory: "/"
+      allow:
+          - dependency-type: "all"
+      commit-message:
+          prefix: "fix_Dep."
+          prefix-development: "fix_DevDep."
+          include: "scope"
+      labels:
+          - "dependencies"
+      open-pull-requests-limit: 10
+      pull-request-branch-name:
+          separator: "_"
+      rebase-strategy: "auto"
+      reviewers:
+          - "ROhta"
+      target-branch: "develop"
+      versioning-strategy: increase-if-necessary

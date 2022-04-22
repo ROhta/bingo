@@ -8,18 +8,7 @@ class DomManipulation {
 	private historyTitleText = "Hit Numbers"
 	private loadedHistories = this.numbers.getHistoryList()
 
-	constructor(
-		private numbers: NumberList,
-		private bingoNumber: HTMLElement,
-		private startButton: HTMLElement,
-		private resetButton: HTMLElement,
-		private historyTitle: HTMLElement,
-		private historyDisplay: HTMLElement,
-		private historyDisplayClassName: string,
-		private drum: HTMLMediaElement,
-		private cymbals: HTMLMediaElement,
-		private rouletteInterval: number
-	) {
+	constructor(private numbers: NumberList, private bingoNumber: HTMLElement, private startButton: HTMLElement, private resetButton: HTMLElement, private historyTitle: HTMLElement, private historyDisplay: HTMLElement, private historyDisplayClassName: string, private drum: HTMLMediaElement, private cymbals: HTMLMediaElement, private rouletteInterval: number) {
 		if (this.rouletteInterval <= 0) console.error("Interval should be natural number!")
 
 		this.bingoNumber.innerHTML = this.firstDisplayNumber
@@ -49,7 +38,7 @@ class DomManipulation {
 
 		const remains = this.numbers.getRemainList()
 		const i = this.numbers.generateRandomNumber(remains.length)
-		const choosedNumber = remains.length === 0 ? -1 : remains[i]
+		const choosedNumber = remains.length === 0 ? -1 : (remains[i] as number)
 
 		remains.splice(i, 1)
 		this.numbers.setRemainList(remains)
@@ -72,7 +61,7 @@ class DomManipulation {
 		if (!this.isStarted) return
 		if (this.drum.currentTime < this.drum.duration) {
 			const rouletteNumbers = this.numbers.getRemainList()
-			this.bingoNumber.innerHTML = this.makeZeroPaddingNumString(rouletteNumbers[this.numbers.generateRandomNumber(rouletteNumbers.length)])
+			this.bingoNumber.innerHTML = this.makeZeroPaddingNumString(rouletteNumbers[this.numbers.generateRandomNumber(rouletteNumbers.length)] as number)
 			setTimeout(this.playRoulette, this.rouletteInterval)
 		} else {
 			this.chooseNumber()
