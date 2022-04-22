@@ -2,7 +2,7 @@
 
 ## 本番環境
 
--   [github pages](https://rohta.github.io/bingo/)で構築
+-   [GitHub Pages](https://rohta.github.io/bingo/)で構築
 
 ## local 環境構築
 
