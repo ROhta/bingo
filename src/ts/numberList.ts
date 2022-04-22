@@ -1,32 +1,27 @@
 class NumberList {
-	private remainListKey
-	private historyListKey
-	private allNumberList
+	private remainListKey = "remainNumberList"
+	private historyListKey = "historiesNumberList"
+	private maxBingoNumber = 75
+	private allNumberList: number[] = []
 
-	constructor() {
-		this.remainListKey = "remainNumberList"
-		this.historyListKey = "historiesNumberList"
+	constructor() { for (let i = 1; i <= this.maxBingoNumber; i++) this.allNumberList.push(i) }
 
-		this.allNumberList = []
-		const maxBingoNumber = 75
-		for (let i = 1; i <= maxBingoNumber; i++) this.allNumberList.push(i)
+	private getListFromLocalStorage(key: string): number[] {
+		const value = localStorage.getItem(key) || ""
+		return value === "" ? [] : JSON.parse(value)
 	}
 
-	public getRandomNumber = (n: number): number => Math.floor(Math.random() * n)
+	private setListOnLocalStorage = (key: string, list: number[]): void => localStorage.setItem(key, JSON.stringify(list))
 
-	public getRemainList(): number[] {
-		const remains = localStorage.getItem(this.remainListKey) || ""
-		return remains === "" ? [] : JSON.parse(remains)
-	}
+	public getRemainList = (): number[] => this.getListFromLocalStorage(this.remainListKey)
 
-	public getHistoryList(): number[] {
-		const histories = localStorage.getItem(this.historyListKey) || ""
-		return histories === "" ? [] : JSON.parse(histories)
-	}
+	public getHistoryList = (): number[] => this.getListFromLocalStorage(this.historyListKey)
 
-	public setRemainList = (remains: number[]): void => localStorage.setItem(this.remainListKey, JSON.stringify(remains))
+	public setRemainList = (remains: number[]): void => this.setListOnLocalStorage(this.remainListKey, remains)
 
-	public setHistoryList = (histories: number[]): void => localStorage.setItem(this.historyListKey, JSON.stringify(histories))
+	public setHistoryList = (histories: number[]): void => this.setListOnLocalStorage(this.historyListKey, histories)
+
+	public generateRandomNumber = (n: number): number => Math.floor(Math.random() * n)
 
 	public resetLists(): void {
 		localStorage.removeItem(this.historyListKey)
