@@ -22,7 +22,7 @@
 		]
 	},
 	"prettier": {
-		// "printWidth": 80,
+		"printWidth": 1000,
 		"tabWidth": 4,
 		"useTabs": true,
 		"semi": false,
@@ -34,14 +34,14 @@
 		"jsxBracketSameLine": false,
 		"arrowParens": "avoid",
 		"rangeStart": 0,
-		"rangeEnd": Infinity,
+		"rangeEnd": "Infinity",
 		"parser": "none",
 		"filepath": "none",
 		"requirePragma": false,
 		"insertPragma": false,
 		"proseWrap": "never",
-		"htmlWhitespaceSensitivity": "css",
-		"vueIndentScriptAndStyle": false,
+		"htmlWhitespaceSensitivity": "ignore",
+		"vueIndentScriptAndStyle": true,
 		"endOfLine": "auto"
 	},
 	"devDependencies": {
