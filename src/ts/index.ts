@@ -11,8 +11,8 @@ const doms = new DomManipulation(
 	document.querySelector("#history-title") as HTMLParagraphElement,
 	document.querySelector("#history-display") as HTMLDivElement,
 	"col-2",
-	new Audio("#drum"),
-	new Audio("#cymbals"),
+	document.querySelector("#drum") as HTMLAudioElement,
+	document.querySelector("#cymbals") as HTMLAudioElement,
 	150
 )
 
