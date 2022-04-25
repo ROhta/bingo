@@ -6,6 +6,7 @@ class DomManipulation {
 	private _stopText = "STOP"
 	private _resetText = "RESET"
 	private _historyTitleText = "Hit Numbers"
+	private _numbers: NumberList
 	private _loadedHistories
 
 	// prettier-ignore
@@ -27,11 +28,11 @@ class DomManipulation {
 		this._resetButton.innerHTML = this._resetText
 		this._historyTitle.innerHTML = this._historyTitleText
 
-		const numbers = new NumberList
-		this._loadedHistories = numbers.getHistoryList()
+		this._numbers = new NumberList
+		this._loadedHistories = this._numbers.getHistoryList()
 
-		if (numbers.getRemainList().length === 0 && this._loadedHistories.length === 0) {
-			numbers.resetLists()
+		if (this._numbers.getRemainList().length === 0 && this._loadedHistories.length === 0) {
+			this._numbers.resetLists()
 		} else {
 			this._loadedHistories.forEach((n: number) => this.addHistory(n))
 		}
@@ -50,16 +51,16 @@ class DomManipulation {
 		if (!this._isStarted) return
 		this._startButton.innerHTML = this._startText
 
-		const remains = numbers.getRemainList()
-		const i = numbers.generateRandomNumber(remains.length)
+		const remains = this._numbers.getRemainList()
+		const i = this._numbers.generateRandomNumber(remains.length)
 		const choosedNumber = remains.length === 0 ? -1 : (remains[i] as number)
 
 		remains.splice(i, 1)
-		numbers.setRemainList(remains)
+		this._numbers.setRemainList(remains)
 
-		const histories = numbers.getHistoryList()
+		const histories = this._numbers.getHistoryList()
 		histories.push(choosedNumber)
-		numbers.setHistoryList(histories)
+		this._numbers.setHistoryList(histories)
 
 		this._bingoNumber.innerHTML = this.makeZeroPaddingNumString(choosedNumber)
 		this.addHistory(choosedNumber)
@@ -74,8 +75,8 @@ class DomManipulation {
 	private playRoulette = (): void => {
 		if (!this._isStarted) return
 		if (this._drum.currentTime < this._drum.duration) {
-			const rouletteNumbers = numbers.getRemainList()
-			this._bingoNumber.innerHTML = this.makeZeroPaddingNumString(rouletteNumbers[numbers.generateRandomNumber(rouletteNumbers.length)] as number)
+			const rouletteNumbers = this._numbers.getRemainList()
+			this._bingoNumber.innerHTML = this.makeZeroPaddingNumString(rouletteNumbers[this._numbers.generateRandomNumber(rouletteNumbers.length)] as number)
 			setTimeout(this.playRoulette, this._rouletteInterval)
 		} else {
 			this.chooseNumber()
@@ -99,7 +100,7 @@ class DomManipulation {
 
 	public resetAction = (): void => {
 		if (confirm("Do you really want to reset?")) {
-			numbers.resetLists()
+			this._numbers.resetLists()
 			this._isStarted = false
 
 			this._historyDisplay.innerHTML = ""
