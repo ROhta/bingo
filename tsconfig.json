@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"target": "es2022",
 		"module": "es2022",
+		"moduleResolution": "node",
 		"outDir": "src/js",
 		"sourceMap": true,
 		"removeComments": true,
@@ -16,6 +17,8 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noEmitOnError": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true
 	},
