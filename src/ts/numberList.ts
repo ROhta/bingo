@@ -16,20 +16,28 @@ class NumberList {
 
 	private setListOnLocalStorage = (key: string, list: number[]): void => localStorage.setItem(key, JSON.stringify(list))
 
-	public getRemainList = (): number[] => this.getListFromLocalStorage(this._remainListKey)
+	get remainList(): number[] {
+		return this.getListFromLocalStorage(this._remainListKey)
+	}
 
-	public getHistoryList = (): number[] => this.getListFromLocalStorage(this._historyListKey)
+	set remainList(remains: number[]) {
+		this.setListOnLocalStorage(this._remainListKey, remains)
+	}
 
-	public setRemainList = (remains: number[]): void => this.setListOnLocalStorage(this._remainListKey, remains)
+	get historyList(): number[] {
+		return this.getListFromLocalStorage(this._historyListKey)
+	}
 
-	public setHistoryList = (histories: number[]): void => this.setListOnLocalStorage(this._historyListKey, histories)
+	set historyList(histories: number[]) {
+		this.setListOnLocalStorage(this._historyListKey, histories)
+	}
 
 	public generateRandomNumber = (n: number): number => Math.floor(Math.random() * n)
 
 	public resetLists(): void {
 		localStorage.removeItem(this._historyListKey)
 		localStorage.removeItem(this._remainListKey)
-		this.setRemainList(this._allNumberList)
-		this.setHistoryList([])
+		this.remainList = this._allNumberList
+		this.historyList = []
 	}
 }

@@ -29,21 +29,21 @@ class DomManipulation {
 		this._historyTitle.innerHTML = this._historyTitleText
 
 		this._numbers = new NumberList
-		this._loadedHistories = this._numbers.getHistoryList()
+		this._loadedHistories = this._numbers.historyList
 
-		if (this._numbers.getRemainList().length === 0 && this._loadedHistories.length === 0) {
+		if (this._numbers.remainList.length === 0 && this._loadedHistories.length === 0) {
 			this._numbers.resetLists()
 		} else {
 			this._loadedHistories.forEach((n: number) => this.addHistory(n))
 		}
 	}
 
-	private makeZeroPaddingNumString = (n: number): string => String(n).padStart(2, "0")
+	private zeroPad = (n: number): string => String(n).padStart(2, "0")
 
 	private addHistory = (n: number): void => {
 		const historyNumber = document.createElement("p")
 		historyNumber.className = this._historyDisplayClassName
-		historyNumber.innerHTML = this.makeZeroPaddingNumString(n)
+		historyNumber.innerHTML = this.zeroPad(n)
 		this._historyDisplay.appendChild(historyNumber)
 	}
 
@@ -51,18 +51,18 @@ class DomManipulation {
 		if (!this._isStarted) return
 		this._startButton.innerHTML = this._startText
 
-		const remains = this._numbers.getRemainList()
+		const remains = this._numbers.remainList
 		const i = this._numbers.generateRandomNumber(remains.length)
 		const choosedNumber = remains.length === 0 ? -1 : (remains[i] as number)
 
 		remains.splice(i, 1)
-		this._numbers.setRemainList(remains)
+		this._numbers.remainList = remains
 
-		const histories = this._numbers.getHistoryList()
+		const histories = this._numbers.historyList
 		histories.push(choosedNumber)
-		this._numbers.setHistoryList(histories)
+		this._numbers.historyList = histories
 
-		this._bingoNumber.innerHTML = this.makeZeroPaddingNumString(choosedNumber)
+		this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
 		this.addHistory(choosedNumber)
 
 		this._drum.pause()
@@ -75,8 +75,8 @@ class DomManipulation {
 	private playRoulette = (): void => {
 		if (!this._isStarted) return
 		if (this._drum.currentTime < this._drum.duration) {
-			const rouletteNumbers = this._numbers.getRemainList()
-			this._bingoNumber.innerHTML = this.makeZeroPaddingNumString(rouletteNumbers[this._numbers.generateRandomNumber(rouletteNumbers.length)] as number)
+			const rouletteNumbers = this._numbers.remainList
+			this._bingoNumber.innerHTML = this.zeroPad(rouletteNumbers[this._numbers.generateRandomNumber(rouletteNumbers.length)] as number)
 			setTimeout(this.playRoulette, this._rouletteInterval)
 		} else {
 			this.chooseNumber()
