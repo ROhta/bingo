@@ -1,18 +1,18 @@
-// DOM
-const startButton = document.querySelector("#start-button") as HTMLElement
-const resetButton = document.querySelector("#reset-button") as HTMLElement
+// ID指定をtypoすると実行時エラーになる（type guardが大変で省略した）
+const startButton = document.querySelector("#start-button") as HTMLButtonElement
+const resetButton = document.querySelector("#reset-button") as HTMLButtonElement
 
 // 可変な設定値を引数として渡す
 // prettier-ignore
 const doms = new DomManipulation(
-    document.querySelector("#bingo-number") as HTMLElement,
+    document.querySelector("#bingo-number") as HTMLParagraphElement,
     startButton,
     resetButton,
-    document.querySelector("#history-title") as HTMLElement,
-    document.querySelector("#history-display") as HTMLElement,
+    document.querySelector("#history-title") as HTMLParagraphElement,
+    document.querySelector("#history-display") as HTMLDivElement,
     "col-2",
-    document.querySelector("#drum") as HTMLMediaElement,
-    document.querySelector("#cymbals") as HTMLMediaElement,
+    new Audio("#drum"),
+    new Audio("#cymbals"),
     150
 )
 

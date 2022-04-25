@@ -11,14 +11,14 @@ class DomManipulation {
 
 	// prettier-ignore
 	constructor(
-		private readonly _bingoNumber: HTMLElement,
-		private readonly _startButton: HTMLElement,
-		private readonly _resetButton: HTMLElement,
-		private readonly _historyTitle: HTMLElement,
-		private readonly _historyDisplay: HTMLElement,
+		private readonly _bingoNumber: HTMLParagraphElement,
+		private readonly _startButton: HTMLButtonElement,
+		private readonly _resetButton: HTMLButtonElement,
+		private readonly _historyTitle: HTMLParagraphElement,
+		private readonly _historyDisplay: HTMLDivElement,
 		private readonly _historyDisplayClassName: string,
-		private readonly _drum: HTMLMediaElement,
-		private readonly _cymbals: HTMLMediaElement,
+		private readonly _drum: HTMLAudioElement,
+		private readonly _cymbals: HTMLAudioElement,
 		private readonly _rouletteInterval: number
 	) {
 		if (this._rouletteInterval <= 0) console.error("Interval should be natural number!")
@@ -53,17 +53,20 @@ class DomManipulation {
 
 		const remains = this._numbers.remainList
 		const i = this._numbers.generateRandomNumber(remains.length)
-		const choosedNumber = remains.length === 0 ? -1 : (remains[i] as number)
+		const choosedNumber = remains[i]
+		if (typeof choosedNumber == "number") {
+			remains.splice(i, 1)
+			this._numbers.remainList = remains
 
-		remains.splice(i, 1)
-		this._numbers.remainList = remains
+			const histories = this._numbers.historyList
+			histories.push(choosedNumber)
+			this._numbers.historyList = histories
 
-		const histories = this._numbers.historyList
-		histories.push(choosedNumber)
-		this._numbers.historyList = histories
-
-		this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
-		this.addHistory(choosedNumber)
+			this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
+			this.addHistory(choosedNumber)
+		} else {
+			throw new Error("Index out of bounds. Check the method!")
+		}
 
 		this._drum.pause()
 		this._cymbals.currentTime = 0
@@ -75,8 +78,12 @@ class DomManipulation {
 	private playRoulette = (): void => {
 		if (!this._isStarted) return
 		if (this._drum.currentTime < this._drum.duration) {
-			const rouletteNumbers = this._numbers.remainList
-			this._bingoNumber.innerHTML = this.zeroPad(rouletteNumbers[this._numbers.generateRandomNumber(rouletteNumbers.length)] as number)
+			const choosedNumber = this._numbers.remainList[this._numbers.generateRandomNumber(this._numbers.remainList.length)]
+			if (typeof choosedNumber === "number") {
+				this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
+			} else {
+				throw new Error("Something is wrong with localStorage!")
+			}
 			setTimeout(this.playRoulette, this._rouletteInterval)
 		} else {
 			this.chooseNumber()
