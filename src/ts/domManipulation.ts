@@ -86,7 +86,11 @@ class DomManipulation {
 			}
 			setTimeout(this.playRoulette, this._rouletteInterval)
 		} else {
-			this.chooseNumber()
+			try {
+				this.chooseNumber()
+			} catch (e: unknown) {
+				if (e instanceof Error) console.error(e.name, e.message, e.stack)
+			}
 		}
 	}
 

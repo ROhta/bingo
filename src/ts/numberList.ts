@@ -26,8 +26,15 @@ class NumberList {
 	}
 
 	private getListFromLocalStorage(key: string): number[] {
-		const value = localStorage.getItem(key) || ""
-		return value === "" ? [] : JSON.parse(value)
+		let ret: number[] = []
+		try {
+			ret = JSON.parse(localStorage.getItem(key) || "")
+			if (!Array.isArray(ret)) throw new Error("There is no Array in the localStorage!")
+			for (const i of ret) if (typeof i !== "number") throw new Error("The array contains non-digit character in the localStorage!")
+		} catch (e: unknown) {
+			if (e instanceof Error) console.error(e.name, e.message, e.stack)
+		}
+		return ret
 	}
 
 	private setListOnLocalStorage = (key: string, list: number[]): void => localStorage.setItem(key, JSON.stringify(list))
