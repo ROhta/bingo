@@ -1,18 +1,31 @@
-// ID指定をtypoすると実行時エラーになる（type guardが大変で省略した）
-const startButton = document.querySelector("#start-button") as HTMLButtonElement
-const resetButton = document.querySelector("#reset-button") as HTMLButtonElement
+// DOM
+const bingoNumber = document.querySelector("#bingo-number")
+const startButton = document.querySelector("#start-button")
+const resetButton = document.querySelector("#reset-button")
+const historyTitle = document.querySelector("#history-title")
+const historyDisplay = document.querySelector("#history-display")
+const drum = document.querySelector("#drum")
+const cymbals = document.querySelector("#cymbals")
 
-// 可変な設定値を引数として渡す
 // prettier-ignore
+if (bingoNumber instanceof HTMLParagraphElement
+	&& startButton instanceof HTMLButtonElement
+	&& resetButton instanceof HTMLButtonElement
+	&& historyTitle instanceof HTMLParagraphElement
+	&& historyDisplay instanceof HTMLDivElement
+	&& drum instanceof HTMLAudioElement
+	&& cymbals instanceof HTMLAudioElement
+) {
+// 可変な設定値を引数として渡す
 const doms = new DomManipulation(
-	document.querySelector("#bingo-number") as HTMLParagraphElement,
+	bingoNumber,
 	startButton,
 	resetButton,
-	document.querySelector("#history-title") as HTMLParagraphElement,
-	document.querySelector("#history-display") as HTMLDivElement,
+	historyTitle,
+	historyDisplay,
 	"col-2",
-	document.querySelector("#drum") as HTMLAudioElement,
-	document.querySelector("#cymbals") as HTMLAudioElement,
+	drum,
+	cymbals,
 	150
 )
 
@@ -26,3 +39,6 @@ startButton.addEventListener("click", (): void => {
 	}
 })
 resetButton.addEventListener("click", (): void => doms.resetAction())
+} else {
+console.error("Check the IDs!")
+}
