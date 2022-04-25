@@ -16,29 +16,29 @@ if (bingoNumber instanceof HTMLParagraphElement
 	&& drum instanceof HTMLAudioElement
 	&& cymbals instanceof HTMLAudioElement
 ) {
-// 可変な設定値を引数として渡す
-const doms = new DomManipulation(
-	bingoNumber,
-	startButton,
-	resetButton,
-	historyTitle,
-	historyDisplay,
-	"col-2",
-	drum,
-	cymbals,
-	150
-)
+	// 可変な設定値を引数として渡す
+	const doms = new DomManipulation(
+		bingoNumber,
+		startButton,
+		resetButton,
+		historyTitle,
+		historyDisplay,
+		"col-2",
+		drum,
+		cymbals,
+		150
+	)
 
-// main
-startButton.focus()
-startButton.addEventListener("click", (): void => {
-	try {
-		doms.rouletteAction()
-	} catch (e: unknown) {
-		if (e instanceof Error) console.error(e.name, e.message, e.stack)
-	}
-})
-resetButton.addEventListener("click", (): void => doms.resetAction())
+	// main
+	startButton.focus()
+	startButton.addEventListener("click", (): void => {
+		try {
+			doms.rouletteAction()
+		} catch (e: unknown) {
+			if (e instanceof Error) console.error(e.name, e.message, e.stack)
+		}
+	})
+	resetButton.addEventListener("click", (): void => doms.resetAction())
 } else {
-console.error("Check the IDs!")
+	console.error("Check the IDs!")
 }
