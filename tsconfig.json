@@ -1,5 +1,6 @@
 {
 	"compileOnSave": true,
+	"extends": "@tsconfig/strictest/tsconfig.json",
 	"compilerOptions": {
 		"target": "es2022",
 		"module": "es2022",
@@ -8,19 +9,10 @@
 		"sourceMap": true,
 		"removeComments": true,
 		"isolatedModules": false,
-		"skipLibCheck": true,
-		"strict": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		"noUncheckedIndexedAccess": true,
-		"noImplicitOverride": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
 		"noEmitOnError": true,
+		"checkJs": false,
 		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"experimentalDecorators": true,
-		"forceConsistentCasingInFileNames": true
+		"experimentalDecorators": true
 	},
 	"include": ["src/ts/*"],
 	"exclude": ["node_modules"]
