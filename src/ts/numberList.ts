@@ -1,11 +1,12 @@
 class NumberList {
-	private remainListKey = "remainNumberList"
-	private historyListKey = "historiesNumberList"
-	private maxBingoNumber = 75
-	private allNumberList: number[] = []
+	private _remainListKey = "remainNumberList"
+	private _historyListKey = "historyNumberList"
+	private _minBingoNumber = 1
+	private _maxBingoNumber = 75
+	private _allNumberList: number[] = []
 
 	constructor() {
-		for (let i = 1; i <= this.maxBingoNumber; i++) this.allNumberList.push(i)
+		for (let i = this._minBingoNumber; i <= this._maxBingoNumber; i++) this._allNumberList.push(i)
 	}
 
 	private getListFromLocalStorage(key: string): number[] {
@@ -15,20 +16,20 @@ class NumberList {
 
 	private setListOnLocalStorage = (key: string, list: number[]): void => localStorage.setItem(key, JSON.stringify(list))
 
-	public getRemainList = (): number[] => this.getListFromLocalStorage(this.remainListKey)
+	public getRemainList = (): number[] => this.getListFromLocalStorage(this._remainListKey)
 
-	public getHistoryList = (): number[] => this.getListFromLocalStorage(this.historyListKey)
+	public getHistoryList = (): number[] => this.getListFromLocalStorage(this._historyListKey)
 
-	public setRemainList = (remains: number[]): void => this.setListOnLocalStorage(this.remainListKey, remains)
+	public setRemainList = (remains: number[]): void => this.setListOnLocalStorage(this._remainListKey, remains)
 
-	public setHistoryList = (histories: number[]): void => this.setListOnLocalStorage(this.historyListKey, histories)
+	public setHistoryList = (histories: number[]): void => this.setListOnLocalStorage(this._historyListKey, histories)
 
 	public generateRandomNumber = (n: number): number => Math.floor(Math.random() * n)
 
 	public resetLists(): void {
-		localStorage.removeItem(this.historyListKey)
-		localStorage.removeItem(this.remainListKey)
-		this.setRemainList(this.allNumberList)
+		localStorage.removeItem(this._historyListKey)
+		localStorage.removeItem(this._remainListKey)
+		this.setRemainList(this._allNumberList)
 		this.setHistoryList([])
 	}
 }
