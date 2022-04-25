@@ -1,25 +1,25 @@
 // 固定値は予めメンバ変数として保持する
 class DomManipulation {
 	private _isStarted = false
-	private _firstDisplayNumber = "00"
-	private _startText = "START"
-	private _stopText = "STOP"
-	private _resetText = "RESET"
-	private _historyTitleText = "Hit Numbers"
-	private _numbers: NumberList
-	private _loadedHistories
+	private readonly _firstDisplayNumber = "00"
+	private readonly _startText = "START"
+	private readonly _stopText = "STOP"
+	private readonly _resetText = "RESET"
+	private readonly _historyTitleText = "Hit Numbers"
+	private readonly _numbers: NumberList
+	private readonly _loadedHistories
 
 	// prettier-ignore
 	constructor(
-		private _bingoNumber: HTMLElement,
-		private _startButton: HTMLElement,
-		private _resetButton: HTMLElement,
-		private _historyTitle: HTMLElement,
-		private _historyDisplay: HTMLElement,
-		private _historyDisplayClassName: string,
-		private _drum: HTMLMediaElement,
-		private _cymbals: HTMLMediaElement,
-		private _rouletteInterval: number
+		private readonly _bingoNumber: HTMLElement,
+		private readonly _startButton: HTMLElement,
+		private readonly _resetButton: HTMLElement,
+		private readonly _historyTitle: HTMLElement,
+		private readonly _historyDisplay: HTMLElement,
+		private readonly _historyDisplayClassName: string,
+		private readonly _drum: HTMLMediaElement,
+		private readonly _cymbals: HTMLMediaElement,
+		private readonly _rouletteInterval: number
 	) {
 		if (this._rouletteInterval <= 0) console.error("Interval should be natural number!")
 

@@ -1,9 +1,9 @@
 class NumberList {
-	private _remainListKey = "remainNumberList"
-	private _historyListKey = "historyNumberList"
-	private _minBingoNumber = 1
-	private _maxBingoNumber = 75
-	private _allNumberList: number[] = []
+	private readonly _remainListKey = "remainNumberList"
+	private readonly _historyListKey = "historyNumberList"
+	private readonly _minBingoNumber = 1
+	private readonly _maxBingoNumber = 75
+	private readonly _allNumberList: number[] = []
 
 	constructor() {
 		for (let i = this._minBingoNumber; i <= this._maxBingoNumber; i++) this._allNumberList.push(i)
