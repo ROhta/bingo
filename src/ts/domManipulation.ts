@@ -1,13 +1,12 @@
 // 固定値は予めメンバ変数として保持する
 class DomManipulation {
 	private _isStarted = false
+	private readonly _numbers = new NumberList()
 	private readonly _firstDisplayNumber = "00"
 	private readonly _startText = "START"
 	private readonly _stopText = "STOP"
 	private readonly _resetText = "RESET"
 	private readonly _historyTitleText = "Hit Numbers"
-	private readonly _numbers: NumberList
-	private readonly _loadedHistories
 
 	// prettier-ignore
 	constructor(
@@ -28,13 +27,10 @@ class DomManipulation {
 		this._resetButton.innerHTML = this._resetText
 		this._historyTitle.innerHTML = this._historyTitleText
 
-		this._numbers = new NumberList
-		this._loadedHistories = this._numbers.historyList
-
-		if (this._numbers.remainList.length === 0 && this._loadedHistories.length === 0) {
+		if (this._numbers.remainList.length === 0 && this._numbers.historyList.length === 0) {
 			this._numbers.resetLists()
 		} else {
-			this._loadedHistories.forEach((n: number) => this.addHistory(n))
+			this._numbers.historyList.forEach((n: number) => this.addHistory(n))
 		}
 	}
 
@@ -54,13 +50,10 @@ class DomManipulation {
 		const remains = this._numbers.remainList
 		const i = this._numbers.generateRandomNumber(remains.length)
 		const choosedNumber = remains[i]
-		if (typeof choosedNumber == "number") {
+		if (typeof choosedNumber === "number") {
 			remains.splice(i, 1)
 			this._numbers.remainList = remains
-
-			const histories = this._numbers.historyList
-			histories.push(choosedNumber)
-			this._numbers.historyList = histories
+			this._numbers.historyList.push(choosedNumber)
 
 			this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
 			this.addHistory(choosedNumber)
