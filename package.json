@@ -1,6 +1,6 @@
 {
 	"name": "bingo-machine",
-	"version": "1.4.0",
+	"version": "1.4.2",
 	"author": "ROhta",
 	"description": "A Bingo Machine for Party",
 	"private": false,
@@ -29,7 +29,7 @@
 	},
 	"prettier": {
 		"printWidth": 1000,
-		"tabWidth": 4,
+		"tabWidth": 2,
 		"useTabs": true,
 		"semi": false,
 		"singleQuote": false,
@@ -52,28 +52,20 @@
 		"root": true,
 		"env": {
 			"es2022": true,
-			"browser": true,
-			"jest/globals": true
+			"browser": true
 		},
-		"parser": "@typescript-eslint/parser",
 		"parserOptions": {
 			"ecmaVersion": 2022,
 			"project": "./tsconfig.json"
 		},
 		"plugins": [
-			"@typescript-eslint",
-			"jest"
+			"@typescript-eslint"
 		],
 		"extends": [
 			"eslint:recommended",
-			"plugin:@typescript-eslint/eslint-recommended",
 			"plugin:@typescript-eslint/recommended",
-			"plugin:jest/recommended",
 			"prettier"
 		],
-		"rules": {
-			"no-console": "off"
-		},
 		"ignorePatterns": [
 			"/node_modules/*",
 			"src/js/*"
@@ -81,10 +73,8 @@
 	},
 	"devDependencies": {
 		"@tsconfig/strictest": "^1.0.1",
-		"@typescript-eslint/eslint-plugin": "^5.20.0",
-		"@typescript-eslint/parser": "^5.20.0",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
 		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-jest": "^26.1.5",
 		"husky": "^7.0.4",
 		"lint-staged": "^12.4.0",
 		"prettier": "^2.6.2",
