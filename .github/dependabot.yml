@@ -10,8 +10,8 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "fix_dependencies"
-      prefix-development: "fix_devDependencies"
+      prefix: "fix_Dep."
+      prefix-development: "fix_devDep."
       include: "scope"
     labels:
       - "dependencies"
