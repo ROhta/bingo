@@ -5,7 +5,7 @@ changelog:
         - enhance-2 新機能
     - title: 後方互換性の破壊
       labels:
-        - enhance-3 破壊的変更
+        - enhance-1 破壊的変更
     - title: バグ修正
       labels:
         - bug-1 重大バグ
@@ -13,8 +13,13 @@ changelog:
     - title: メンテナンス
       labels:
         - bug-3 改善
-        - refactor
+        - enhance-3 ドキュメント
         - dependencies
+        - refactor
   exclude:
     labels:
+      - blocked by
+      - close-1 お見送り
+      - close-2 重複
+      - close-3 再現不能
       - topic-1 参考情報
