@@ -37,12 +37,12 @@
 
 ## 技術
 
-### styling
+### Styling
 
 - css ファイルは存在しない
-- bootstrap5 に完全依存
+- Bootstrap5 に完全依存
   - レスポンシブ対応
-- bootstrap で賄えない部分のみ、style 要素で指定
+- Bootstrap で賄えない部分のみ、style 要素で指定
 
 ### TypeScript
 
