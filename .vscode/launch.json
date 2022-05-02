@@ -10,8 +10,8 @@
 		},
 		{
 			"name": "Launch Firefox",
-			"type": "firefox",
 			"request": "launch",
+			"type": "firefox",
 			"reAttach": true,
 			"file": "${workspaceFolder}/src/index.html"
 		},

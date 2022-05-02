@@ -40,11 +40,14 @@
 ### Styling
 
 - css ファイルは存在しない
-- Bootstrap5 に完全依存
+- [Bootstrap5](https://getbootstrap.jp) に完全依存
   - レスポンシブ対応
-- Bootstrap で賄えない部分のみ、style 要素で指定
+  - Bootstrap5 で賄えない部分のみ、style 要素で指定
+- font は[Google Fonts](https://fonts.google.com)を使用
 
 ### TypeScript
+
+#### 処理
 
 - localStorage による履歴機能を実装
 - domManipulation.ts では、DOM に依存するメソッドを class に紐づけて管理
@@ -52,9 +55,18 @@
   - 固定想定の値はこちらで管理
 - index.ts で可変値を設定
 
+#### lint
+
+- esLint と prettier が git commit 時に発火する
+  - husky と lint-staged で設定
+- esLint と prettier の設定は package.json に集約
+  - 設定ファイルを作成せず、一覧性を追求
+  - esLint は独自設定せず、recommend のルールに準拠
+- tsconfig は、[@tsconfig/strictest](https://github.com/tsconfig/bases/blob/main/bases/strictest.json) のルールをさらに厳格にして適用
+
 ### GitHub
 
-#### GitHub actions
+#### GitHub Actions
 
 - GitHub Pages への deploy
 - 外形監視
@@ -67,9 +79,9 @@
 
 #### 各種テンプレート
 
-- issue
-- pull requests
-- security policy
+- Issue
+- Pull Requests
+- Security Policy
 
 #### リリースノート
 
