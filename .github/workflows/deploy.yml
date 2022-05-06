@@ -2,20 +2,23 @@ name: Deploy pages
 
 on:
   pull_request:
-    types: [assigned, review_requested, reopened, ready_for_review]
+    types: [review_requested, reopened, ready_for_review]
     branches:
       - main
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.0.1
+        uses: actions/checkout@v3
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3.1.1
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
+          check-latest: true
       - name: Install dependencies
         run: npm ci
       - name: Build
@@ -25,7 +28,7 @@ jobs:
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2.6.0
         with:
-          target_branch: release
+          target_branch: github-pages
           build_dir: src
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
