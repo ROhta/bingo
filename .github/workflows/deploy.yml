@@ -2,12 +2,14 @@ name: Deploy pages
 
 on:
   pull_request:
-    types: [assigned, review_requested, reopened, ready_for_review]
+    types: [review_requested, reopened, ready_for_review]
     branches:
       - main
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,7 +27,7 @@ jobs:
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2.6.0
         with:
-          target_branch: release
+          target_branch: github-pages
           build_dir: src
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
