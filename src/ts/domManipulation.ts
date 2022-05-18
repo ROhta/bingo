@@ -53,7 +53,10 @@ class DomManipulation {
 		if (typeof choosedNumber === "number") {
 			remains.splice(i, 1)
 			this._numbers.remainList = remains
-			this._numbers.historyList.push(choosedNumber)
+
+			const histories = this._numbers.historyList
+			histories.push(choosedNumber)
+			this._numbers.historyList = histories
 
 			this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
 			this.addHistory(choosedNumber)
