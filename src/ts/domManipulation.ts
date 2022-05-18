@@ -37,10 +37,10 @@ class DomManipulation {
 	private zeroPad = (n: number): string => String(n).padStart(2, "0")
 
 	private addHistory = (n: number): void => {
-		const historyNumber = document.createElement("p")
-		historyNumber.className = this._historyDisplayClassName
-		historyNumber.innerHTML = this.zeroPad(n)
-		this._historyDisplay.appendChild(historyNumber)
+		const historyNumberElement = document.createElement("p")
+		historyNumberElement.className = this._historyDisplayClassName
+		historyNumberElement.innerHTML = this.zeroPad(n)
+		this._historyDisplay.appendChild(historyNumberElement)
 	}
 
 	private chooseNumber = (): void => {
@@ -74,9 +74,9 @@ class DomManipulation {
 	private playRoulette = (): void => {
 		if (!this._isStarted) return
 		if (this._drum.currentTime < this._drum.duration) {
-			const choosedNumber = this._numbers.remainList[this._numbers.generateRandomNumber(this._numbers.remainList.length)]
-			if (typeof choosedNumber === "number") {
-				this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
+			const rouletteNumber = this._numbers.remainList[this._numbers.generateRandomNumber(this._numbers.remainList.length)]
+			if (typeof rouletteNumber === "number") {
+				this._bingoNumber.innerHTML = this.zeroPad(rouletteNumber)
 			} else {
 				throw new Error("Something is wrong with localStorage!")
 			}

@@ -13,16 +13,16 @@ class NumberList {
 		return this.getListFromLocalStorage(this._remainListKey)
 	}
 
-	set remainList(remains: number[]) {
-		this.setListOnLocalStorage(this._remainListKey, remains)
+	set remainList(remainsList: number[]) {
+		this.setListOnLocalStorage(this._remainListKey, remainsList)
 	}
 
 	get historyList(): number[] {
 		return this.getListFromLocalStorage(this._historyListKey)
 	}
 
-	set historyList(histories: number[]) {
-		this.setListOnLocalStorage(this._historyListKey, histories)
+	set historyList(historiesList: number[]) {
+		this.setListOnLocalStorage(this._historyListKey, historiesList)
 	}
 
 	private getListFromLocalStorage(key: string): number[] {
