@@ -10,8 +10,8 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "fix_Dep."
-      prefix-development: "fix_devDep."
+      prefix: "check ci status"
+      prefix-development: "[skip ci]"
       include: "scope"
     labels:
       - "dependencies"
