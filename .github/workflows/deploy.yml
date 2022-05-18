@@ -1,6 +1,14 @@
 name: Deploy pages
 
 on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        required: true
+        description: "本当に実行しますか？実行する場合「run」と書いてください。"
+        default: "run"
+    environment:
+      type: environment
   pull_request:
     types: [review_requested, reopened, ready_for_review]
     branches:
@@ -12,6 +20,9 @@ jobs:
       name: github-pages
     runs-on: ubuntu-latest
     steps:
+      - name: Confirm check
+        if: github.event_name == "workflow_dispatch" || github.event.inputs.confirm != "run"
+        run: echo "Invalid input" && exit 1
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Node.js environment
