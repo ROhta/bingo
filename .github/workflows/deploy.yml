@@ -10,8 +10,6 @@ on:
         required: true
         description: "GithubPages"
         type: environment
-    branches:
-      - main
   pull_request:
     types: [review_requested, reopened, ready_for_review]
     branches:
