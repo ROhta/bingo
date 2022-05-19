@@ -6,10 +6,10 @@ on:
       confirm:
         required: true
         description: "本当に実行しますか？実行する場合「run」と書いてください。"
-    environment:
-      type: environment
-    branches:
-      - main
+      environment:
+        required: true
+        description: "GithubPages"
+        type: environment
   pull_request:
     types: [review_requested, reopened, ready_for_review]
     branches:
