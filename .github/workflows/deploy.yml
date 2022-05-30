@@ -8,7 +8,7 @@ on:
         description: "本当に実行しますか？実行する場合「run」と書いてください。"
       environment:
         required: true
-        description: "GithubPages"
+        description: "反映対象の環境"
         type: environment
   pull_request:
     types: [review_requested, reopened, ready_for_review]
@@ -20,6 +20,7 @@ jobs:
     environment:
       name: github-pages
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Confirm check
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'run'
