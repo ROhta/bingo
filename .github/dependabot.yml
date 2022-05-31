@@ -22,3 +22,25 @@ updates:
     reviewers:
       - "ROhta"
     versioning-strategy: increase-if-necessary
+  - package-ecosystem: "github-actions"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "10:00"
+      timezone: "Asia/Tokyo"
+    directory: "/"
+    allow:
+      - dependency-type: "all"
+    commit-message:
+      prefix: "[skip ci]"
+      prefix-development: "check ci status"
+      include: "scope"
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 10
+    pull-request-branch-name:
+      separator: "_"
+    rebase-strategy: "auto"
+    reviewers:
+      - "ROhta"
+    versioning-strategy: increase-if-necessary
