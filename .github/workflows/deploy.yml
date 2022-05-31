@@ -30,10 +30,10 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
           check-latest: true
       - name: Install dependencies
-        run: npm
+        run: npm ci
       - name: Dependency Review
         uses: ./.github/workflows/dependency-review.yml
       - name: Build
