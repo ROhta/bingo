@@ -16,6 +16,9 @@ on:
       - main
 
 jobs:
+  dependency-review:
+    name: Dependency Review
+    uses: ./.github/workflows/dependency-review.yml
   deploy:
     environment:
       name: github-pages
@@ -33,9 +36,7 @@ jobs:
           node-version: "18"
           check-latest: true
       - name: Install dependencies
-        run: npm
-      - name: Dependency Review
-        uses: ./.github/workflows/dependency-review.yml
+        run: npm ci
       - name: Build
         run: npm run build
       - name: clean up
