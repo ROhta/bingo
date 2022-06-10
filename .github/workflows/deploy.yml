@@ -23,7 +23,6 @@ jobs:
     environment:
       name: github-pages
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     steps:
       - name: Confirm Check
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'run'

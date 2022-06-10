@@ -8,6 +8,7 @@ permissions:
 jobs:
   Dependency-Review:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
