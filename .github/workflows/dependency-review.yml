@@ -6,10 +6,11 @@ permissions:
   contents: read
 
 jobs:
-  dependency-review:
+  Dependency-Review:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Dependency Review
+      - name: Main
         uses: actions/dependency-review-action@v1
