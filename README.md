@@ -11,7 +11,12 @@
 - `npm run watch`
 - ブラウザで index.html を開く
 
-## 機能
+## 機能図
+
+flowchart LR
+RESET-->|確認ポップアップ/履歴消去|START-->|ドラムロール/ルーレット|STOP-->|シンバル/数字抽選/履歴追加|START
+
+## 機能詳細
 
 - start を押す
   - ドラムロールが鳴る
