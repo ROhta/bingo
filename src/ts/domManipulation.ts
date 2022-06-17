@@ -74,7 +74,7 @@ class DomManipulation {
 	private playRoulette = (): void => {
 		if (!this._isStarted) return
 		if (this._drum.currentTime < this._drum.duration) {
-			const rouletteNumber = this._numbers.remainList[this._numbers.generateRandomNumber(this._numbers.remainList.length)]
+			const rouletteNumber = this._numbers.remainList.at(this._numbers.generateRandomNumber(this._numbers.remainList.length))
 			if (typeof rouletteNumber === "number") {
 				this._bingoNumber.innerHTML = this.zeroPad(rouletteNumber)
 			} else {
