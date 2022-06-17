@@ -4,12 +4,11 @@
 
 - [GitHub Pages](https://rohta.github.io/bingo/)で構築
 
-## local 環境構築
+## local 開発
 
 - git clone
 - `npm ci`
-- `npm run watch`
-- ブラウザで index.html を開く
+- `npm run dev`
 
 ## 機能図
 
