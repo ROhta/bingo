@@ -13,7 +13,7 @@
 			"request": "launch",
 			"type": "firefox",
 			"reAttach": true,
-			"url": "http://localhost:62800/src/index.html",
+			"url": "http://localhost:62800/src/index.html"
 		},
 		{
 			"name": "Launch Edge",
