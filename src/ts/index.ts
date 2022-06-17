@@ -1,3 +1,5 @@
+import DomManipulation from "./domManipulation.js"
+
 // DOM
 const bingoNumber = document.querySelector("#bingo-number")
 const startButton = document.querySelector("#start-button")

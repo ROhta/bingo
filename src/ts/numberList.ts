@@ -1,4 +1,4 @@
-class NumberList {
+export default class NumberList {
 	readonly #remainListKey = "remainNumberList"
 	readonly #historyListKey = "historyNumberList"
 	readonly #minBingoNumber = 1

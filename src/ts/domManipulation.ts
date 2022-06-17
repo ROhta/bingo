@@ -1,5 +1,7 @@
+import NumberList from "./numberList.js"
+
 // 固定値は予めメンバ変数として保持する
-class DomManipulation {
+export default class DomManipulation {
 	#isStarted = false
 	readonly #numbers = new NumberList()
 	readonly #firstDisplayNumber = "00"
