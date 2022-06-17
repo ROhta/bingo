@@ -1,120 +1,122 @@
+import NumberList from "./numberList.js"
+
 // 固定値は予めメンバ変数として保持する
-class DomManipulation {
-	private _isStarted = false
-	private readonly _numbers = new NumberList()
-	private readonly _firstDisplayNumber = "00"
-	private readonly _startText = "START"
-	private readonly _stopText = "STOP"
-	private readonly _resetText = "RESET"
-	private readonly _historyTitleText = "Hit Numbers"
+export default class DomManipulation {
+	#isStarted = false
+	readonly #numbers = new NumberList()
+	readonly #firstDisplayNumber = "00"
+	readonly #startText = "START"
+	readonly #stopText = "STOP"
+	readonly #resetText = "RESET"
+	readonly #historyTitleText = "Hit Numbers"
 
 	// prettier-ignore
 	constructor(
-		private readonly _bingoNumber: HTMLParagraphElement,
-		private readonly _startButton: HTMLButtonElement,
-		private readonly _resetButton: HTMLButtonElement,
-		private readonly _historyTitle: HTMLParagraphElement,
-		private readonly _historyDisplay: HTMLDivElement,
-		private readonly _historyDisplayClassName: string,
-		private readonly _drum: HTMLAudioElement,
-		private readonly _cymbals: HTMLAudioElement,
-		private readonly _rouletteInterval: number
+		private readonly bingoNumber: HTMLParagraphElement,
+		private readonly startButton: HTMLButtonElement,
+		private readonly resetButton: HTMLButtonElement,
+		private readonly historyTitle: HTMLParagraphElement,
+		private readonly historyDisplay: HTMLDivElement,
+		private readonly historyDisplayClassName: string,
+		private readonly drum: HTMLAudioElement,
+		private readonly cymbals: HTMLAudioElement,
+		private readonly rouletteInterval: number
 	) {
-		if (this._rouletteInterval <= 0) console.error("Interval should be natural number!")
+		if (this.rouletteInterval <= 0) console.error("Interval should be natural number!")
 
-		this._bingoNumber.innerHTML = this._firstDisplayNumber
-		this._startButton.innerHTML = this._startText
-		this._resetButton.innerHTML = this._resetText
-		this._historyTitle.innerHTML = this._historyTitleText
+		this.bingoNumber.innerHTML = this.#firstDisplayNumber
+		this.startButton.innerHTML = this.#startText
+		this.resetButton.innerHTML = this.#resetText
+		this.historyTitle.innerHTML = this.#historyTitleText
 
-		if (this._numbers.remainList.length === 0 && this._numbers.historyList.length === 0) {
-			this._numbers.resetLists()
+		if (this.#numbers.remainList.length === 0 && this.#numbers.historyList.length === 0) {
+			this.#numbers.resetLists()
 		} else {
-			this._numbers.historyList.forEach((n: number) => this.addHistory(n))
+			this.#numbers.historyList.forEach((n: number) => this.#addHistory(n))
 		}
 	}
 
-	private zeroPad = (n: number): string => String(n).padStart(2, "0")
+	#zeroPad = (n: number): string => String(n).padStart(2, "0")
 
-	private addHistory = (n: number): void => {
+	#addHistory = (n: number): void => {
 		const historyNumberElement = document.createElement("p")
-		historyNumberElement.className = this._historyDisplayClassName
-		historyNumberElement.innerHTML = this.zeroPad(n)
-		this._historyDisplay.appendChild(historyNumberElement)
+		historyNumberElement.className = this.historyDisplayClassName
+		historyNumberElement.innerHTML = this.#zeroPad(n)
+		this.historyDisplay.appendChild(historyNumberElement)
 	}
 
-	private chooseNumber = (): void => {
-		if (!this._isStarted) return
-		this._startButton.innerHTML = this._startText
+	#chooseNumber = (): void => {
+		if (!this.#isStarted) return
+		this.startButton.innerHTML = this.#startText
 
-		const remains = this._numbers.remainList
-		const i = this._numbers.generateRandomNumber(remains.length)
+		const remains = this.#numbers.remainList
+		const i = this.#numbers.generateRandomNumber(remains.length)
 		const choosedNumber = remains[i]
 		if (typeof choosedNumber === "number") {
 			remains.splice(i, 1)
-			this._numbers.remainList = remains
+			this.#numbers.remainList = remains
 
-			const histories = this._numbers.historyList
+			const histories = this.#numbers.historyList
 			histories.push(choosedNumber)
-			this._numbers.historyList = histories
+			this.#numbers.historyList = histories
 
-			this._bingoNumber.innerHTML = this.zeroPad(choosedNumber)
-			this.addHistory(choosedNumber)
+			this.bingoNumber.innerHTML = this.#zeroPad(choosedNumber)
+			this.#addHistory(choosedNumber)
 		} else {
 			throw new Error("Index out of bounds. Check the method!")
 		}
 
-		this._drum.pause()
-		this._cymbals.currentTime = 0
-		this._cymbals.play()
+		this.drum.pause()
+		this.cymbals.currentTime = 0
+		this.cymbals.play()
 
-		this._isStarted = false
+		this.#isStarted = false
 	}
 
-	private playRoulette = (): void => {
-		if (!this._isStarted) return
-		if (this._drum.currentTime < this._drum.duration) {
-			const rouletteNumber = this._numbers.remainList[this._numbers.generateRandomNumber(this._numbers.remainList.length)]
+	#playRoulette = (): void => {
+		if (!this.#isStarted) return
+		if (this.drum.currentTime < this.drum.duration) {
+			const rouletteNumber = this.#numbers.remainList.at(this.#numbers.generateRandomNumber(this.#numbers.remainList.length))
 			if (typeof rouletteNumber === "number") {
-				this._bingoNumber.innerHTML = this.zeroPad(rouletteNumber)
+				this.bingoNumber.innerHTML = this.#zeroPad(rouletteNumber)
 			} else {
 				throw new Error("Something is wrong with localStorage!")
 			}
-			setTimeout(this.playRoulette, this._rouletteInterval)
+			setTimeout(this.#playRoulette, this.rouletteInterval)
 		} else {
 			try {
-				this.chooseNumber()
+				this.#chooseNumber()
 			} catch (e: unknown) {
 				if (e instanceof Error) console.error(e.name, e.message, e.stack)
 			}
 		}
 	}
 
-	public rouletteAction = (): void => {
-		if (this._isStarted) {
-			this.chooseNumber()
+	rouletteAction = (): void => {
+		if (this.#isStarted) {
+			this.#chooseNumber()
 		} else {
-			this._startButton.innerHTML = this._stopText
+			this.startButton.innerHTML = this.#stopText
 
-			this._cymbals.pause()
-			this._drum.currentTime = 0
-			this._drum.play()
+			this.cymbals.pause()
+			this.drum.currentTime = 0
+			this.drum.play()
 
-			this._isStarted = true
-			this.playRoulette()
+			this.#isStarted = true
+			this.#playRoulette()
 		}
 	}
 
-	public resetAction = (): void => {
+	resetAction = (): void => {
 		if (confirm("Do you really want to reset?")) {
-			this._numbers.resetLists()
-			this._isStarted = false
+			this.#numbers.resetLists()
+			this.#isStarted = false
 
-			this._historyDisplay.innerHTML = ""
-			this._drum.pause()
-			this._startButton.innerHTML = this._startText
-			this._bingoNumber.innerHTML = this._firstDisplayNumber
-			this._startButton.focus()
+			this.historyDisplay.innerHTML = ""
+			this.drum.pause()
+			this.startButton.innerHTML = this.#startText
+			this.bingoNumber.innerHTML = this.#firstDisplayNumber
+			this.startButton.focus()
 		}
 	}
 }
