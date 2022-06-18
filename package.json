@@ -45,7 +45,7 @@
 		"bracketSpacing": false,
 		"arrowParens": "avoid",
 		"rangeStart": 0,
-		"rangeEnd": 100,
+		"rangeEnd": 10000,
 		"filepath": "none",
 		"requirePragma": false,
 		"insertPragma": false,
