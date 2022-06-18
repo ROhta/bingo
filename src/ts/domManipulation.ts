@@ -9,25 +9,33 @@ export default class DomManipulation {
 	readonly #stopText = "STOP"
 	readonly #resetText = "RESET"
 	readonly #historyTitleText = "Hit Numbers"
+	readonly #bingoNumber: HTMLParagraphElement
+	readonly #startButton: HTMLButtonElement
+	readonly #resetButton: HTMLButtonElement
+	readonly #historyTitle: HTMLParagraphElement
+	readonly #historyDisplay: HTMLDivElement
+	readonly #historyDisplayClassName: string
+	readonly #drum: HTMLAudioElement
+	readonly #cymbals: HTMLAudioElement
+	readonly #rouletteInterval: number
 
-	// prettier-ignore
-	constructor(
-		private readonly bingoNumber: HTMLParagraphElement,
-		private readonly startButton: HTMLButtonElement,
-		private readonly resetButton: HTMLButtonElement,
-		private readonly historyTitle: HTMLParagraphElement,
-		private readonly historyDisplay: HTMLDivElement,
-		private readonly historyDisplayClassName: string,
-		private readonly drum: HTMLAudioElement,
-		private readonly cymbals: HTMLAudioElement,
-		private readonly rouletteInterval: number
-	) {
-		if (this.rouletteInterval <= 0) console.error("Interval should be natural number!")
+	constructor(bingoNumber: HTMLParagraphElement, startButton: HTMLButtonElement, resetButton: HTMLButtonElement, historyTitle: HTMLParagraphElement, historyDisplay: HTMLDivElement, historyDisplayClassName: string, drum: HTMLAudioElement, cymbals: HTMLAudioElement, rouletteInterval: number) {
+		if (rouletteInterval <= 0) console.error("Interval should be natural number!")
 
-		this.bingoNumber.innerHTML = this.#firstDisplayNumber
-		this.startButton.innerHTML = this.#startText
-		this.resetButton.innerHTML = this.#resetText
-		this.historyTitle.innerHTML = this.#historyTitleText
+		this.#bingoNumber = bingoNumber
+		this.#startButton = startButton
+		this.#resetButton = resetButton
+		this.#historyTitle = historyTitle
+		this.#historyDisplay = historyDisplay
+		this.#historyDisplayClassName = historyDisplayClassName
+		this.#drum = drum
+		this.#cymbals = cymbals
+		this.#rouletteInterval = rouletteInterval
+
+		this.#bingoNumber.innerHTML = this.#firstDisplayNumber
+		this.#startButton.innerHTML = this.#startText
+		this.#resetButton.innerHTML = this.#resetText
+		this.#historyTitle.innerHTML = this.#historyTitleText
 
 		if (this.#numbers.remainList.length === 0 && this.#numbers.historyList.length === 0) {
 			this.#numbers.resetLists()
@@ -40,14 +48,14 @@ export default class DomManipulation {
 
 	#addHistory = (n: number): void => {
 		const historyNumberElement = document.createElement("p")
-		historyNumberElement.className = this.historyDisplayClassName
+		historyNumberElement.className = this.#historyDisplayClassName
 		historyNumberElement.innerHTML = this.#zeroPad(n)
-		this.historyDisplay.appendChild(historyNumberElement)
+		this.#historyDisplay.appendChild(historyNumberElement)
 	}
 
 	#chooseNumber = (): void => {
 		if (!this.#isStarted) return
-		this.startButton.innerHTML = this.#startText
+		this.#startButton.innerHTML = this.#startText
 
 		const remains = this.#numbers.remainList
 		const i = this.#numbers.generateRandomNumber(remains.length)
@@ -60,29 +68,29 @@ export default class DomManipulation {
 			histories.push(choosedNumber)
 			this.#numbers.historyList = histories
 
-			this.bingoNumber.innerHTML = this.#zeroPad(choosedNumber)
+			this.#bingoNumber.innerHTML = this.#zeroPad(choosedNumber)
 			this.#addHistory(choosedNumber)
 		} else {
 			throw new Error("Index out of bounds. Check the method!")
 		}
 
-		this.drum.pause()
-		this.cymbals.currentTime = 0
-		this.cymbals.play()
+		this.#drum.pause()
+		this.#cymbals.currentTime = 0
+		this.#cymbals.play()
 
 		this.#isStarted = false
 	}
 
 	#playRoulette = (): void => {
 		if (!this.#isStarted) return
-		if (this.drum.currentTime < this.drum.duration) {
+		if (this.#drum.currentTime < this.#drum.duration) {
 			const rouletteNumber = this.#numbers.remainList.at(this.#numbers.generateRandomNumber(this.#numbers.remainList.length))
 			if (typeof rouletteNumber === "number") {
-				this.bingoNumber.innerHTML = this.#zeroPad(rouletteNumber)
+				this.#bingoNumber.innerHTML = this.#zeroPad(rouletteNumber)
 			} else {
 				throw new Error("Something is wrong with localStorage!")
 			}
-			setTimeout(this.#playRoulette, this.rouletteInterval)
+			setTimeout(this.#playRoulette, this.#rouletteInterval)
 		} else {
 			try {
 				this.#chooseNumber()
@@ -96,11 +104,11 @@ export default class DomManipulation {
 		if (this.#isStarted) {
 			this.#chooseNumber()
 		} else {
-			this.startButton.innerHTML = this.#stopText
+			this.#startButton.innerHTML = this.#stopText
 
-			this.cymbals.pause()
-			this.drum.currentTime = 0
-			this.drum.play()
+			this.#cymbals.pause()
+			this.#drum.currentTime = 0
+			this.#drum.play()
 
 			this.#isStarted = true
 			this.#playRoulette()
@@ -112,11 +120,11 @@ export default class DomManipulation {
 			this.#numbers.resetLists()
 			this.#isStarted = false
 
-			this.historyDisplay.innerHTML = ""
-			this.drum.pause()
-			this.startButton.innerHTML = this.#startText
-			this.bingoNumber.innerHTML = this.#firstDisplayNumber
-			this.startButton.focus()
+			this.#historyDisplay.innerHTML = ""
+			this.#drum.pause()
+			this.#startButton.innerHTML = this.#startText
+			this.#bingoNumber.innerHTML = this.#firstDisplayNumber
+			this.#startButton.focus()
 		}
 	}
 }
