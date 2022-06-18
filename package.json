@@ -1,6 +1,6 @@
 {
 	"name": "bingo-machine",
-	"version": "1.5.1",
+	"version": "1.6.0",
 	"author": "ROhta",
 	"description": "A Bingo Machine for Party",
 	"private": false,
@@ -45,7 +45,7 @@
 		"bracketSpacing": false,
 		"arrowParens": "avoid",
 		"rangeStart": 0,
-		"rangeEnd": 10000,
+		"rangeEnd": 100,
 		"filepath": "none",
 		"requirePragma": false,
 		"insertPragma": false,
@@ -85,6 +85,6 @@
 		"http-server": "^14.1.1",
 		"lint-staged": "^13.0.2",
 		"prettier": "^2.7.1",
-		"typescript": "^4.7.3"
+		"typescript": "^4.7.4"
 	}
 }
