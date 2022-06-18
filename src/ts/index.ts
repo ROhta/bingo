@@ -9,27 +9,9 @@ const historyDisplay = document.querySelector("#history-display")
 const drum = document.querySelector("#drum")
 const cymbals = document.querySelector("#cymbals")
 
-// prettier-ignore
-if (bingoNumber instanceof HTMLParagraphElement
-	&& startButton instanceof HTMLButtonElement
-	&& resetButton instanceof HTMLButtonElement
-	&& historyTitle instanceof HTMLParagraphElement
-	&& historyDisplay instanceof HTMLDivElement
-	&& drum instanceof HTMLAudioElement
-	&& cymbals instanceof HTMLAudioElement
-) {
+if (bingoNumber instanceof HTMLParagraphElement && startButton instanceof HTMLButtonElement && resetButton instanceof HTMLButtonElement && historyTitle instanceof HTMLParagraphElement && historyDisplay instanceof HTMLDivElement && drum instanceof HTMLAudioElement && cymbals instanceof HTMLAudioElement) {
 	// 可変な設定値を引数として渡す
-	const doms = new DomManipulation(
-		bingoNumber,
-		startButton,
-		resetButton,
-		historyTitle,
-		historyDisplay,
-		"col-2",
-		drum,
-		cymbals,
-		150
-	)
+	const doms = new DomManipulation(bingoNumber, startButton, resetButton, historyTitle, historyDisplay, "col-2", drum, cymbals, 150)
 
 	// main
 	startButton.focus()
