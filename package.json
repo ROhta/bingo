@@ -79,7 +79,7 @@
 	},
 	"devDependencies": {
 		"@tsconfig/strictest": "^1.0.1",
-		"@typescript-eslint/eslint-plugin": "^5.28.0",
+		"@typescript-eslint/eslint-plugin": "^5.29.0",
 		"eslint-config-prettier": "^8.5.0",
 		"husky": "^8.0.1",
 		"http-server": "^14.1.1",
