@@ -95,7 +95,7 @@ export default class DomManipulation {
 			try {
 				this.#chooseNumber()
 			} catch (e: unknown) {
-				if (e instanceof Error) console.error(e.name, e.message, e.stack)
+				if (e instanceof Error) throw new Error(e.message, {cause: e})
 			}
 		}
 	}
@@ -111,7 +111,11 @@ export default class DomManipulation {
 			this.#drum.play()
 
 			this.#isStarted = true
-			this.#playRoulette()
+			try {
+				this.#playRoulette()
+			} catch (e: unknown) {
+				if (e instanceof Error) console.error(e.name, e.message, e.stack)
+			}
 		}
 	}
 

@@ -35,7 +35,7 @@ export default class NumberList {
 				if (i < this.#minBingoNumber || i > this.#maxBingoNumber) throw new Error("Index out of bounds, not a Bingo number!")
 			}
 		} catch (e: unknown) {
-			if (e instanceof Error) console.error(e.name, e.message, e.stack)
+			if (e instanceof Error) throw new Error(e.message, {cause: e})
 		}
 		return ret
 	}
