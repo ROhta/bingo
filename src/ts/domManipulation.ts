@@ -100,7 +100,7 @@ export default class DomManipulation {
 		}
 	}
 
-	rouletteAction = (): void => {
+	rouletteButtonAction = (): void => {
 		if (this.#isStarted) {
 			this.#chooseNumber()
 		} else {
@@ -115,7 +115,7 @@ export default class DomManipulation {
 		}
 	}
 
-	resetAction = (): void => {
+	resetButtonAction = (): void => {
 		if (confirm("Do you really want to reset?")) {
 			this.#numbers.resetLists()
 			this.#isStarted = false

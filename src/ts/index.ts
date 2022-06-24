@@ -17,12 +17,12 @@ if (bingoNumber instanceof HTMLParagraphElement && startButton instanceof HTMLBu
 	startButton.focus()
 	startButton.addEventListener("click", (): void => {
 		try {
-			doms.rouletteAction()
+			doms.rouletteButtonAction()
 		} catch (e: unknown) {
 			if (e instanceof Error) console.error(e.name, e.message, e.stack)
 		}
 	})
-	resetButton.addEventListener("click", (): void => doms.resetAction())
+	resetButton.addEventListener("click", (): void => doms.resetButtonAction())
 } else {
 	console.error("Check the IDs!")
 }
