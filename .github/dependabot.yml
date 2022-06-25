@@ -10,7 +10,7 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "[skip ci]"
+      prefix: "skip ci"
       prefix-development: "check ci status"
       include: "scope"
     labels:
@@ -32,8 +32,7 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "[skip ci]"
-      prefix-development: "check ci status"
+      prefix: "check ci status"
       include: "scope"
     labels:
       - "dependencies"
@@ -43,4 +42,3 @@ updates:
     rebase-strategy: "auto"
     reviewers:
       - "ROhta"
-    versioning-strategy: increase-if-necessary
