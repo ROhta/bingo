@@ -1,6 +1,6 @@
 ---
 name: 設定変更
-about: リポジトリ設定変更等
+about: プロダクトコードを触らない作業
 title: ""
 labels: ""
 assignees: ROhta
