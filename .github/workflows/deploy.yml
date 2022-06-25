@@ -16,13 +16,12 @@ on:
       - main
 
 jobs:
-  Prior-Confirmation:
-    name: Dependency Review
-    uses: ./.github/workflows/dependency-review.yml
   Deploy:
     environment:
       name: github-pages
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Confirm Check
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'run'
