@@ -1,9 +1,6 @@
 name: CodeQL
 
 on:
-  push:
-    branches:
-      - bugs
   pull_request:
     branches:
       - main
