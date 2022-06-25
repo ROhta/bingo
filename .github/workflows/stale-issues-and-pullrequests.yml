@@ -6,19 +6,20 @@ on:
 jobs:
   close-issues:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/stale@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-issue-message: "進捗無いからもう少ししたら閉じちゃうよ"
           close-issue-message: "閉じるよ"
-          stale-issue-label: "close-1 お見送り"
-          exempt-issue-labels: "bug-1 重大バグ,enhance-1 破壊的変更,enhance-2 新機能"
+          exempt-issue-labels: "bug-1 重大バグ"
           days-before-issue-stale: 180
           days-before-issue-close: 14
           stale-pr-message: "進捗無いからもう少ししたら閉じちゃうよ"
           close-pr-message: "閉じるよ"
-          stale-pr-label: "close-1 お見送り"
-          exempt-pr-labels: "bug-1 重大バグ,enhance-1 破壊的変更,enhance-2 新機能"
+          exempt-pr-labels: "bug-1 重大バグ"
           days-before-pr-stale: 180
           days-before-pr-close: 14

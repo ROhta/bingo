@@ -19,7 +19,4 @@ changelog:
   exclude:
     labels:
       - blocked by
-      - close-1 お見送り
-      - close-2 重複
-      - close-3 再現不能
-      - topic-1 参考情報
+      - topic 参考情報

@@ -1,9 +1,9 @@
 name: Dependency Review
 on:
-  workflow_call:
-
-permissions:
-  contents: read
+  pull_request:
+    types: [review_requested, reopened, ready_for_review]
+    branches:
+      - main
 
 jobs:
   Dependency-Review:
