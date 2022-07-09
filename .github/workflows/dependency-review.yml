@@ -4,7 +4,6 @@ on:
     types: [review_requested, reopened, ready_for_review]
     branches:
       - main
-
 jobs:
   Dependency-Review:
     runs-on: ubuntu-latest

@@ -1,9 +1,7 @@
 name: Synthetic Monitoring
-
 on:
   schedule:
     - cron: 0 22 * * 5
-
 jobs:
   monitoring:
     runs-on: ubuntu-latest
@@ -12,4 +10,4 @@ jobs:
         env:
           URL: https://rohta.github.io/bingo/
         run: curl ${URL}
-# 失敗時、即時対応しないため即時通知は不要。Actionsを見て都度対応。
+# 失敗時、即時対応しないため通知は不要。Actionsを見て都度対応。

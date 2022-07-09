@@ -1,6 +1,6 @@
 {
 	"name": "bingo-machine",
-	"version": "1.6.2",
+	"version": "1.6.4",
 	"author": "ROhta",
 	"description": "A Bingo Machine for Party",
 	"private": false,
@@ -77,14 +77,16 @@
 			"src/js/*"
 		]
 	},
-	"devDependencies": {
+	"dependencies": {
 		"@tsconfig/strictest": "^1.0.1",
-		"@typescript-eslint/eslint-plugin": "^5.29.0",
-		"eslint-config-prettier": "^8.5.0",
 		"husky": "^8.0.1",
+		"typescript": "^4.7.4"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.30.5",
+		"eslint-config-prettier": "^8.5.0",
 		"http-server": "^14.1.1",
 		"lint-staged": "^13.0.3",
-		"prettier": "^2.7.1",
-		"typescript": "^4.7.4"
+		"prettier": "^2.7.1"
 	}
 }

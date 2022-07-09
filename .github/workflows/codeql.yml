@@ -1,5 +1,4 @@
 name: CodeQL
-
 on:
   pull_request:
     branches:
@@ -8,22 +7,18 @@ on:
       - src/ts/**
   schedule:
     - cron: 0 22 1 * *
-
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-
     permissions:
       security-events: write
       actions: read
-
     strategy:
       fail-fast: false
       matrix:
         language:
           - typescript
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
