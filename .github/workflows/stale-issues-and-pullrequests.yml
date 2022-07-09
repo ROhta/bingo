@@ -1,8 +1,7 @@
 name: Close Inactive Issues and PullRequests
 on:
   schedule:
-    - cron: "* * * * 4"
-
+    - cron: "* * * 1 *"
 jobs:
   close-issues:
     runs-on: ubuntu-latest

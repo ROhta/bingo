@@ -16,6 +16,20 @@ on:
       - main
 
 jobs:
+  Build-Check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          check-latest: true
+      - name: Install Dependencies
+        run: npm ci --production
+      - name: Build Check
+        run: npm run clean
   Deploy:
     environment:
       name: github-pages
