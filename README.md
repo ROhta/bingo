@@ -76,9 +76,11 @@ RESET-->|確認ポップアップ/履歴消去|START-->|ドラムロール/数�
 
 - GitHub Pages への deploy
 - 外形監視
-- CodeQL で脆弱性を含むコードの検出（TypeScript のみ）
+- 依存モジュールの脆弱性検査
+- 放置Issue/PRの自動
+- CodeQL で脆弱性を含むコードの検出（TypeScriptのみ）
 
-#### 脆弱性対応
+#### モジュールアップデート
 
 - dependabot.yml
   - module update の Pull Request が週一で最大 10 件作成されるように設定
