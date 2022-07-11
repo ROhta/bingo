@@ -1,0 +1,14 @@
+name: Auto Merge
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  Auto-Merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          target: minor
+          github-token: ${{ secrets.AUTO_MERGE }}
