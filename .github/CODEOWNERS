@@ -6,4 +6,4 @@ src/ @ROhta
 LICENSE @ROhta
 package.json @ROhta
 README.md @ROhta
-tslint.json @ROhta
+tsconfig.json @ROhta
