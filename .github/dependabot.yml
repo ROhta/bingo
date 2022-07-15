@@ -10,8 +10,7 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "check ci status"
-      prefix-development: "[skip ci]"
+      prefix: "[skip ci]"
       include: "scope"
     labels:
       - "dependencies"
