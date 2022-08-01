@@ -10,8 +10,7 @@ on:
         required: true
         description: "反映対象の環境"
         type: environment
-  pull_request:
-    types: [review_requested, reopened, ready_for_review]
+  push:
     branches:
       - main
 
