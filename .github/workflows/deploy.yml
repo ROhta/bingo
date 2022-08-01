@@ -37,10 +37,10 @@ jobs:
         run: npm run build
       - name: Clean Up
         run: rm -r src/ts
-      - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v3.0.0
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          target_branch: github-pages
-          build_dir: src
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: 'src/'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
