@@ -19,8 +19,6 @@ updates:
     rebase-strategy: "auto"
     reviewers:
       - "ROhta"
-    assignees:
-      - "ROhta"
     versioning-strategy: increase-if-necessary
   - package-ecosystem: "github-actions"
     schedule:
@@ -41,6 +39,4 @@ updates:
       separator: "_"
     rebase-strategy: "auto"
     reviewers:
-      - "ROhta"
-    assignees:
       - "ROhta"
