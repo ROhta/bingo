@@ -7,7 +7,7 @@ updates:
       timezone: "Asia/Tokyo"
     directory: "/"
     allow:
-      - dependency-type: "all"
+      - dependency-type: "production"
     commit-message:
       prefix: "[skip ci]"
       include: "scope"
