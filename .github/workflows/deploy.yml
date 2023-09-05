@@ -30,7 +30,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           check-latest: true
       - name: Install Dependencies
-        run: npm ci --production
+        run: npm ci
       - name: Build
         run: npm run build
       - name: Clean Up
