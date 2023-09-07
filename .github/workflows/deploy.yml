@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 18 ]
+        node-version: [ 20 ]
     steps:
       - name: Confirm Check
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'run'
