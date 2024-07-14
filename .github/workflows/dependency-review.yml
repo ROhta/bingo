@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/dependency-review-action@v4
   Build-Check:
-    uses: ./.github/workflows/-build-check.yml
+    uses: ./.github/workflows/build-check.yml
     with:
       node-version: 20
