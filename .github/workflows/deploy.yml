@@ -24,7 +24,7 @@ jobs:
       - name: Confirm Check
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'run'
         run: echo "Invalid input" && exit 1
-      - uses: ./.github/workflows/workflow_call/build-check.yml
+      - uses: ./.github/workflows/build-check.yml
         with:
           node-version: ${{ matrix.node-version }}
       - name: Clean Up
