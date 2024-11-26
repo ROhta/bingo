@@ -14,17 +14,32 @@ on:
     branches:
       - main
 
+# デフォルトシェルでパイプエラーを有効化
+defaults:
+  run:
+    shell: bash
+
+# ワークフローが複数起動したら自動キャンセル
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   Build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20]
+    timeout-minutes: 5
     steps:
       - name: Confirm Check
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'run'
         run: echo "Invalid input" && exit 1
       - uses: actions/checkout@v4
+      - name: Run actionlint in workflow Directory
+        run: |
+          set -x
+          docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:1.7.4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
@@ -49,6 +64,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
+    timeout-minutes: 5
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
