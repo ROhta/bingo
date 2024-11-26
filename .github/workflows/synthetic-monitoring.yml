@@ -1,10 +1,23 @@
 name: Synthetic Monitoring
+
 on:
   schedule:
     - cron: 0 22 * * 5
+
+# デフォルトシェルでパイプエラーを有効化
+defaults:
+  run:
+    shell: bash
+
+# ワークフローが複数起動したら自動キャンセル
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   monitoring:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     steps:
       - name: curl
         env:

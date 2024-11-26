@@ -1,4 +1,5 @@
 name: CodeQL
+
 on:
   pull_request:
     branches:
@@ -7,6 +8,17 @@ on:
       - src/ts/**
   schedule:
     - cron: 0 22 1 * *
+
+# デフォルトシェルでパイプエラーを有効化
+defaults:
+  run:
+    shell: bash
+
+# ワークフローが複数起動したら自動キャンセル
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   analyze:
     name: Analyze
@@ -19,6 +31,7 @@ jobs:
       matrix:
         language:
           - typescript
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - name: Initialize CodeQL

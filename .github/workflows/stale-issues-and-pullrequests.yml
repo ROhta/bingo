@@ -2,12 +2,24 @@ name: Close Inactive Issues and PullRequests
 on:
   schedule:
     - cron: "* * * 1 *"
+
+# デフォルトシェルでパイプエラーを有効化
+defaults:
+  run:
+    shell: bash
+
+# ワークフローが複数起動したら自動キャンセル
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   close-issues:
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
+    timeout-minutes: 5
     steps:
       - uses: actions/stale@v9
         with:
