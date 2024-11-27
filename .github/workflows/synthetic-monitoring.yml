@@ -22,5 +22,5 @@ jobs:
       - name: curl
         env:
           URL: https://rohta.github.io/bingo/
-        run: curl ${URL}
+        run: "curl ${URL}"
 # 失敗時、即時対応しないため通知は不要。Actionsを見て都度対応。
