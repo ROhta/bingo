@@ -77,7 +77,7 @@ RESET-->|確認ポップアップ/履歴消去|START-->|ドラムロール/数�
 - GitHub Pages への deploy
 - 外形監視
 - 依存モジュールの脆弱性検査
-- 放置Issue/PRの自動
+- 放置Issue/PRの自動削除
 - CodeQL で脆弱性を含むコードの検出（TypeScriptのみ）
 
 #### モジュールアップデート
