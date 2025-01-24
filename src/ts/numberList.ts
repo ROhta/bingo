@@ -28,8 +28,9 @@ export default class NumberList {
 	#getListFromLocalStorage(key: string): number[] {
 		let ret: number[] = []
 		try {
-			ret = JSON.parse(localStorage.getItem(key) || "")
-			if (!Array.isArray(ret)) throw new Error("There is no Array in the localStorage!")
+			ret = JSON.parse(localStorage.getItem(key) || "null")
+			// 初めてのブラウザで開く場合を想定。localStorage にはkey自体が存在しないため、null対応する。
+			if (!Array.isArray(ret)) return []
 			for (const i of ret) {
 				if (typeof i !== "number") throw new Error("The array contains non-digit character in the localStorage!")
 				if (i < this.#minBingoNumber || i > this.#maxBingoNumber) throw new Error("Index out of bounds, not a Bingo number!")

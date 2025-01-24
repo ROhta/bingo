@@ -4,7 +4,7 @@
 		{
 			"name": "Launch Chrome",
 			"request": "launch",
-			"type": "pwa-chrome",
+			"type": "chrome",
 			"url": "http://localhost:62800/src/index.html",
 			"webRoot": "${workspaceFolder}"
 		},
@@ -18,7 +18,7 @@
 		{
 			"name": "Launch Edge",
 			"request": "launch",
-			"type": "pwa-msedge",
+			"type": "msedge",
 			"url": "http://localhost:62800/src/index.html",
 			"webRoot": "${workspaceFolder}"
 		}

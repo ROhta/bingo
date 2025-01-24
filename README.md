@@ -4,7 +4,7 @@
 
 - [GitHub Pages](https://rohta.github.io/bingo/)で構築
 
-## local 開発
+## local開発
 
 - git clone
 - `npm ci`
@@ -19,71 +19,71 @@ RESET-->|確認ポップアップ/履歴消去|START-->|ドラムロール/数�
 
 ## 機能詳細
 
-- start を押す
+- startを押す
   - ドラムロールが鳴る
   - 左上部の数字が一定間隔でランダム表示される
-  - start/stop ボタンは`stop`となる
+  - start/stopボタンは`stop`となる
   - ドラムロールが鳴り終わると自動的に数字が選択され、`stop`表示になる
-- stop を押す
+- stopを押す
   - ドラムロールを停止する
   - シンバルが鳴動する
   - 左上部の数字のランダム表示を停止する
-  - 止まった=選択された数字を Hit Numbers に追加する
-  - start/stop ボタンは`start`となる
-- reset を押す
-  - confirm を出す
-  - Hit Numbers に表示されている数字を全消去する
-  - 左上部の数字は 00 となる
-  - confirm 中、画面の変動はない
-    - 数字選択中に reset を押下した場合、ドラムロールは鳴り続けるが、数字のランダム表示は停止する
-- reload 時
-  - start/stop ボタンは`start`となる
-  - 左上部の数字は 00 となる
-  - Hit Numbers は reset されず、表示されたままとなる
+  - 止まった=選択された数字をHit Numbersに追加する
+  - start/stopボタンは`start`となる
+- resetを押す
+  - confirmを出す
+  - Hit Numbersに表示されている数字を全消去する
+  - 左上部の数字は00となる
+  - confirm中、画面の変動はない
+    - 数字選択中にresetを押下した場合、ドラムロールは鳴り続けるが、数字のランダム表示は停止する
+- reload時
+  - start/stopボタンは`start`となる
+  - 左上部の数字は00となる
+  - Hit Numbersはresetされず、表示されたままとなる
 
 ## 技術
 
 ### Styling
 
-- css ファイルは存在しない
-- [Bootstrap5](https://getbootstrap.jp) に完全依存
+- cssファイルは存在しない
+- [Bootstrap5](https://getbootstrap.jp)に完全依存
   - レスポンシブ対応
-  - Bootstrap5 で賄えない部分のみ、style 要素で指定
-- font は[Google Fonts](https://fonts.google.com)を使用
+  - Bootstrap5で賄えない部分のみ、style要素で指定
+- fontは[Google Fonts](https://fonts.google.com)を使用
 
 ### TypeScript
 
 #### 処理
 
-- localStorage による履歴機能を実装
-- domManipulation.ts では、DOM に依存するメソッドを class に紐づけて管理
-- numberList.ts では、DOM に依存しないメソッドを class に紐づけて管理
+- localStorageによる履歴機能を実装
+- domManipulation.tsでは、DOMに依存するメソッドをclassに紐づけて管理
+- numberList.tsでは、DOMに依存しないメソッドをclassに紐づけて管理
   - 固定想定の値はこちらで管理
-- index.ts で可変値を設定
+- index.tsで可変値を設定
 
 #### lint
 
-- esLint と prettier が git commit 時に発火する
-  - husky と lint-staged で設定
-- esLint と prettier の設定は package.json に集約
+- esLintとprettierがgit commit時に発火する
+  - huskyとlint-stagedで設定
+- esLintとprettierの設定はpackage.jsonに集約
   - 設定ファイルを作成せず、一覧性を追求
-  - esLint は独自設定せず、recommend のルールに準拠
-- tsconfig は、[@tsconfig/strictest](https://github.com/tsconfig/bases/blob/main/bases/strictest.json) のルールをさらに厳格にして適用
+  - esLintは独自設定せず、recommendのルールに準拠
+- tsconfigは、[@tsconfig/strictest](https://github.com/tsconfig/bases/blob/main/bases/strictest.json)のルールをさらに厳格にして適用
 
 ### GitHub
 
 #### GitHub Actions
 
-- GitHub Pages への deploy
+- GitHub Pagesへのdeploy
 - 外形監視
 - 依存モジュールの脆弱性検査
 - 放置Issue/PRの自動削除
-- CodeQL で脆弱性を含むコードの検出（TypeScriptのみ）
+- CodeQLで脆弱性を含むコードの検出（TypeScriptのみ）
 
 #### モジュールアップデート
 
 - dependabot.yml
-  - module update の Pull Request が週一で最大 10 件作成されるように設定
+  - module updateのPull Requestが週一で最大10件作成されるように設定
 
 #### 各種テンプレート
 
@@ -93,8 +93,8 @@ RESET-->|確認ポップアップ/履歴消去|START-->|ドラムロール/数�
 
 #### リリースノート
 
-- GitHub の機能を利用
+- GitHubの機能を利用
 
 #### コードオーナー
 
-- すべて @ROhta
+- すべて@ROhta

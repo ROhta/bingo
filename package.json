@@ -15,16 +15,16 @@
 	},
 	"main": "src/index.html",
 	"scripts": {
-		"dev": "npm run build && npm run serve",
-		"build": "npx tsc -b",
-		"watch": "npx tsc -b -w",
-		"clean": "npx tsc -b --clean",
-		"serve": "npx http-server -p 62800 -o src/index.html -s",
-		"prepare": "husky install"
+		"dev": "pnpm run build && npm run serve",
+		"build": "pnpm exec tsc -b",
+		"watch": "pnpm exec tsc -b -w",
+		"clean": "pnpm exec tsc -b --clean",
+		"serve": "pnpm exec http-server -p 62800 -o src/index.html -s",
+		"prepare": "husky"
 	},
 	"engines": {
-		"node": ">=20.12.0",
-		"npm": ">=10.5.0"
+		"node": ">=22.13.0",
+		"pnpm": ">=9.15.0"
 	},
 	"husky": {
 		"hooks": {
@@ -33,8 +33,8 @@
 	},
 	"lint-staged": {
 		"src/ts/*.ts": [
-			"npx eslint . --fix",
-			"npx prettier --write ."
+			"pnpm exec eslint . --fix",
+			"pnpm exec prettier --write ."
 		]
 	},
 	"prettier": {
@@ -83,12 +83,12 @@
 	},
 	"devDependencies": {
 		"@tsconfig/strictest": "^2.0.5",
-		"@typescript-eslint/eslint-plugin": "^7.16.0",
-		"eslint-config-prettier": "^9.1.0",
+		"@typescript-eslint/eslint-plugin": "^8.21.0",
+		"eslint-config-prettier": "^10.0.1",
 		"http-server": "^14.1.1",
-		"husky": "^9.0.11",
-		"lint-staged": "^15.2.7",
-		"prettier": "^3.3.3",
-		"typescript": "^5.5.3"
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.2",
+		"prettier": "^3.4.2",
+		"typescript": "^5.7.3"
 	}
 }
