@@ -13,13 +13,19 @@ jobs:
       - uses: actions/dependency-review-action@v4
   Build-Check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22]
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ matrix.node-version }}
           check-latest: true
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
       - name: Build
