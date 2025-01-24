@@ -20,11 +20,11 @@
 		"watch": "npx tsc -b -w",
 		"clean": "npx tsc -b --clean",
 		"serve": "npx http-server -p 62800 -o src/index.html -s",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"engines": {
-		"node": ">=20.12.0",
-		"npm": ">=10.5.0"
+		"node": ">=22.13.0",
+		"pnpm": ">=9.15.0"
 	},
 	"husky": {
 		"hooks": {
