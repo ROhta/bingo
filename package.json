@@ -16,10 +16,10 @@
 	"main": "src/index.html",
 	"scripts": {
 		"dev": "pnpm run build && npm run serve",
-		"build": "pnpx tsc -b",
-		"watch": "pnpx tsc -b -w",
-		"clean": "pnpx tsc -b --clean",
-		"serve": "pnpx http-server -p 62800 -o src/index.html -s",
+		"build": "pnpm exec tsc -b",
+		"watch": "pnpm exec tsc -b -w",
+		"clean": "pnpm exec tsc -b --clean",
+		"serve": "pnpm exec http-server -p 62800 -o src/index.html -s",
 		"prepare": "husky"
 	},
 	"engines": {
@@ -33,8 +33,8 @@
 	},
 	"lint-staged": {
 		"src/ts/*.ts": [
-			"pnpx eslint . --fix",
-			"pnpx prettier --write ."
+			"pnpm exec eslint . --fix",
+			"pnpm exec prettier --write ."
 		]
 	},
 	"prettier": {
