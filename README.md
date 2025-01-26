@@ -6,9 +6,11 @@
 
 ## local開発
 
-- git clone
-- `npm ci`
-- `npm run dev`
+- 環境の立ち上げは、以下を実行
+  - git clone
+  - nodeとpnpmをpackage.jsonで指定されたバージョンで設定
+  - `pnpm i --frozen-lockfile`
+  - `pnpm run dev`
 - タグの設定
   - タグ
     - `git config --local tag.template $(git rev-parse --show-toplevel)/git-tag-message.txt`を実行
