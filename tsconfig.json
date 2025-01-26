@@ -1,6 +1,6 @@
 {
 	"compileOnSave": true,
-	"extends": "./node_modules/@tsconfig/strictest/tsconfig.json",
+	"extends": "@tsconfig/strictest/tsconfig.json",
 	"compilerOptions": {
 		"target": "es2022",
 		"module": "es2022",
