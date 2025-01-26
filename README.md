@@ -9,6 +9,11 @@
 - git clone
 - `npm ci`
 - `npm run dev`
+- タグの設定
+  - タグ
+    - `git config --local tag.template $(git rev-parse --show-toplevel)/git-tag-message.txt`を実行
+    - タグ付け時は、表題の`メジャー・マイナー・パッチ`から該当しない文言を削除
+    - 以降に、セマンティックバージョニングにしたがって、バージョンアップの理由を記載
 
 ## 機能図
 
