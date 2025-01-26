@@ -4,18 +4,17 @@
 
 - [GitHub Pages](https://rohta.github.io/bingo/)で構築
 
-## local開発
+## ローカル設定
 
-- 環境の立ち上げは、以下を実行
+- ローカル環境の立ち上げは、以下を実行
   - git clone
   - nodeとpnpmをpackage.jsonで指定されたバージョンで設定
   - `pnpm i --frozen-lockfile`
   - `pnpm run dev`
-- タグの設定
-  - タグ
-    - `git config --local tag.template $(git rev-parse --show-toplevel)/git-tag-message.txt`を実行
-    - タグ付け時は、表題の`メジャー・マイナー・パッチ`から該当しない文言を削除
-    - 以降に、セマンティックバージョニングにしたがって、バージョンアップの理由を記載
+- git tag設定
+  - `git config --local tag.template $(git rev-parse --show-toplevel)/git-tag-message.txt`を実行
+  - タグ付け時は、表題の`メジャー・マイナー・パッチ`から該当しない文言を削除
+  - 以降に、セマンティックバージョニングにしたがって、バージョンアップの理由を記載
 
 ## 機能図
 
