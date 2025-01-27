@@ -18,6 +18,7 @@ jobs:
   monitoring:
     runs-on: ubuntu-latest
     timeout-minutes: 1
+    permissions: {}
     steps:
       - name: curl
         env:
