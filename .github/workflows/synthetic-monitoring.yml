@@ -20,6 +20,9 @@ jobs:
     timeout-minutes: 1
     permissions: {}
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+        with:
+          config: ${{ vars.PERMISSIONS_CONFIG }}
       - name: curl
         env:
           URL: https://rohta.github.io/bingo/
