@@ -7,7 +7,7 @@
 ## ローカル環境構築
 
 - git clone
-- nodeとpnpmをpackage.jsonで指定されたバージョンで設定
+- nodeとpnpmをpackage.jsonで指定されたバージョンに設定
 - `pnpm i --frozen-lockfile`
 - `pnpm run dev`
 
