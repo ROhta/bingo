@@ -1,5 +1,5 @@
 node_modules/
 src/js/*
-.vscode/settings.json
+.specstory/*
 .idea/*
 .DS_Store
