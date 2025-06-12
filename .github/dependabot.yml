@@ -17,8 +17,6 @@ updates:
     pull-request-branch-name:
       separator: "_"
     rebase-strategy: "auto"
-    reviewers:
-      - "ROhta"
     versioning-strategy: increase-if-necessary
   - package-ecosystem: "github-actions"
     schedule:
@@ -38,5 +36,3 @@ updates:
     pull-request-branch-name:
       separator: "_"
     rebase-strategy: "auto"
-    reviewers:
-      - "ROhta"
