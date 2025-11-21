@@ -39,7 +39,7 @@ jobs:
       - name: Confirm Check
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.confirm != 'run'
         run: echo "Invalid input" && exit 1
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Run actionlint in workflow Directory
         run: |
           set -x
