@@ -97,16 +97,9 @@ RESET-->|確認ポップアップ/履歴消去|START-->|ドラムロール/数�
 - 放置Issue/PRの自動削除
 - CodeQLで脆弱性を含むコードの検出（TypeScriptのみ）
 
-#### モジュールアップデート
+#### セキュリティ対策
 
-- dependabot.yml
-  - module updateのPull Requestが週一で最大10件作成されるように設定
-
-#### 各種テンプレート
-
-- Issue
-- Pull Requests
-- Security Policy
+- [Security Policy](https://github.com/ROhta/bingo/security/policy)を参照
 
 #### リリースノート
 
