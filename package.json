@@ -1,6 +1,6 @@
 {
 	"name": "bingo-machine",
-	"version": "1.6.4",
+	"version": "1.6.5",
 	"author": "ROhta",
 	"description": "A Bingo Machine for Party",
 	"private": false,
@@ -23,7 +23,7 @@
 		"prepare": "husky"
 	},
 	"engines": {
-		"node": ">=24.11.1",
+		"node": ">=24.11.0",
 		"pnpm": ">=10.24.0"
 	},
 	"husky": {
