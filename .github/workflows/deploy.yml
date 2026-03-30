@@ -77,4 +77,4 @@ jobs:
         with:
           config: ${{ vars.PERMISSIONS_CONFIG }}
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
