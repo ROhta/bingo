@@ -58,7 +58,7 @@ jobs:
       - name: Clean Up
         run: rm -r src/ts
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: "src/"
   Deploy:
