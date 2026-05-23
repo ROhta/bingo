@@ -4,6 +4,7 @@ src/js/*
 .vscode/chrome-debug-profile/
 .vscode/edge-debug-profile/
 .idea/*
+.claude/
 .DS_Store
 
 # APM の依存関係
@@ -15,5 +16,4 @@ apm.lock.yaml
 # APM コンパイル成果物 (.apm/ から `apm install` / `apm compile` で再生成されるため追跡しない)
 AGENTS.md
 CLAUDE.md
-.claude/rules/
 .github/instructions/
