@@ -1,0 +1,121 @@
+lockfile_version: '1'
+generated_at: '2026-05-23T04:39:00.951497+00:00'
+apm_version: 0.14.1
+dependencies:
+- repo_url: anthropics/claude-code
+  host: github.com
+  resolved_commit: 39e853e4074d90f27afdfb7ea601e0fc378bd0c5
+  resolved_ref: 39e853e4074d90f27afdfb7ea601e0fc378bd0c5
+  virtual_path: plugins/code-review
+  is_virtual: true
+  package_type: marketplace_plugin
+  deployed_files:
+  - .github/prompts/code-review.prompt.md
+  deployed_file_hashes:
+    .github/prompts/code-review.prompt.md: sha256:2b0837c5ec0b2e75f8ba4565bdafd76fa916b0dc146608c5733af7ba5802012c
+  content_hash: sha256:d25f797947bbd724551746c24ed4ac40788aaf370a7857eb120180fbb00ac2be
+- repo_url: obra/superpowers
+  host: github.com
+  resolved_commit: f2cbfbefebbfef77321e4c9abc9e949826bea9d7
+  resolved_ref: f2cbfbefebbfef77321e4c9abc9e949826bea9d7
+  package_type: marketplace_plugin
+  deployed_files:
+  - .agents/skills/brainstorming
+  - .agents/skills/dispatching-parallel-agents
+  - .agents/skills/executing-plans
+  - .agents/skills/finishing-a-development-branch
+  - .agents/skills/receiving-code-review
+  - .agents/skills/requesting-code-review
+  - .agents/skills/subagent-driven-development
+  - .agents/skills/systematic-debugging
+  - .agents/skills/test-driven-development
+  - .agents/skills/using-git-worktrees
+  - .agents/skills/using-superpowers
+  - .agents/skills/verification-before-completion
+  - .agents/skills/writing-plans
+  - .agents/skills/writing-skills
+  - .claude/hooks/superpowers/hooks/run-hook.cmd
+  - .claude/hooks/superpowers/hooks/run-hook.cmd
+  - .claude/skills/brainstorming
+  - .claude/skills/dispatching-parallel-agents
+  - .claude/skills/executing-plans
+  - .claude/skills/finishing-a-development-branch
+  - .claude/skills/receiving-code-review
+  - .claude/skills/requesting-code-review
+  - .claude/skills/subagent-driven-development
+  - .claude/skills/systematic-debugging
+  - .claude/skills/test-driven-development
+  - .claude/skills/using-git-worktrees
+  - .claude/skills/using-superpowers
+  - .claude/skills/verification-before-completion
+  - .claude/skills/writing-plans
+  - .claude/skills/writing-skills
+  - .codex/hooks/superpowers/hooks/run-hook.cmd
+  - .codex/hooks/superpowers/hooks/run-hook.cmd
+  deployed_file_hashes:
+    .claude/hooks/superpowers/hooks/run-hook.cmd: sha256:d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb
+    .codex/hooks/superpowers/hooks/run-hook.cmd: sha256:d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb
+  content_hash: sha256:fb4f87bfef928a6d68f5d5aaa29e3eba011961c5f03bbf171c3c348d8d161abb
+mcp_servers:
+- chrome-devtools
+- context7
+- semgrep
+- serena
+mcp_configs:
+  chrome-devtools:
+    name: chrome-devtools
+    transport: stdio
+    args:
+    - -y
+    - chrome-devtools-mcp@1.0.1
+    registry: false
+    command: npx
+  context7:
+    name: context7
+    transport: stdio
+    args:
+    - -y
+    - '@upstash/context7-mcp'
+    registry: false
+    command: npx
+  semgrep:
+    name: semgrep
+    transport: stdio
+    args:
+    - semgrep-mcp
+    registry: false
+    command: uvx
+  serena:
+    name: serena
+    transport: stdio
+    args:
+    - --from
+    - git+https://github.com/oraios/serena@c3a8d5a9c54622c8ce771a54e5feffd6efda8749
+    - serena
+    - start-mcp-server
+    registry: false
+    command: uvx
+local_deployed_files:
+- .claude/rules/apm-plugins.md
+- .github/instructions/apm-plugins.instructions.md
+- .github/instructions/dev-workflow.instructions.md
+- .github/instructions/feature-spec.instructions.md
+- .github/instructions/github-ops.instructions.md
+- .github/instructions/lint.instructions.md
+- .github/instructions/mcp-servers.instructions.md
+- .github/instructions/pr-review.instructions.md
+- .github/instructions/setup.instructions.md
+- .github/instructions/styling.instructions.md
+- .github/instructions/typescript.instructions.md
+local_deployed_file_hashes:
+  .claude/rules/apm-plugins.md: sha256:3c7744735e2a9bf947479a60ef782219d8fd803068c8d62c89003cc65e81cae0
+  .github/instructions/apm-plugins.instructions.md: sha256:d6039ef3d7c34ceb2df416621e403459a1833dfdf6a7aa0cf5093eddb686817a
+  .github/instructions/dev-workflow.instructions.md: sha256:ec98fdd06c5a93ff0597c221f4f0967db63df591d32c16da8cec0177f656398b
+  .github/instructions/feature-spec.instructions.md: sha256:d641da9a56e032cef5b7d8d29a0cc2a472723b9848a5906bd02f1bf211165e07
+  .github/instructions/github-ops.instructions.md: sha256:618e6525ce967083cf32c25deca4c6255dd78465981b345588a323789d4dcf50
+  .github/instructions/lint.instructions.md: sha256:e4d1c252de1773dfe9aa7d7fa2a4f63e6ee9f07fa04cebabca3ff9a1ad72da1a
+  .github/instructions/mcp-servers.instructions.md: sha256:5d54f740a01c54c6400e089c3fe62c7aefb7cf781a6e2b215bcffc82423374ce
+  .github/instructions/pr-review.instructions.md: sha256:d785037a0bfc858b8b6711bd9b17c01f0213a7b3c07959cd13dec253004acacd
+  .github/instructions/setup.instructions.md: sha256:5719277129c59f6cfd948150655583a11118140df0325727c44e2c5cf9e0195d
+  .github/instructions/styling.instructions.md: sha256:cfb5373ec78a677e02ba28c87774ac78a172790aae88eae3b23dd7837398d9b1
+  .github/instructions/typescript.instructions.md: sha256:eb50e1ca4f5e22c9fc142e8d112f2635016d8fc872beb870f3e9eb333b9dc392
