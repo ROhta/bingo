@@ -17,3 +17,8 @@ AGENTS.md
 CLAUDE.md
 .claude/rules/
 .github/instructions/
+
+# APM MCP 設定生成物 (apm.yml の dependencies.mcp から `apm install` で再生成されるため追跡しない)
+.codex/
+.vscode/mcp.json
+.mcp.json

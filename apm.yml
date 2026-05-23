@@ -1,19 +1,41 @@
-# APM (Agent Project Manager) マニフェスト
-# 参考: https://github.com/microsoft/apm
 name: bingo-machine
 version: 1.6.5
 description: AI agent instructions for the Bingo Machine project
 author: ROhta
 license: GPL-3.0-or-later
-
-# 単一目的: このパッケージは instructions プリミティブのみを配信する
 type: instructions
-
-# コンパイル対象: Claude Code, Codex CLI, GitHub Copilot
-target:
-  - claude
-  - codex
-  - copilot
-
-# .apm/ 配下のすべてのプリミティブを自動公開
+targets:
+- claude
+- codex
+- copilot
 includes: auto
+dependencies:
+  mcp:
+  - name: semgrep
+    registry: false
+    transport: stdio
+    command: uvx
+    args:
+    - semgrep-mcp
+  - name: chrome-devtools
+    registry: false
+    transport: stdio
+    command: npx
+    args:
+    - chrome-devtools-mcp@latest
+  - name: serena
+    registry: false
+    transport: stdio
+    command: uvx
+    args:
+    - --from
+    - git+https://github.com/oraios/serena
+    - serena
+    - start-mcp-server
+  - name: context7
+    registry: false
+    transport: stdio
+    command: npx
+    args:
+    - -y
+    - '@upstash/context7-mcp'

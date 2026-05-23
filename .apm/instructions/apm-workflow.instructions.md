@@ -14,23 +14,29 @@ applyTo: ".apm/**"
 
 | パス | 役割 | リポジトリ追跡 |
 | --- | --- | --- |
-| `.apm/instructions/*.instructions.md` | **Source of Truth (人間が編集する)** | ✅ 追跡する |
+| `.apm/instructions/*.instructions.md` | **Source of Truth (instructions 用、人間が編集する)** | ✅ 追跡する |
+| `apm.yml` の `dependencies.mcp` | **Source of Truth (MCP サーバー用、人間が編集する)** | ✅ 追跡する |
 | `.github/copilot-instructions.md` | Copilot Code Review に SoT への参照を伝えるスタブ | ✅ 追跡する |
 | `.github/instructions/*.instructions.md` | `apm install` で生成 (Copilot 新形式) | ❌ 追跡しない |
 | `.claude/rules/*.md` | `apm install` で生成 (Claude Code 補助) | ❌ 追跡しない |
 | `CLAUDE.md` / `AGENTS.md` (各所) | `apm compile` で生成 | ❌ 追跡しない |
 | `apm.lock.yaml` | `apm install` で生成 | ❌ 追跡しない |
+| `.mcp.json` | `apm install` で生成 (Claude Code MCP 設定) | ❌ 追跡しない |
+| `.vscode/mcp.json` | `apm install` で生成 (GitHub Copilot in VS Code MCP 設定) | ❌ 追跡しない |
+| `.codex/config.toml` | `apm install` で生成 (Codex CLI MCP 設定) | ❌ 追跡しない |
 
 ## ローカルでの作業
 
-`.apm/instructions/` を編集後、ローカルで以下を実行することで生成物が更新される (任意)。
+`.apm/instructions/` または `apm.yml` を編集後、ローカルで以下を実行することで生成物が更新される (任意)。
 
 ```bash
-apm install   # .github/instructions/ と .claude/rules/ を更新
+apm install   # 全プリミティブを再デプロイ (.github/instructions/, .claude/rules/, .mcp.json, .vscode/mcp.json, .codex/config.toml)
 apm compile   # CLAUDE.md / AGENTS.md を更新
 ```
 
 ただし、生成物はすべて `.gitignore` 対象のためコミットには含まれない。
+
+MCP サーバーの追加・運用手順は [`mcp-servers.instructions.md`](./mcp-servers.instructions.md) を参照。
 
 ## GitHub Copilot Code Review への指示伝達
 
