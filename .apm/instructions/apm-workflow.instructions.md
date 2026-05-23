@@ -10,39 +10,36 @@ applyTo: ".apm/**"
 `.apm/instructions/*.instructions.md` がすべての AI エージェント向け指示の Source of Truth。
 ここを編集することで、Claude Code / Codex CLI / GitHub Copilot すべてに同じ指示が届く。
 
-## 編集後の必須作業
+## ファイルの管理方針
 
-`.apm/instructions/` 配下のファイルを変更したら、必ず以下を実行してからコミットする。
+| パス | 役割 | リポジトリ追跡 |
+| --- | --- | --- |
+| `.apm/instructions/*.instructions.md` | **Source of Truth (人間が編集する)** | ✅ 追跡する |
+| `.github/copilot-instructions.md` | Copilot Code Review に SoT への参照を伝えるスタブ | ✅ 追跡する |
+| `.github/instructions/*.instructions.md` | `apm install` で生成 (Copilot 新形式) | ❌ 追跡しない |
+| `.claude/rules/*.md` | `apm install` で生成 (Claude Code 補助) | ❌ 追跡しない |
+| `CLAUDE.md` / `AGENTS.md` (各所) | `apm compile` で生成 | ❌ 追跡しない |
+| `apm.lock.yaml` | `apm install` で生成 | ❌ 追跡しない |
+
+## ローカルでの作業
+
+`.apm/instructions/` を編集後、ローカルで以下を実行することで生成物が更新される (任意)。
 
 ```bash
-apm install
+apm install   # .github/instructions/ と .claude/rules/ を更新
+apm compile   # CLAUDE.md / AGENTS.md を更新
 ```
 
-これにより、以下のファイル群が再生成・更新される。
+ただし、生成物はすべて `.gitignore` 対象のためコミットには含まれない。
 
-| 生成先 | 用途 | リポジトリ追跡 |
-| --- | --- | --- |
-| `.github/instructions/*.instructions.md` | GitHub Copilot Code Review が読む新形式 | **追跡する** |
-| `.claude/rules/*.md` | Claude Code 補助 | 追跡しない (`.gitignore`) |
-| `CLAUDE.md` / `AGENTS.md` (各所) | `apm compile` で生成 | 追跡しない (`.gitignore`) |
-
-`.github/instructions/` のみコミット対象 (GitHub Copilot Code Review がリポジトリから直接読むため)。
-それ以外はローカルで `apm install` / `apm compile` を実行すれば再生成可能なため追跡しない。
-
-## ドリフト防止策
-
-以下の三段構えで `.apm/instructions/` と `.github/instructions/` の乖離を防ぐ。
-
-1. **このドキュメント** — 編集者への明示的な指示
-2. **`.husky/pre-commit`** — `.apm/` への変更がステージされた場合に `apm install` を自動実行し、生成物を再ステージ
-3. **GitHub Actions (`.github/workflows/apm-drift-check.yml`)** — PR で `apm install` 実行後にドリフトを検知すれば fail
-
-## なぜ AGENTS.md だけでは不十分か
+## GitHub Copilot Code Review への指示伝達
 
 2026 年 5 月時点、GitHub Copilot Code Review エージェントは `AGENTS.md` を読まず、
-`.github/instructions/*.instructions.md` または `.github/copilot-instructions.md` のみを読む仕様。
+`.github/copilot-instructions.md` または `.github/instructions/*.instructions.md` のみを読む仕様。
 
-そのため `AGENTS.md` (gitignore 済み) ではなく `.github/instructions/` をリポジトリに含める必要がある。
+このリポジトリでは `.github/copilot-instructions.md` をスタブとして配置し、
+SoT である `.apm/instructions/pr-review.instructions.md` を参照する形式で
+Copilot Code Review に指示の所在を伝えている。
 
 参考:
 - <https://docs.github.com/copilot/how-tos/configure-custom-instructions/add-repository-instructions>

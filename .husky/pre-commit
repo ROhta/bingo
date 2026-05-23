@@ -1,16 +1,1 @@
 pnpm exec lint-staged
-
-# APM ドリフト防止:
-# .apm/ 配下に変更がステージされている場合、apm install を自動実行して
-# .github/instructions/ を最新化し、コミットに含める
-if git diff --cached --name-only | grep -q '^\.apm/'; then
-	if command -v apm >/dev/null 2>&1; then
-		echo "[apm] .apm/ にステージ済みの変更があります。apm install を実行します。"
-		apm install
-		git add .github/instructions/
-	else
-		echo "[apm] 警告: .apm/ に変更がありますが apm CLI が見つかりません。"
-		echo "[apm] インストール: https://github.com/microsoft/apm"
-		echo "[apm] インストール後、'apm install' を実行して .github/instructions/ をコミットしてください。"
-	fi
-fi
