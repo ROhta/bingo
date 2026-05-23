@@ -39,3 +39,6 @@ dependencies:
     args:
     - -y
     - '@upstash/context7-mcp'
+  apm:
+  - anthropics/claude-code/plugins/code-review#39e853e4074d90f27afdfb7ea601e0fc378bd0c5
+  - obra/superpowers#f2cbfbefebbfef77321e4c9abc9e949826bea9d7

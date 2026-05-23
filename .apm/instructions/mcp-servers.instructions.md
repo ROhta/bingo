@@ -55,8 +55,11 @@ APM 公式レジストリ (`apm mcp search` / `apm mcp install <registry-name>`)
 | `.vscode/mcp.json` | GitHub Copilot in VS Code |
 | `.codex/config.toml` | Codex CLI |
 
-## APM の `--skill` プリミティブとの違い
+## APM の他のプリミティブとの違い
 
-APM には `--skill` フラグで扱う SKILL.md バンドル (Claude Code Skills) という別プリミティブが存在する。
-このリポジトリで管理しているのは **MCP サーバー** であり、APM の `--skill` プリミティブとは別概念。
-両者を混同しないこと。
+APM は MCP サーバーのほかに、以下のプリミティブも扱える。
+
+- **APM パッケージ (`dependencies.apm`)**: Skills (SKILL.md バンドル) / commands / prompts / hooks 等を含む Claude Code プラグインを GitHub から取得する。このリポジトリでは `code-review`, `superpowers` を採用 → [`apm-plugins.instructions.md`](./apm-plugins.instructions.md)
+- **APM スキル (`--skill` フラグ)**: SKILL_BUNDLE から個別の SKILL.md を選択的にインストール
+
+MCP サーバー / APM パッケージ / APM スキル はそれぞれ独立したプリミティブなので、用語を混同しないこと。
