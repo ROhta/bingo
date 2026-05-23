@@ -1,45 +1,45 @@
 name: bingo-machine
-version: 1.6.5
+version: 2.0.0
 description: AI agent instructions for the Bingo Machine project
 author: ROhta
 license: GPL-3.0-or-later
 type: instructions
 targets:
-- claude
-- codex
-- copilot
+  - claude
+  - codex
+  - copilot
 includes: auto
 dependencies:
   mcp:
-  - name: semgrep
-    registry: false
-    transport: stdio
-    command: uvx
-    args:
-    - semgrep-mcp
-  - name: chrome-devtools
-    registry: false
-    transport: stdio
-    command: npx
-    args:
-    - -y
-    - chrome-devtools-mcp@1.0.1
-  - name: serena
-    registry: false
-    transport: stdio
-    command: uvx
-    args:
-    - --from
-    - git+https://github.com/oraios/serena@c3a8d5a9c54622c8ce771a54e5feffd6efda8749
-    - serena
-    - start-mcp-server
-  - name: context7
-    registry: false
-    transport: stdio
-    command: npx
-    args:
-    - -y
-    - '@upstash/context7-mcp'
+    - name: semgrep
+      registry: false
+      transport: stdio
+      command: uvx
+      args:
+        - semgrep-mcp
+    - name: chrome-devtools
+      registry: false
+      transport: stdio
+      command: npx
+      args:
+        - -y
+        - chrome-devtools-mcp@1.0.1
+    - name: serena
+      registry: false
+      transport: stdio
+      command: uvx
+      args:
+        - --from
+        - git+https://github.com/oraios/serena@c3a8d5a9c54622c8ce771a54e5feffd6efda8749
+        - serena
+        - start-mcp-server
+    - name: context7
+      registry: false
+      transport: stdio
+      command: npx
+      args:
+        - -y
+        - "@upstash/context7-mcp"
   apm:
-  - anthropics/claude-code/plugins/code-review#39e853e4074d90f27afdfb7ea601e0fc378bd0c5
-  - obra/superpowers#f2cbfbefebbfef77321e4c9abc9e949826bea9d7
+    - github/awesome-copilot/instructions/code-review-generic.instructions.md#5b049e4e196c10aab8ddfd9e492323d08cf985b0
+    - obra/superpowers#f2cbfbefebbfef77321e4c9abc9e949826bea9d7
