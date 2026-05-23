@@ -16,5 +16,6 @@
 | [`lint`](https://github.com/ROhta/bingo/blob/main/.apm/instructions/lint.instructions.md) | Lint・整形ツールと `tsconfig` 方針 |
 | [`github-ops`](https://github.com/ROhta/bingo/blob/main/.apm/instructions/github-ops.instructions.md) | GitHub Actions・セキュリティ・リリースノート・コードオーナー |
 | [`pr-review`](https://github.com/ROhta/bingo/blob/main/.apm/instructions/pr-review.instructions.md) | PR レビュー時のコミュニケーション方針 |
+| [`apm-workflow`](https://github.com/ROhta/bingo/blob/main/.apm/instructions/apm-workflow.instructions.md) | APM の運用ルール (`.apm/instructions/` 編集後に `apm install` を実行する必要あり) |
 
 これらは [microsoft/apm](https://github.com/microsoft/apm) によって管理され、`apm compile` で Claude Code / Codex / GitHub Copilot 向けファイル (`CLAUDE.md` / `AGENTS.md` / `.claude/rules/` / `.github/instructions/`) に展開されます。
