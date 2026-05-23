@@ -28,6 +28,10 @@ export default class DomManipulation {
 		this.#resetDialog = resetDialog
 		this.#rouletteInterval = rouletteInterval
 
+		this.#resetDialog.addEventListener("close", () => {
+			if (this.#resetDialog.returnValue === "ok") this.#performReset()
+		})
+
 		if (this.#numbers.remainList.length === 0 && this.#numbers.historyList.length === 0) {
 			this.#numbers.resetLists()
 		} else {
@@ -46,11 +50,16 @@ export default class DomManipulation {
 
 	#wait = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
 
-	#askReset = (): Promise<boolean> =>
-		new Promise(resolve => {
-			this.#resetDialog.addEventListener("close", () => resolve(this.#resetDialog.returnValue === "ok"), {once: true})
-			this.#resetDialog.showModal()
-		})
+	#performReset = (): void => {
+		this.#numbers.resetLists()
+		this.#isStarted = false
+
+		this.#historyDisplay.replaceChildren()
+		this.#drum.pause()
+		this.#startButton.textContent = this.#startText
+		this.#bingoNumber.textContent = this.#firstDisplayNumber
+		this.#startButton.focus()
+	}
 
 	#chooseNumber = (): void => {
 		if (!this.#isStarted) return
@@ -116,17 +125,5 @@ export default class DomManipulation {
 		} catch (e: unknown) {
 			if (e instanceof Error) console.error(e.name, e.message, e.stack)
 		}
-	}
-
-	resetButtonAction = async (): Promise<void> => {
-		if (!(await this.#askReset())) return
-		this.#numbers.resetLists()
-		this.#isStarted = false
-
-		this.#historyDisplay.replaceChildren()
-		this.#drum.pause()
-		this.#startButton.textContent = this.#startText
-		this.#bingoNumber.textContent = this.#firstDisplayNumber
-		this.#startButton.focus()
 	}
 }
