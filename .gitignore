@@ -7,6 +7,9 @@ src/js/*
 # APM dependencies
 apm_modules/
 
+# APM lockfile (no external dependencies; only contains generated_at and local file hashes)
+apm.lock.yaml
+
 # APM compile artifacts (generated from .apm/ — run `apm compile` to regenerate)
 AGENTS.md
 CLAUDE.md
