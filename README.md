@@ -2,29 +2,19 @@
 
 パーティ向けビンゴ抽選機。
 
-## 本番環境
-
-- [GitHub Pages](https://rohta.github.io/bingo/) で公開
-
-## ローカル環境構築
-
-- `git clone`
-- node と pnpm を `package.json` で指定されたバージョンに設定
-- `pnpm i --frozen-lockfile`
-- `pnpm run dev`
-
-## 機能図
-
-```mermaid
-flowchart LR
-RESET-->|確認ポップアップ/履歴消去|START-->|ドラムロール/数字ルーレット|STOP-->|シンバル/ランダム数字取得/履歴追加|START
-```
-
 ## ドキュメント
 
-開発フロー・機能詳細・技術スタック・運用ルール・PR レビュー方針などは AI エージェント向け指示と共通化しており、以下に集約されています。
+プロジェクトに関するすべてのドキュメント (環境構築・開発フロー・機能仕様・技術スタック・運用ルール・PR レビュー方針) は AI エージェント向け指示と共通化しており、[`.apm/instructions/`](./.apm/instructions/) 配下に集約されています。
 
-- [`.apm/instructions/project-overview.instructions.md`](./.apm/instructions/project-overview.instructions.md) — プロジェクト概要・開発フロー・技術スタック・運用ルール
-- [`.apm/instructions/pr-review.instructions.md`](./.apm/instructions/pr-review.instructions.md) — PR レビュー時のルール
+| ファイル | 内容 |
+| --- | --- |
+| [`setup`](./.apm/instructions/setup.instructions.md) | 本番環境・ローカル環境構築手順 |
+| [`dev-workflow`](./.apm/instructions/dev-workflow.instructions.md) | 開発フロー (開発者向け・リポジトリ管理者向け) |
+| [`feature-spec`](./.apm/instructions/feature-spec.instructions.md) | 機能仕様 (状態遷移図・操作別挙動) |
+| [`typescript`](./.apm/instructions/typescript.instructions.md) | TypeScript 実装の責務分担と履歴永続化方針 |
+| [`styling`](./.apm/instructions/styling.instructions.md) | スタイリング方針 (Bootstrap5 / Google Fonts) |
+| [`lint`](./.apm/instructions/lint.instructions.md) | Lint・整形ツールと `tsconfig` 方針 |
+| [`github-ops`](./.apm/instructions/github-ops.instructions.md) | GitHub Actions・セキュリティ・リリースノート・コードオーナー |
+| [`pr-review`](./.apm/instructions/pr-review.instructions.md) | PR レビュー時のコミュニケーション方針 |
 
 これらは [microsoft/apm](https://github.com/microsoft/apm) によって管理され、`apm compile` で Claude Code / Codex / GitHub Copilot 向けファイル (`CLAUDE.md` / `AGENTS.md` / `.claude/rules/` / `.github/instructions/`) に展開されます。
