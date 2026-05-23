@@ -14,7 +14,15 @@
 		"removeComments": true,
 		"noEmitOnError": true,
 		"resolveJsonModule": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"erasableSyntaxOnly": true,
+		"verbatimModuleSyntax": true,
+		"isolatedDeclarations": true,
+		"noUncheckedSideEffectImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"useDefineForClassFields": true,
+		"allowJs": false,
+		"moduleDetection": "force"
 	},
 	"include": ["src/ts/*"],
 	"exclude": ["node_modules"]
