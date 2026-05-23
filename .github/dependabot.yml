@@ -13,6 +13,7 @@ updates:
       include: "scope"
     labels:
       - "dependencies"
+      - "skip-ci"
     open-pull-requests-limit: 10
     pull-request-branch-name:
       separator: "_"

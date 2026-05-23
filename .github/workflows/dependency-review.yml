@@ -6,6 +6,7 @@ on:
       - main
 jobs:
   Dependency-Review:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     permissions:
@@ -17,6 +18,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/dependency-review-action@v5
   Build-Check:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
