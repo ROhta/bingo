@@ -41,12 +41,12 @@
 		<!-- End Google Tag Manager (noscript) -->
 		<main class="row">
 			<h1 class="visually-hidden">Bingo Machine</h1>
-			<section class="col-sm text-center">
+			<section class="col-sm text-center" aria-label="ビンゴ抽選">
 				<p id="bingo-number" style="font-size: 55vmin">00</p>
-				<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4" autofocus aria-pressed="false">START</button>
+				<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4" autofocus aria-pressed="false" aria-controls="bingo-number">START</button>
 				<button type="button" id="reset-button" class="btn btn-lg btn-secondary px-1 py-4" commandfor="reset-confirm" command="show-modal">RESET</button>
 			</section>
-			<section class="col-sm h1">
+			<section class="col-sm h1" aria-labelledby="history-title">
 				<h2 id="history-title" class="py-5">Hit Numbers</h2>
 				<ol id="history-display" class="row list-unstyled"></ol>
 			</section>
