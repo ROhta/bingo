@@ -32,9 +32,15 @@
 		}
 	},
 	"lint-staged": {
-		"src/ts/*.ts": [
-			"pnpm exec eslint . --fix",
-			"pnpm exec prettier --write ."
+		"*.{ts,mjs,cjs}": [
+			"pnpm exec eslint --fix",
+			"pnpm exec prettier --write"
+		],
+		"*.{html,css,json,md}": [
+			"pnpm exec prettier --write"
+		],
+		"!(pnpm-lock).{yml,yaml}": [
+			"pnpm exec prettier --write"
 		]
 	},
 	"prettier": {
@@ -44,19 +50,19 @@
 		"semi": false,
 		"singleQuote": false,
 		"quoteProps": "as-needed",
-		"jsxSingleQuote": false,
-		"trailingComma": "es5",
+		"trailingComma": "all",
 		"bracketSpacing": false,
+		"bracketSameLine": false,
 		"arrowParens": "avoid",
-		"rangeStart": 0,
-		"rangeEnd": 10000,
-		"filepath": "none",
 		"requirePragma": false,
 		"insertPragma": false,
-		"proseWrap": "never",
-		"htmlWhitespaceSensitivity": "ignore",
-		"vueIndentScriptAndStyle": true,
-		"endOfLine": "auto"
+		"proseWrap": "always",
+		"htmlWhitespaceSensitivity": "css",
+		"singleAttributePerLine": false,
+		"embeddedLanguageFormatting": "auto",
+		"objectWrap": "preserve",
+		"experimentalOperatorPosition": "end",
+		"endOfLine": "lf"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
