@@ -86,7 +86,9 @@ export default class DomManipulation {
 
 		this.#drum.pause()
 		this.#cymbals.currentTime = 0
-		this.#cymbals.play()
+		void this.#cymbals.play().catch((e: unknown) => {
+			if (e instanceof Error) console.error(e.name, e.message, e.stack)
+		})
 
 		this.#isStarted = false
 	}
@@ -115,7 +117,9 @@ export default class DomManipulation {
 
 		this.#cymbals.pause()
 		this.#drum.currentTime = 0
-		this.#drum.play()
+		void this.#drum.play().catch((e: unknown) => {
+			if (e instanceof Error) console.error(e.name, e.message, e.stack)
+		})
 
 		this.#isStarted = true
 		try {
