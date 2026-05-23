@@ -6,33 +6,12 @@
 			"request": "launch",
 			"type": "chrome",
 			"url": "http://localhost:62800/src/index.html",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
-			"name": "Launch Firefox",
-			"request": "launch",
-			"type": "firefox",
-			"reAttach": true,
-			"url": "http://localhost:62800/src/index.html"
-		},
-		{
-			"name": "Launch Edge",
-			"request": "launch",
-			"type": "msedge",
-			"url": "http://localhost:62800/src/index.html",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
-			"name": "Launch Chrome (WSL → Windows)",
-			"request": "launch",
-			"type": "chrome",
-			"url": "http://localhost:62800/src/index.html",
 			"webRoot": "${workspaceFolder}",
 			"runtimeExecutable": "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe",
 			"userDataDir": "${workspaceFolder}/.vscode/chrome-debug-profile"
 		},
 		{
-			"name": "Launch Edge (WSL → Windows)",
+			"name": "Launch Edge",
 			"request": "launch",
 			"type": "msedge",
 			"url": "http://localhost:62800/src/index.html",
