@@ -57,6 +57,7 @@ export default class DomManipulation {
 		this.#historyDisplay.replaceChildren()
 		this.#drum.pause()
 		this.#startButton.textContent = this.#startText
+		this.#startButton.setAttribute("aria-pressed", "false")
 		this.#bingoNumber.textContent = this.#firstDisplayNumber
 		this.#startButton.focus()
 	}
@@ -64,6 +65,7 @@ export default class DomManipulation {
 	#chooseNumber = (): void => {
 		if (!this.#isStarted) return
 		this.#startButton.textContent = this.#startText
+		this.#startButton.setAttribute("aria-pressed", "false")
 
 		const remains = this.#numbers.remainList
 		const i = this.#numbers.generateRandomNumber(remains.length)
@@ -112,6 +114,7 @@ export default class DomManipulation {
 			return
 		}
 		this.#startButton.textContent = this.#stopText
+		this.#startButton.setAttribute("aria-pressed", "true")
 
 		this.#cymbals.pause()
 		this.#drum.currentTime = 0
