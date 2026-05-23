@@ -3,11 +3,7 @@ export default class NumberList {
 	readonly #historyListKey = "historyNumberList"
 	readonly #minBingoNumber = 1
 	readonly #maxBingoNumber = 75
-	readonly #allNumberList: number[] = []
-
-	constructor() {
-		for (let i = this.#minBingoNumber; i <= this.#maxBingoNumber; i++) this.#allNumberList.push(i)
-	}
+	readonly #allNumberList: readonly number[] = Array.from({length: this.#maxBingoNumber - this.#minBingoNumber + 1}, (_, i) => i + this.#minBingoNumber)
 
 	get remainList(): number[] {
 		return this.#getListFromLocalStorage(this.#remainListKey)
@@ -25,16 +21,14 @@ export default class NumberList {
 		this.#setListOnLocalStorage(this.#historyListKey, historiesList)
 	}
 
+	#isBingoNumber = (v: unknown): v is number => typeof v === "number" && v >= this.#minBingoNumber && v <= this.#maxBingoNumber
+
 	#getListFromLocalStorage(key: string): number[] {
 		let ret: number[] = []
 		try {
-			ret = JSON.parse(localStorage.getItem(key) || "null")
-			// 初めてのブラウザで開く場合を想定。localStorage にはkey自体が存在しないため、null対応する。
+			ret = JSON.parse(localStorage.getItem(key) ?? "null")
 			if (!Array.isArray(ret)) return []
-			for (const i of ret) {
-				if (typeof i !== "number") throw new Error("The array contains non-digit character in the localStorage!")
-				if (i < this.#minBingoNumber || i > this.#maxBingoNumber) throw new Error("Index out of bounds, not a Bingo number!")
-			}
+			if (!ret.every(this.#isBingoNumber)) throw new Error("The array contains invalid Bingo numbers in the localStorage!")
 		} catch (e: unknown) {
 			if (e instanceof Error) throw new Error(e.message, {cause: e})
 		}
@@ -43,12 +37,16 @@ export default class NumberList {
 
 	#setListOnLocalStorage = (key: string, list: number[]): void => localStorage.setItem(key, JSON.stringify(list))
 
-	generateRandomNumber = (n: number): number => Math.floor(Math.random() * n)
+	generateRandomNumber = (n: number): number => {
+		const buf = new Uint32Array(1)
+		crypto.getRandomValues(buf)
+		return Math.floor(((buf[0] ?? 0) / 2 ** 32) * n)
+	}
 
 	resetLists(): void {
 		localStorage.removeItem(this.#historyListKey)
 		localStorage.removeItem(this.#remainListKey)
-		this.remainList = this.#allNumberList
+		this.remainList = [...this.#allNumberList]
 		this.historyList = []
 	}
 }
