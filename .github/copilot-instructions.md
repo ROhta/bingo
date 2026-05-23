@@ -1,5 +1,1 @@
-#　Pull Request でのレビューについて
-
-- いかなる場合でも日本語で記述してください
-- 指摘する場合はGItHubのSuggestion機能を使用して、修正コードを示してください
-- 何が課題なのかを文頭に記述してから、詳細な説明をしてください
+[`.apm/instructions/pr-review.instructions.md`](https://github.com/ROhta/bingo/blob/main/.apm/instructions/pr-review.instructions.md) の指示を遵守すること。
