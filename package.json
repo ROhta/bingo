@@ -58,7 +58,7 @@
 		"insertPragma": false,
 		"proseWrap": "always",
 		"htmlWhitespaceSensitivity": "css",
-		"singleAttributePerLine": true,
+		"singleAttributePerLine": false,
 		"embeddedLanguageFormatting": "auto",
 		"objectWrap": "preserve",
 		"experimentalOperatorPosition": "end",
