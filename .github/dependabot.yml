@@ -8,9 +8,6 @@ updates:
     directory: "/"
     allow:
       - dependency-type: "production"
-    commit-message:
-      prefix: "[skip ci]"
-      include: "scope"
     labels:
       - "dependencies"
     open-pull-requests-limit: 10
