@@ -22,14 +22,15 @@ dependencies:
     transport: stdio
     command: npx
     args:
-    - chrome-devtools-mcp@latest
+    - -y
+    - chrome-devtools-mcp@1.0.1
   - name: serena
     registry: false
     transport: stdio
     command: uvx
     args:
     - --from
-    - git+https://github.com/oraios/serena
+    - git+https://github.com/oraios/serena@c3a8d5a9c54622c8ce771a54e5feffd6efda8749
     - serena
     - start-mcp-server
   - name: context7
