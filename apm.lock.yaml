@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-05-23T12:13:34.826401+00:00'
+generated_at: '2026-05-23T12:25:00.616175+00:00'
 apm_version: 0.14.1
 dependencies:
 - repo_url: anthropics/claude-code
@@ -55,7 +55,10 @@ dependencies:
   - .codex/hooks/superpowers/hooks/run-hook.cmd
   - .codex/hooks/superpowers/hooks/run-hook.cmd
   - .github/hooks/scripts/superpowers/hooks/run-hook.cmd
+  - .github/hooks/scripts/superpowers/hooks/run-hook.cmd
   - .github/hooks/superpowers-hooks-cursor.json
+  - .github/hooks/superpowers-hooks-cursor.json
+  - .github/hooks/superpowers-hooks.json
   - .github/hooks/superpowers-hooks.json
   deployed_file_hashes:
     .claude/hooks/superpowers/hooks/run-hook.cmd: sha256:d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb
@@ -130,7 +133,7 @@ local_deployed_files:
 - .github/instructions/typescript.instructions.md
 local_deployed_file_hashes:
   .claude/rules/apm-plugins.md: sha256:9118bec09212e9b229ea85d723be645e7f8ed4423f50a3a32008eb74f87aa7da
-  .claude/rules/apm-workflow.md: sha256:3de8d2d60c0498ae81d5e116f769dd084d8209abc77b22a9447fe9cc9e963ee3
+  .claude/rules/apm-workflow.md: sha256:d44ceeb955c105f7eedb42caf13c6c7b6d2ef8a894e25b528cd07d11eb59a464
   .claude/rules/dev-workflow.md: sha256:575e7177d9f2ae512439ca8eb67b136cef2bf08668d0194df8aa71448386b02a
   .claude/rules/feature-spec.md: sha256:587be25e9fdf17d27c6d0f5baa92485ecb289d4c8a6eb41b7acbe3e76ce64eb8
   .claude/rules/github-ops.md: sha256:8a273f3d7c9ea772e0d46da9327955da273da6423d2de0d53e552ed325dded1e
@@ -142,7 +145,7 @@ local_deployed_file_hashes:
   .claude/rules/styling.md: sha256:f35e25e78afd7a4b65c19104c999e55fbff12112ec4cba10abe55d3d05b36fce
   .claude/rules/typescript.md: sha256:6bf8ab3e30dc8184bf63622a9d03c084d17de76aac984fef29a98a6c9defe2d5
   .github/instructions/apm-plugins.instructions.md: sha256:5d28e0fa926ad4b43363793ff121ffd0070b78769d940f5b4c7addf4d89cf0cb
-  .github/instructions/apm-workflow.instructions.md: sha256:0a79b430f1ac8e2b7249e953f66d779bca01e607270a038c519cf08a7a88388e
+  .github/instructions/apm-workflow.instructions.md: sha256:376dc062de13a9ff4994e69569ecd77e4f86839ffd2961d9840fff538dbcbd2e
   .github/instructions/dev-workflow.instructions.md: sha256:1985ead9e21a9af851c1c8e9bf2039f30d7c70f77299716854aadd604c8c201d
   .github/instructions/feature-spec.instructions.md: sha256:d641da9a56e032cef5b7d8d29a0cc2a472723b9848a5906bd02f1bf211165e07
   .github/instructions/github-ops.instructions.md: sha256:618e6525ce967083cf32c25deca4c6255dd78465981b345588a323789d4dcf50

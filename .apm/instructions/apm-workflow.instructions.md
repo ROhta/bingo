@@ -21,7 +21,7 @@ applyTo: ".apm/**"
 | `.github/instructions/*.instructions.md` | `apm install` で生成 (Copilot 新形式) | ❌ 追跡しない |
 | `.claude/rules/*.md` | `apm install` で生成 (Claude Code 補助) | ❌ 追跡しない |
 | `CLAUDE.md` / `AGENTS.md` (各所) | `apm compile` で生成 | ❌ 追跡しない |
-| `apm.lock.yaml` | `apm install` で生成 | ❌ 追跡しない |
+| `apm.lock.yaml` | `apm install` で生成 (整合性検証・オーファン検出・厳密な再現性のため例外的に追跡) | ✅ 追跡する |
 | `.mcp.json` | `apm install` で生成 (Claude Code MCP 設定) | ❌ 追跡しない |
 | `.vscode/mcp.json` | `apm install` で生成 (GitHub Copilot in VS Code MCP 設定) | ❌ 追跡しない |
 | `.codex/config.toml` | `apm install` で生成 (Codex CLI MCP 設定) | ❌ 追跡しない |
@@ -36,7 +36,7 @@ apm install   # 全プリミティブを再デプロイ (.github/instructions/, 
 apm compile   # CLAUDE.md / AGENTS.md を更新
 ```
 
-ただし、生成物はすべて `.gitignore` 対象のためコミットには含まれない。
+ただし、`apm.lock.yaml` を除く生成物は `.gitignore` 対象のためコミットには含まれない。
 
 MCP サーバーの追加・運用手順は [`mcp-servers.instructions.md`](./mcp-servers.instructions.md) を参照。
 APM プラグイン (Skills / commands 等) の追加・運用手順は [`apm-plugins.instructions.md`](./apm-plugins.instructions.md) を参照。
