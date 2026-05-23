@@ -3,3 +3,12 @@ src/js/*
 .vscode/settings.json
 .idea/*
 .DS_Store
+
+# APM dependencies
+apm_modules/
+
+# APM compile artifacts (generated from .apm/ — run `apm compile` to regenerate)
+AGENTS.md
+CLAUDE.md
+.claude/rules/
+.github/instructions/

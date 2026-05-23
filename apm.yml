@@ -1,0 +1,19 @@
+# APM (Agent Project Manager) manifest
+# Reference: https://github.com/microsoft/apm
+name: bingo-machine
+version: 1.6.5
+description: AI agent instructions for the Bingo Machine project
+author: ROhta
+license: GPL-3.0-or-later
+
+# Single-purpose: this package only ships instructions primitives.
+type: instructions
+
+# Compile targets: Claude Code, Codex CLI, GitHub Copilot
+target:
+  - claude
+  - codex
+  - copilot
+
+# Auto-publish every primitive under .apm/
+includes: auto
