@@ -23,8 +23,8 @@
 		"prepare": "husky"
 	},
 	"engines": {
-		"node": ">=24.11.0",
-		"pnpm": ">=10.24.0"
+		"node": ">=24.16.0",
+		"pnpm": ">=11.1.2"
 	},
 	"husky": {
 		"hooks": {
@@ -58,37 +58,17 @@
 		"vueIndentScriptAndStyle": true,
 		"endOfLine": "auto"
 	},
-	"eslintConfig": {
-		"root": true,
-		"env": {
-			"es2022": true,
-			"browser": true
-		},
-		"parserOptions": {
-			"ecmaVersion": 2022,
-			"project": "./tsconfig.json"
-		},
-		"plugins": [
-			"@typescript-eslint"
-		],
-		"extends": [
-			"eslint:recommended",
-			"plugin:@typescript-eslint/recommended",
-			"prettier"
-		],
-		"ignorePatterns": [
-			"/node_modules/*",
-			"src/js/*"
-		]
-	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
 		"@tsconfig/strictest": "^2.0.8",
-		"@typescript-eslint/eslint-plugin": "^8.48.1",
+		"eslint": "^10.4.0",
 		"eslint-config-prettier": "^10.1.8",
+		"globals": "^17.6.0",
 		"http-server": "^14.1.1",
 		"husky": "^9.1.7",
-		"lint-staged": "^16.2.7",
-		"prettier": "^3.7.4",
-		"typescript": "^5.9.3"
+		"lint-staged": "^17.0.5",
+		"prettier": "^3.8.3",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.4"
 	}
 }
