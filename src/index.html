@@ -37,26 +37,29 @@
 
 	<body class="bg-dark text-white" style="font-family: &quot;MedievalSharp&quot;, cursive">
 		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHDWG63" height="0" width="0" hidden></iframe></noscript>
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHDWG63" height="0" width="0" hidden></iframe>
+			<p class="text-center p-4">このビンゴマシンは JavaScript を必要とします。ブラウザの設定で有効化してください。</p>
+		</noscript>
 		<!-- End Google Tag Manager (noscript) -->
 		<main class="row">
-			<h1 class="visually-hidden">Bingo Machine</h1>
+			<h1 lang="en" class="visually-hidden">Bingo Machine</h1>
 			<section class="col-sm text-center" aria-label="ビンゴ抽選">
 				<p id="bingo-number" style="font-size: 55vmin">00</p>
-				<button type="button" id="start-button" class="btn btn-lg btn-secondary px-5 py-4" autofocus aria-pressed="false" aria-controls="bingo-number">START</button>
-				<button type="button" id="reset-button" class="btn btn-lg btn-secondary px-1 py-4" commandfor="reset-confirm" command="show-modal">RESET</button>
+				<button type="button" id="start-button" lang="en" class="btn btn-lg btn-secondary px-5 py-4" autofocus aria-pressed="false" aria-controls="bingo-number">START</button>
+				<button type="button" id="reset-button" lang="en" class="btn btn-lg btn-secondary px-1 py-4" commandfor="reset-confirm" command="show-modal">RESET</button>
 			</section>
 			<section class="col-sm h1" aria-labelledby="history-title">
-				<h2 id="history-title" class="py-5">Hit Numbers</h2>
+				<h2 lang="en" id="history-title" class="py-5">Hit Numbers</h2>
 				<ol id="history-display" class="row list-unstyled"></ol>
 			</section>
 		</main>
 
 		<dialog id="reset-confirm" class="text-dark p-4" aria-labelledby="reset-confirm-title" closedby="closerequest">
-			<h2 id="reset-confirm-title" class="h5">Do you really want to reset?</h2>
+			<h2 lang="en" id="reset-confirm-title" class="h5">Do you really want to reset?</h2>
 			<form method="dialog" class="d-flex gap-2 justify-content-end m-0">
-				<button value="cancel" type="submit" class="btn btn-secondary">Cancel</button>
-				<button value="ok" type="submit" class="btn btn-danger">OK</button>
+				<button value="cancel" lang="en" type="submit" class="btn btn-secondary">Cancel</button>
+				<button value="ok" lang="en" type="submit" class="btn btn-danger">OK</button>
 			</form>
 		</dialog>
 
