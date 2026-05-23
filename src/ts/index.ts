@@ -8,7 +8,7 @@ const queryAs = <T extends Element>(selector: string, ctor: abstract new (...arg
 // DOM
 const bingoNumber = queryAs("#bingo-number", HTMLParagraphElement)
 const startButton = queryAs("#start-button", HTMLButtonElement)
-const historyDisplay = queryAs("#history-display", HTMLDivElement)
+const historyDisplay = queryAs("#history-display", HTMLOListElement)
 const drum = queryAs("#drum", HTMLAudioElement)
 const cymbals = queryAs("#cymbals", HTMLAudioElement)
 const resetDialog = queryAs("#reset-confirm", HTMLDialogElement)

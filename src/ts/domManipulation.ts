@@ -9,14 +9,14 @@ export default class DomManipulation {
 	readonly #stopText = "STOP"
 	readonly #bingoNumber: HTMLParagraphElement
 	readonly #startButton: HTMLButtonElement
-	readonly #historyDisplay: HTMLDivElement
+	readonly #historyDisplay: HTMLOListElement
 	readonly #historyDisplayClassName: string
 	readonly #drum: HTMLAudioElement
 	readonly #cymbals: HTMLAudioElement
 	readonly #resetDialog: HTMLDialogElement
 	readonly #rouletteInterval: number
 
-	constructor(bingoNumber: HTMLParagraphElement, startButton: HTMLButtonElement, historyDisplay: HTMLDivElement, historyDisplayClassName: string, drum: HTMLAudioElement, cymbals: HTMLAudioElement, resetDialog: HTMLDialogElement, rouletteInterval: number) {
+	constructor(bingoNumber: HTMLParagraphElement, startButton: HTMLButtonElement, historyDisplay: HTMLOListElement, historyDisplayClassName: string, drum: HTMLAudioElement, cymbals: HTMLAudioElement, resetDialog: HTMLDialogElement, rouletteInterval: number) {
 		if (rouletteInterval <= 0) console.error("Interval should be natural number!")
 
 		this.#bingoNumber = bingoNumber
@@ -42,7 +42,7 @@ export default class DomManipulation {
 	#zeroPad = (n: number): string => String(n).padStart(2, "0")
 
 	#addHistory = (n: number): void => {
-		const historyNumberElement = document.createElement("p")
+		const historyNumberElement = document.createElement("li")
 		historyNumberElement.className = this.#historyDisplayClassName
 		historyNumberElement.textContent = this.#zeroPad(n)
 		this.#historyDisplay.append(historyNumberElement)
