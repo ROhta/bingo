@@ -17,6 +17,9 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@bf82d13b9b10051d224345ab9184f5ede0a94289 # v1.0.2-beta9
+        with:
+          config: ${{ vars.PERMISSIONS_CONFIG }}
       - name: Resolve PR number
         id: pr
         env:
