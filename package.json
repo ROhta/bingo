@@ -32,9 +32,15 @@
 		}
 	},
 	"lint-staged": {
-		"src/ts/*.ts": [
-			"pnpm exec eslint . --fix",
-			"pnpm exec prettier --write ."
+		"*.{ts,mjs,cjs}": [
+			"pnpm exec eslint --fix",
+			"pnpm exec prettier --write"
+		],
+		"*.{html,css,json,md}": [
+			"pnpm exec prettier --write"
+		],
+		"!(pnpm-lock).{yml,yaml}": [
+			"pnpm exec prettier --write"
 		]
 	},
 	"prettier": {
