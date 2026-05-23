@@ -44,17 +44,30 @@ PR に対してコミットを push した後、AI エージェント (GitHub Co
 `gh api graphql` で未 resolve なレビュースレッドを列挙する。
 `gh pr view --json reviews,comments` は thread の `isResolved` を返さないので利用しない。
 
+レビュースレッド数が 100 を、または各スレッドのコメント数が 50 を超える可能性がある
+場合は、`pageInfo { hasNextPage endCursor }` を取得し、`hasNextPage: true` の間は
+`after: $cursor` を渡してカーソル送りで全件取得すること (下記は初回ページの取得例)。
+
 ```bash
 gh api graphql -f query='
-query($owner: String!, $repo: String!, $pr: Int!) {
+query($owner: String!, $repo: String!, $pr: Int!, $threadsCursor: String, $commentsCursor: String) {
   repository(owner: $owner, name: $repo) {
     pullRequest(number: $pr) {
-      reviewThreads(first: 100) {
+      reviewThreads(first: 100, after: $threadsCursor) {
+        pageInfo { hasNextPage endCursor }
         nodes {
-          id
+          id            # GraphQL Node ID — resolveReviewThread mutation の threadId に渡す
           isResolved
-          comments(first: 50) {
-            nodes { id databaseId author { login } body path line }
+          comments(first: 50, after: $commentsCursor) {
+            pageInfo { hasNextPage endCursor }
+            nodes {
+              id          # GraphQL Node ID
+              databaseId  # 数値 ID — REST API /pulls/comments/{comment_id}/replies の comment_id に渡す
+              author { login }
+              body
+              path
+              line
+            }
           }
         }
       }
@@ -83,10 +96,12 @@ query($owner: String!, $repo: String!, $pr: Int!) {
    記載し、GitHub UI でコミットへのリンクとして描画させる。
 
    ```bash
-   gh api repos/<owner>/<repo>/pulls/<pr>/comments/<comment_id>/replies \
+   gh api repos/<owner>/<repo>/pulls/<pr>/comments/<comment_database_id>/replies \
      -f body='対応しました abc1234 '
    ```
 
+   - `<comment_database_id>` は上記クエリの `databaseId` フィールド (**数値 ID**) を指す。
+     GraphQL Node ID (`PRRC_...`) は REST API では受け付けられない点に注意。
    - 本文は日本語で記述 (`pr-review.instructions.md` 参照)
    - SHA の前後を必ず半角空白で挟む
 4. スレッドを resolve する。
