@@ -17,3 +17,18 @@ apm.lock.yaml
 AGENTS.md
 CLAUDE.md
 .github/instructions/
+
+# APM MCP 設定生成物 (apm.yml の dependencies.mcp から `apm install` で再生成されるため追跡しない)
+.codex/
+.vscode/mcp.json
+.mcp.json
+
+# APM プラグイン (skills / commands / prompts / hooks / settings) の展開先 (apm.yml の dependencies.apm から `apm install` で再生成されるため追跡しない)
+.agents/skills/
+.claude/commands/
+.claude/skills/
+.claude/hooks/
+.claude/apm-hooks.json
+.claude/settings.json
+.github/prompts/
+.github/hooks/
