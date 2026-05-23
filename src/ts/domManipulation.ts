@@ -7,12 +7,8 @@ export default class DomManipulation {
 	readonly #firstDisplayNumber = "00"
 	readonly #startText = "START"
 	readonly #stopText = "STOP"
-	readonly #resetText = "RESET"
-	readonly #historyTitleText = "Hit Numbers"
 	readonly #bingoNumber: HTMLParagraphElement
 	readonly #startButton: HTMLButtonElement
-	readonly #resetButton: HTMLButtonElement
-	readonly #historyTitle: HTMLParagraphElement
 	readonly #historyDisplay: HTMLDivElement
 	readonly #historyDisplayClassName: string
 	readonly #drum: HTMLAudioElement
@@ -20,24 +16,17 @@ export default class DomManipulation {
 	readonly #resetDialog: HTMLDialogElement
 	readonly #rouletteInterval: number
 
-	constructor(bingoNumber: HTMLParagraphElement, startButton: HTMLButtonElement, resetButton: HTMLButtonElement, historyTitle: HTMLParagraphElement, historyDisplay: HTMLDivElement, historyDisplayClassName: string, drum: HTMLAudioElement, cymbals: HTMLAudioElement, resetDialog: HTMLDialogElement, rouletteInterval: number) {
+	constructor(bingoNumber: HTMLParagraphElement, startButton: HTMLButtonElement, historyDisplay: HTMLDivElement, historyDisplayClassName: string, drum: HTMLAudioElement, cymbals: HTMLAudioElement, resetDialog: HTMLDialogElement, rouletteInterval: number) {
 		if (rouletteInterval <= 0) console.error("Interval should be natural number!")
 
 		this.#bingoNumber = bingoNumber
 		this.#startButton = startButton
-		this.#resetButton = resetButton
-		this.#historyTitle = historyTitle
 		this.#historyDisplay = historyDisplay
 		this.#historyDisplayClassName = historyDisplayClassName
 		this.#drum = drum
 		this.#cymbals = cymbals
 		this.#resetDialog = resetDialog
 		this.#rouletteInterval = rouletteInterval
-
-		this.#bingoNumber.textContent = this.#firstDisplayNumber
-		this.#startButton.textContent = this.#startText
-		this.#resetButton.textContent = this.#resetText
-		this.#historyTitle.textContent = this.#historyTitleText
 
 		if (this.#numbers.remainList.length === 0 && this.#numbers.historyList.length === 0) {
 			this.#numbers.resetLists()

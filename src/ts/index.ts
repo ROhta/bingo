@@ -9,18 +9,16 @@ const queryAs = <T extends Element>(selector: string, ctor: abstract new (...arg
 const bingoNumber = queryAs("#bingo-number", HTMLParagraphElement)
 const startButton = queryAs("#start-button", HTMLButtonElement)
 const resetButton = queryAs("#reset-button", HTMLButtonElement)
-const historyTitle = queryAs("#history-title", HTMLParagraphElement)
 const historyDisplay = queryAs("#history-display", HTMLDivElement)
 const drum = queryAs("#drum", HTMLAudioElement)
 const cymbals = queryAs("#cymbals", HTMLAudioElement)
 const resetDialog = queryAs("#reset-confirm", HTMLDialogElement)
 
-if (bingoNumber && startButton && resetButton && historyTitle && historyDisplay && drum && cymbals && resetDialog) {
+if (bingoNumber && startButton && resetButton && historyDisplay && drum && cymbals && resetDialog) {
 	// 可変な設定値を引数として渡す
-	const doms = new DomManipulation(bingoNumber, startButton, resetButton, historyTitle, historyDisplay, "col-2", drum, cymbals, resetDialog, 150)
+	const doms = new DomManipulation(bingoNumber, startButton, historyDisplay, "col-2", drum, cymbals, resetDialog, 150)
 
 	// main
-	startButton.focus()
 	startButton.addEventListener("click", async (): Promise<void> => {
 		try {
 			await doms.rouletteButtonAction()
