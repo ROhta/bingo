@@ -29,25 +29,10 @@ jobs:
             exit 0
           fi
           echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
-      - name: Dependabot metadata
-        id: metadata
-        if: steps.pr.outputs.number != ''
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ steps.pr.outputs.number }}
-        run: |
-          COMMIT_MSG=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json commits --jq '.commits | last | .messageBody')
-          if echo "$COMMIT_MSG" | grep -qF 'update-type: version-update:semver-major'; then
-            echo "update-type=version-update:semver-major" >> "$GITHUB_OUTPUT"
-          else
-            echo "update-type=" >> "$GITHUB_OUTPUT"
-          fi
-      - name: Enable auto-merge
-        if: >-
-          steps.pr.outputs.number != '' &&
-          steps.metadata.outputs.update-type != 'version-update:semver-major'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ steps.pr.outputs.number }}
-        run: gh pr merge --auto --squash "$PR_NUMBER"
+      - if: steps.pr.outputs.number != ''
+        uses: fastify/github-action-merge-dependabot@30c3f8f14a4f7b315ba38dbc1b793d27128fef82 # v3.12.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pr-number: ${{ steps.pr.outputs.number }}
+          target: minor
+          use-github-auto-merge: true
