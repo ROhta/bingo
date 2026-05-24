@@ -1,5 +1,5 @@
 ---
-description: APM (Agent Project Manager) を介した Claude Code プラグインの運用ルール
+description: APM (Agent Project Manager) を介した依存パッケージ (プラグイン bundle / 単一プリミティブ) の運用ルール
 applyTo: "apm.yml"
 ---
 
@@ -7,7 +7,12 @@ applyTo: "apm.yml"
 
 ## Source of Truth
 
-`apm.yml` の `dependencies.apm` がこのリポジトリで使う Claude Code プラグイン (Skills / commands / prompts / hooks 等のバンドル) の Source of Truth。 `apm install` を実行すると、ここに宣言されたプラグインが `apm_modules/` にダウンロードされ、各成果物 (`.claude/skills/`, `.claude/commands/`, `.agents/skills/`, `.github/prompts/` 等) に展開される。
+`apm.yml` の `dependencies.apm` がこのリポジトリで使う APM 依存パッケージの Source of Truth。扱える形態は 2 種類:
+
+- **プラグイン bundle**: Skills (SKILL.md) / commands / prompts / hooks / instructions / agents 等を 1 リポジトリにまとめたもの (例: `obra/superpowers`)
+- **単一プリミティブ (virtual file)**: 既存リポジトリ内の特定の `*.instructions.md` / `*.prompt.md` / `SKILL.md` などを 1 ファイル単位で取り込むもの (例: `github/awesome-copilot/instructions/code-review-generic.instructions.md`)
+
+`apm install` を実行すると、ここに宣言された依存が `apm_modules/` にダウンロードされ、各ターゲット向けに `.claude/rules/`, `.claude/skills/`, `.claude/commands/`, `.claude/hooks/`, `.agents/skills/`, `.github/instructions/`, `.github/prompts/`, `.github/hooks/` 等へ展開される (内容に応じて配信先が変わる)。Codex 向けには専用の配信先を持たない代わりに、`apm compile` 時に instructions / skills 内容が `AGENTS.md` に組み込まれる。
 
 ## 配信されるプラグイン
 
@@ -67,16 +72,18 @@ apm install <owner>/<repo>/<path-to-file>.<ext>.md#<sha>
 
 `apm install` がプラグインを展開する先。すべて `.gitignore` 対象。
 
-| パス                          | 由来                                                         |
-| ----------------------------- | ------------------------------------------------------------ |
-| `apm_modules/<owner>/<repo>/` | プラグインのソースコピー (cache)                             |
-| `.claude/skills/`             | Claude Code Skills (SKILL.md)                                |
-| `.agents/skills/`             | クロスクライアント Skills (Cursor / Codex / Gemini 等が読む) |
-| `.claude/commands/`           | Claude Code スラッシュコマンド                               |
-| `.claude/hooks/`              | Claude Code フックスクリプト                                 |
-| `.claude/apm-hooks.json`      | APM がフック登録に用いる索引                                 |
-| `.claude/settings.json`       | フック有効化等のクライアント設定                             |
-| `.github/prompts/`            | GitHub Copilot プロンプト                                    |
-| `.github/hooks/`              | GitHub 用フック (Copilot CLI 等)                             |
+| パス                          | 由来                                                                         |
+| ----------------------------- | ---------------------------------------------------------------------------- |
+| `apm_modules/<owner>/<repo>/` | 依存のソースコピー (cache)                                                   |
+| `.claude/rules/`              | Claude Code 用 instructions (virtual file の `*.instructions.md` 等の展開先) |
+| `.claude/skills/`             | Claude Code Skills (SKILL.md)                                                |
+| `.agents/skills/`             | クロスクライアント Skills (Cursor / Codex / Gemini 等が読む)                 |
+| `.claude/commands/`           | Claude Code スラッシュコマンド                                               |
+| `.claude/hooks/`              | Claude Code フックスクリプト                                                 |
+| `.claude/apm-hooks.json`      | APM がフック登録に用いる索引                                                 |
+| `.claude/settings.json`       | フック有効化等のクライアント設定                                             |
+| `.github/instructions/`       | GitHub Copilot 用 instructions (`*.instructions.md`)                         |
+| `.github/prompts/`            | GitHub Copilot プロンプト (`*.prompt.md`)                                    |
+| `.github/hooks/`              | GitHub 用フック (Copilot CLI 等)                                             |
 
 `.claude/settings.json` を ignore しているのは、APM がプラグインのフック有効化のために絶対パスを書き込むため (リポジトリで共有しても各環境でパスが食い違って意味がない)。個人の Claude Code 設定はユーザースコープ (`~/.claude/settings.json`) または `.claude/settings.local.json` (Claude Code の慣習で per-user 扱い) に置くこと。
