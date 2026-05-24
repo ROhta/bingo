@@ -25,6 +25,16 @@ applyTo: "apm.yml"
 
 `dependencies.apm` には特定 AI ベンダー (anthropics 等) 組織配下のリポジトリを直接指定せず、コミュニティ curated marketplace (`github/awesome-copilot`) や中立 OSS 作者リポジトリ (`obra/superpowers`) を経由する。理由: ベンダー組織のプラグインは「そのベンダーのランタイム前提」 (例: Claude Code の Stop hook + subagent 機構) で書かれていることが多く、Codex などのターゲットに同等機能が配信されないため。
 
+## インストール手順 (`pnpm apm-install`)
+
+APM CLI v0.14.1 には `apm install` 後の `apm.lock.yaml` の `deployed_files:` 配列に同一パスが 2 回ずつ記録される既知の不具合がある (例: `obra/superpowers` 由来の `run-hook.cmd` 等が重複)。差分ノイズや整合性チェック誤検知の原因になるため、本リポジトリでは `apm install` を直接呼ばず以下のラッパー経由で実行する。
+
+```bash
+pnpm apm-install   # = apm install && node scripts/dedupe-apm-lock.mjs
+```
+
+`scripts/dedupe-apm-lock.mjs` は隣接した同一 `- <path>` 行を 1 行に畳む後処理 (YAML パーサ非依存・新規 devDep 不要)。`deployed_file_hashes:` (mapping) は配列ではないため影響を受けない。upstream ([microsoft/apm](https://github.com/microsoft/apm)) で fix され次第、このラッパーと dedupe スクリプトは撤去する。
+
 ## SHA ピン
 
 `dependencies.apm` のエントリは **必ず `#<sha>` でピンする**。`apm install` で `unpinned -- add #tag or #sha to prevent drift` という警告が出るため気付ける。

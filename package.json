@@ -20,7 +20,8 @@
 		"watch": "pnpm exec tsc -b -w",
 		"clean": "pnpm exec tsc -b --clean",
 		"serve": "pnpm exec http-server -p 62800 -o src/index.html -s",
-		"prepare": "husky"
+		"prepare": "husky",
+		"apm-install": "apm install && node scripts/dedupe-apm-lock.mjs"
 	},
 	"engines": {
 		"node": ">=24.16.0",

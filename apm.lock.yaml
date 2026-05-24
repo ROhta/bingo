@@ -1,5 +1,5 @@
 lockfile_version: "1"
-generated_at: "2026-05-23T13:47:47.203968+00:00"
+generated_at: "2026-05-24T00:46:46.315739+00:00"
 apm_version: 0.14.1
 dependencies:
   - repo_url: github/awesome-copilot
@@ -37,7 +37,6 @@ dependencies:
       - .agents/skills/writing-plans
       - .agents/skills/writing-skills
       - .claude/hooks/superpowers/hooks/run-hook.cmd
-      - .claude/hooks/superpowers/hooks/run-hook.cmd
       - .claude/skills/brainstorming
       - .claude/skills/dispatching-parallel-agents
       - .claude/skills/executing-plans
@@ -53,12 +52,8 @@ dependencies:
       - .claude/skills/writing-plans
       - .claude/skills/writing-skills
       - .codex/hooks/superpowers/hooks/run-hook.cmd
-      - .codex/hooks/superpowers/hooks/run-hook.cmd
-      - .github/hooks/scripts/superpowers/hooks/run-hook.cmd
       - .github/hooks/scripts/superpowers/hooks/run-hook.cmd
       - .github/hooks/superpowers-hooks-cursor.json
-      - .github/hooks/superpowers-hooks-cursor.json
-      - .github/hooks/superpowers-hooks.json
       - .github/hooks/superpowers-hooks.json
     deployed_file_hashes:
       .claude/hooks/superpowers/hooks/run-hook.cmd: sha256:d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb
@@ -132,26 +127,26 @@ local_deployed_files:
   - .github/instructions/styling.instructions.md
   - .github/instructions/typescript.instructions.md
 local_deployed_file_hashes:
-  .claude/rules/apm-plugins.md: sha256:91876db4e37cf245f48cc5aaa4336a2a614edd6f4529c4d4b0ea41582e254b50
-  .claude/rules/apm-workflow.md: sha256:d44ceeb955c105f7eedb42caf13c6c7b6d2ef8a894e25b528cd07d11eb59a464
+  .claude/rules/apm-plugins.md: sha256:414c95c3da43dcb9304215d53e69c27bd88204911207f17816591abc5d3735fb
+  .claude/rules/apm-workflow.md: sha256:64270fe9ab168863a48be6b6e84d5778343b86ec6859f89c7a3d8372d8a451a1
   .claude/rules/dev-workflow.md: sha256:575e7177d9f2ae512439ca8eb67b136cef2bf08668d0194df8aa71448386b02a
   .claude/rules/feature-spec.md: sha256:587be25e9fdf17d27c6d0f5baa92485ecb289d4c8a6eb41b7acbe3e76ce64eb8
   .claude/rules/github-ops.md: sha256:8a273f3d7c9ea772e0d46da9327955da273da6423d2de0d53e552ed325dded1e
   .claude/rules/lint.md: sha256:1ff76e33314db0b04a26b13e3a7e61830f406485ad1da7607dc8b2c655c300d9
   .claude/rules/local-dev-workflow.md: sha256:974bd5a144ee20a5e740a83e2f9b8b76f2d3b435a6dd3bd393a9ccc4a2f66562
-  .claude/rules/mcp-servers.md: sha256:3b6cd105d03954f1a114bddc9e322d7b4ec029c011264e536324c6c3640cad27
+  .claude/rules/mcp-servers.md: sha256:caa72b9d598ce87acc3230c3bbd656a431f466fdf95a299928c49b101df17c4c
   .claude/rules/pr-review.md: sha256:799fc994a20d1ed30efc553da63afbd668956da71d2d0b1bddb7aefb633e8e3a
   .claude/rules/setup.md: sha256:c7c656c7dd63047cbdbf364cece24292241aadac8ee61fdbb0e287aafec1b6f8
   .claude/rules/styling.md: sha256:f35e25e78afd7a4b65c19104c999e55fbff12112ec4cba10abe55d3d05b36fce
   .claude/rules/typescript.md: sha256:6bf8ab3e30dc8184bf63622a9d03c084d17de76aac984fef29a98a6c9defe2d5
-  .github/instructions/apm-plugins.instructions.md: sha256:4c9d4ba25f6d738f31272c2edf3fc922e4fd6a62c5a727a4bffc503173b4c60c
-  .github/instructions/apm-workflow.instructions.md: sha256:376dc062de13a9ff4994e69569ecd77e4f86839ffd2961d9840fff538dbcbd2e
+  .github/instructions/apm-plugins.instructions.md: sha256:961199f132eed0be38c6a89990f3e9b54fc0bf02e5ccba29b1770d6e71ba304c
+  .github/instructions/apm-workflow.instructions.md: sha256:db2207c61eadd77ae5f395e062c48a7824f2159d42efecc195685c785c676105
   .github/instructions/dev-workflow.instructions.md: sha256:1985ead9e21a9af851c1c8e9bf2039f30d7c70f77299716854aadd604c8c201d
   .github/instructions/feature-spec.instructions.md: sha256:d641da9a56e032cef5b7d8d29a0cc2a472723b9848a5906bd02f1bf211165e07
   .github/instructions/github-ops.instructions.md: sha256:618e6525ce967083cf32c25deca4c6255dd78465981b345588a323789d4dcf50
   .github/instructions/lint.instructions.md: sha256:e4d1c252de1773dfe9aa7d7fa2a4f63e6ee9f07fa04cebabca3ff9a1ad72da1a
   .github/instructions/local-dev-workflow.instructions.md: sha256:d85f1a5b6a133f246ab3e7043ed3932052c1defb5ad77017019c11d0b3f05e2d
-  .github/instructions/mcp-servers.instructions.md: sha256:090a6963c3c460d336e829c48c49c527e53b31df85a3367ab544f4ac92c3dd88
+  .github/instructions/mcp-servers.instructions.md: sha256:503f75234d7f564676f77c4ec19c1c43a0b94ee635d5a65a518b742c98b63e2e
   .github/instructions/pr-review.instructions.md: sha256:d785037a0bfc858b8b6711bd9b17c01f0213a7b3c07959cd13dec253004acacd
   .github/instructions/setup.instructions.md: sha256:5719277129c59f6cfd948150655583a11118140df0325727c44e2c5cf9e0195d
   .github/instructions/styling.instructions.md: sha256:cfb5373ec78a677e02ba28c87774ac78a172790aae88eae3b23dd7837398d9b1
