@@ -10,6 +10,8 @@ applyTo: "**"
 1. ブランチ作成
 2. 開発
 3. PR 作成
+   - **必ず `.github/release.yml` の `changelog.categories` に対応するラベルを付与** (例: `bug-3 改善`, `enhance-2 新機能`, `enhance-1 破壊的変更`, `bug-1 重大バグ`, `bug-2 バグ`, `enhance-3 ドキュメント`, `dependencies`, `refactor`)
+   - ラベル未付与の PR はリリースノートに出てこない (GitHub auto-generated changelog の挙動)
 4. PR レビュー
 5. PR マージ
 6. 自動デプロイ
@@ -22,11 +24,37 @@ applyTo: "**"
    - heredoc で annotation を `-F -` (stdin) に渡してコマンド実行:
 
      ```bash
-     git tag -s -a v*.*.* -F - <<'EOF'
+     # 今回打つタグを変数に束ねる (シェル glob 展開回避 + 全コマンドで同一値参照)
+     TAG=v2.0.2   # 例。実際の値に置き換える
+
+     git tag -s -a "$TAG" -F - <<'EOF'
      メジャー・マイナー・パッチバージョンアップの理由
 
      - <バージョンアップ理由>
      EOF
+     git push origin "$TAG"
      ```
 
-8. 自動生成機能を用いて、リリースノート作成
+8. 自動生成機能を用いてリリースノート作成 → ヘッダ表記を `変更点` に揃える
+
+   ```bash
+   # 8-1. release を作成 (notes は --generate-notes で auto-generate)
+   gh release create "$TAG" --title "$TAG" --generate-notes --latest --verify-tag
+
+   # 8-2. デフォルトヘッダ "What's Changed" を "変更点" に置換
+   #      (GitHub の release.yml は header field の上書きを公式サポートしないため自前で sed)
+   gh release view "$TAG" --json body --jq '.body' \
+     | sed 's/^## What.s Changed$/## 変更点/' > /tmp/release-notes.md
+   gh release edit "$TAG" --notes-file /tmp/release-notes.md
+   ```
+
+   ラベル未付与の PR がリリースに出なかったことに後で気付いた場合は、PR にラベルを付けてから以下で再生成可能:
+
+   ```bash
+   PREV_TAG=v2.0.1   # 例。直前リリースのタグに置き換える
+
+   gh api "repos/$(gh repo view --json nameWithOwner --jq .nameWithOwner)/releases/generate-notes" -X POST \
+     -f "tag_name=$TAG" -f "previous_tag_name=$PREV_TAG" \
+     --jq '.body' | sed 's/^## What.s Changed$/## 変更点/' > /tmp/release-notes.md
+   gh release edit "$TAG" --notes-file /tmp/release-notes.md
+   ```
