@@ -24,32 +24,37 @@ applyTo: "**"
    - heredoc で annotation を `-F -` (stdin) に渡してコマンド実行:
 
      ```bash
-     git tag -s -a v*.*.* -F - <<'EOF'
+     # 今回打つタグを変数に束ねる (シェル glob 展開回避 + 全コマンドで同一値参照)
+     TAG=v2.0.2   # 例。実際の値に置き換える
+
+     git tag -s -a "$TAG" -F - <<'EOF'
      メジャー・マイナー・パッチバージョンアップの理由
 
      - <バージョンアップ理由>
      EOF
-     git push origin v*.*.*
+     git push origin "$TAG"
      ```
 
 8. 自動生成機能を用いてリリースノート作成 → ヘッダ表記を `変更点` に揃える
 
    ```bash
    # 8-1. release を作成 (notes は --generate-notes で auto-generate)
-   gh release create v*.*.* --title 'v*.*.*' --generate-notes --latest --verify-tag
+   gh release create "$TAG" --title "$TAG" --generate-notes --latest --verify-tag
 
    # 8-2. デフォルトヘッダ "What's Changed" を "変更点" に置換
    #      (GitHub の release.yml は header field の上書きを公式サポートしないため自前で sed)
-   gh release view v*.*.* --json body --jq '.body' \
+   gh release view "$TAG" --json body --jq '.body' \
      | sed 's/^## What.s Changed$/## 変更点/' > /tmp/release-notes.md
-   gh release edit v*.*.* --notes-file /tmp/release-notes.md
+   gh release edit "$TAG" --notes-file /tmp/release-notes.md
    ```
 
    ラベル未付与の PR がリリースに出なかったことに後で気付いた場合は、PR にラベルを付けてから以下で再生成可能:
 
    ```bash
-   gh api repos/<owner>/<repo>/releases/generate-notes -X POST \
-     -f tag_name=v*.*.* -f previous_tag_name=v<prev>.<prev>.<prev> \
+   PREV_TAG=v2.0.1   # 例。直前リリースのタグに置き換える
+
+   gh api "repos/$(gh repo view --json nameWithOwner --jq .nameWithOwner)/releases/generate-notes" -X POST \
+     -f "tag_name=$TAG" -f "previous_tag_name=$PREV_TAG" \
      --jq '.body' | sed 's/^## What.s Changed$/## 変更点/' > /tmp/release-notes.md
-   gh release edit v*.*.* --notes-file /tmp/release-notes.md
+   gh release edit "$TAG" --notes-file /tmp/release-notes.md
    ```
