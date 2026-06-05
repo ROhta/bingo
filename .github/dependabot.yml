@@ -7,8 +7,7 @@ updates:
       timezone: "Asia/Tokyo"
     directory: "/"
     allow:
-      - dependency-type: "production"
-      - dependency-type: "development"
+      - dependency-type: "all"
     ignore:
       - dependency-name: "*"
         update-types:
