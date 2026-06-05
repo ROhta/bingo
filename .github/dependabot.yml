@@ -7,7 +7,12 @@ updates:
       timezone: "Asia/Tokyo"
     directory: "/"
     allow:
-      - dependency-type: "production"
+      - dependency-type: "all"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     labels:
       - "dependencies"
     open-pull-requests-limit: 10
@@ -24,6 +29,11 @@ updates:
     directory: "/"
     allow:
       - dependency-type: "all"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     commit-message:
       prefix: "check ci status"
       include: "scope"
