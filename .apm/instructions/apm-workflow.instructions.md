@@ -9,6 +9,10 @@ applyTo: ".apm/**"
 
 `.apm/instructions/*.instructions.md` がすべての AI エージェント向け指示の Source of Truth。ここを編集することで、Claude Code / Codex CLI / GitHub Copilot すべてに同じ指示が届く。
 
+## APM CLI 本体のバージョン
+
+APM CLI 本体 (`apm` バイナリ) のバージョンは `mise.toml` (`github:microsoft/apm`) を SSoT として管理する。更新は `mise.toml` の version を上げて `mise install` する。`apm self-update` や `apm doctor` の更新催促には従わない (mise 管理外のグローバルインストールを増やさないため)。導入手順は [`setup.instructions.md`](./setup.instructions.md) を参照。
+
 ## ファイルの管理方針
 
 | パス                                                                                                                                                                                 | 役割                                                                              | リポジトリ追跡 |
