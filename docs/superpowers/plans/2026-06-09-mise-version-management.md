@@ -183,9 +183,11 @@ git commit -m "chore: package.json の engines を削除 (mise.toml に一本化
 ```
 置換後:
 ```yaml
-      # node / pnpm のバージョンは mise.toml を SSoT とする。mise 本体は最新を使用 (各ツールは exact ピンのため解決結果は不変)。apm は CI で不要なので install 対象外。
+      # node / pnpm のバージョンは mise.toml を SSoT とする。apm は CI で不要なので install 対象外。
+      # mise 本体の版は pnpm の aqua アセット解決に影響する実績があるため version をピンする。
       - uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
         with:
+          version: 2026.6.1
           install_args: "node pnpm"
 ```
 
@@ -254,8 +256,10 @@ git commit -m "ci: deploy.yml の node/pnpm 導入を mise-action に置換"
 置換後:
 ```yaml
       # node / pnpm のバージョンは mise.toml を SSoT とする。apm は CI で不要なので install 対象外。
+      # mise 本体の版は pnpm の aqua アセット解決に影響する実績があるため version をピンする。
       - uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
         with:
+          version: 2026.6.1
           install_args: "node pnpm"
 ```
 
@@ -298,7 +302,10 @@ git commit -m "ci: dependency-review.yml の node/pnpm 導入を mise-action に
 ```markdown
 ## ローカル環境構築
 
-- [mise](https://mise.jdx.dev/) を導入する (node / pnpm / apm のバージョン管理に使用)
+- [mise](https://mise.jdx.dev/) (>= 2026.6.1) を導入する (node / pnpm / apm のバージョン管理に使用)
+  - Linux ホストでは、pnpm (Node SEA バイナリ) が `libatomic.so.1` を要求するため
+    `libatomic1` を導入しておく (例: `sudo apt-get install -y libatomic1`)。
+    GitHub Actions の `ubuntu-latest` 等には標準装備のため CI では不要。
 - `git clone`
 - `mise trust && mise install` で `mise.toml` に固定された node / pnpm / apm を導入する
 - `pnpm i --frozen-lockfile`
@@ -308,7 +315,9 @@ git commit -m "ci: dependency-review.yml の node/pnpm 導入を mise-action に
 
 node / pnpm / apm CLI 本体のバージョンは `mise.toml` を唯一の真実源 (SSoT) とする。
 バージョンを上げる際は `mise.toml` を編集して `mise install` する (apm の `apm self-update` や
-`apm doctor` の更新催促には従わない)。CI も `jdx/mise-action` 経由で同じ `mise.toml` を消費する。
+`apm doctor` の更新催促には従わない)。CI も `jdx/mise-action` (mise 本体は `version: 2026.6.1`
+にピン) 経由で同じ `mise.toml` を消費する。mise 本体は最低 2026.6.1 を要する
+(これ未満では pnpm 11.5.2 の aqua アセット解決に失敗する)。
 ```
 
 - [ ] **Step 2: `github-ops.instructions.md` の GitHub Actions 節を更新**
