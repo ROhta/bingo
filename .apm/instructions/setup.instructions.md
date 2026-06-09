@@ -15,8 +15,9 @@ applyTo: "**/{mise.toml,package.json,pnpm-lock.yaml,tsconfig.json}"
   - Linux ホストでは、pnpm (Node SEA バイナリ) が `libatomic.so.1` を要求するため `libatomic1` を導入しておく (例: `sudo apt-get install -y libatomic1`)。GitHub Actions の `ubuntu-latest` 等には標準装備のため CI では不要。
 - `git clone`
 - `mise trust && mise install` で `mise.toml` に固定された node / pnpm / apm を導入する
-- `pnpm i --frozen-lockfile`
-- `pnpm run dev`
+  - 以降の `pnpm` / `node` が mise 管理版を指すよう、シェルに mise を有効化しておく (`mise activate` を shell rc に追加し shims を PATH へ。導入方法は[公式手順](https://mise.jdx.dev/getting-started.html)参照)。有効化しない場合は各コマンドを `mise exec -- <cmd>` で実行する。
+- `pnpm i --frozen-lockfile` (mise 未有効化時は `mise exec -- pnpm i --frozen-lockfile`)
+- `pnpm run dev` (同上)
 
 ## バージョン管理 (mise)
 
