@@ -47,14 +47,16 @@
 [tools]
 node = "24.16.0"
 pnpm = "11.5.2"
-"github:microsoft/apm" = { version = "0.18.0", exe = "apm", extract_all = "true" }
+"github:microsoft/apm" = { version = "0.18.0", extract_all = "true" }
 ```
 
 - apm は mise の **`github` バックエンド**で [microsoft/apm](https://github.com/microsoft/apm)
   の GitHub Release (`apm-{os}-{arch}.tar.gz`) を取得する。
 - apm は PyInstaller の **onedir** 形式 (実行ファイル `apm` が隣接する `_internal/` を必須とする)。
-  `extract_all = "true"` でアーカイブ全体を展開し `apm` と `_internal/` を兄弟配置、
-  `exe = "apm"` で起動エントリを指定する。
+  `extract_all = "true"` でアーカイブ全体を展開すると、先頭ディレクトリ (`apm-{os}-{arch}/`) が
+  剥がされて `apm` と `_internal/` が install root に兄弟配置され、mise は bin を install root から
+  解決する。`exe` は**指定しない** (公式ドキュメント上 `extract_all` は `exe` / `rename_exe` と
+  非対応であり、root に実行ファイルは `apm` の1つだけで一意に解決できるため不要)。
 - **検証済み (実機)**: `github` バックエンドは deprecation 警告なしでインストールでき、
   SLSA provenance / GitHub Artifact Attestations を自動検証し、`apm --version` が
   正しく動作する (0.17.0 / 0.18.0 とも tarball 構造同一)。`ubi` バックエンドでも動作するが

@@ -42,10 +42,12 @@
 [tools]
 node = "24.16.0"
 pnpm = "11.5.2"
-"github:microsoft/apm" = { version = "0.18.0", exe = "apm", extract_all = "true" }
+"github:microsoft/apm" = { version = "0.18.0", extract_all = "true" }
 ```
 
-> 補足: `extract_all = "true"` は mise 公式ドキュメント (ubi/github backend) の正準表記であり、クォート付き文字列が正しい (PR #383 で検証・確定済み)。`true` に変更しないこと。
+> 補足1: `extract_all = "true"` は mise 公式ドキュメント (ubi/github backend) の正準表記であり、クォート付き文字列が正しい (PR #383 で検証・確定済み)。`true` に変更しないこと。
+>
+> 補足2: `exe` は**指定しない**。公式ドキュメント上 `extract_all` は `exe` / `rename_exe` と非対応であり、`extract_all` 時は install root から bin が解決される。実機検証 (隔離 `MISE_DATA_DIR` での新規インストール) で、`exe` 無し設定でも `mise which apm` が install root の `apm` を解決し `apm --version` → 0.18.0 が動作することを確認済み。`exe` を足さないこと。
 
 - [ ] **Step 2: 設定を trust**
 
@@ -195,7 +197,11 @@ docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:1.7.4
 ```
 Expected: 終了コード 0、エラー出力なし。
 
-> docker が使えない環境の場合はこのローカル検証をスキップし、CI の "Run actionlint in workflow Directory" ステップ (deploy.yml 内) と push 後の Actions 実行に委ねる旨をコミットメッセージ/PR に明記すること。
+> **docker が使えない場合の代替 (スキップ不可)**: `deploy.yml` の actionlint ステップは `deploy.yml` 自身の中にあり、`deploy.yml` は PR では実行されない (Task 6 Step 3 参照)。つまりこのワークフロー編集に対する**マージ前の YAML 検証はローカル actionlint が唯一**であり、CI 委譲はできない。docker が無い場合は mise 経由で actionlint を実行すること:
+> ```bash
+> mise x actionlint@1.7.4 -- actionlint
+> ```
+> Expected: 終了コード 0、エラー出力なし。(actionlint は mise registry に存在: `aqua:rhysd/actionlint`)
 
 - [ ] **Step 3: コミット**
 
@@ -259,7 +265,7 @@ Run:
 ```bash
 docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:1.7.4
 ```
-Expected: 終了コード 0、エラー出力なし。(docker 不可なら Task 3 Step 2 と同様に CI 委譲)
+Expected: 終了コード 0、エラー出力なし。(docker 不可なら Task 3 Step 2 と同じく `mise x actionlint@1.7.4 -- actionlint` を使う。`dependency-review.yml` も含め全ワークフローが lint される)
 
 - [ ] **Step 3: コミット**
 
