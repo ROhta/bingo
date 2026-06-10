@@ -19,9 +19,6 @@ jobs:
       - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
   Build-Check:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [24.16.0]
     timeout-minutes: 3
     permissions: {}
     steps:
@@ -30,13 +27,12 @@ jobs:
         with:
           config: ${{ vars.PERMISSIONS_CONFIG }}
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
-      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+      # node / pnpm のバージョンは mise.toml を SSoT とする。apm は CI で不要なので install 対象外。
+      # mise 本体の版は pnpm の aqua アセット解決に影響する実績があるため version をピンする。
+      - uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
         with:
-          node-version: ${{ matrix.node-version }}
-          check-latest: true
-      - uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6.0.8
-        with:
-          version: 11.1.2
+          version: 2026.6.1
+          install_args: "node pnpm"
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
       - name: Build
