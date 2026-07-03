@@ -61,5 +61,5 @@ APM 公式レジストリ (`apm mcp search` / `apm mcp install <registry-name>`)
 
 APM は MCP サーバーのほかに、以下のプリミティブも扱える。
 
-- **APM パッケージ (`dependencies.apm`)**: Skills / commands / prompts / hooks / instructions 等を含む APM プラグイン (またはその中の単一プリミティブファイル) を GitHub から取得する。このリポジトリでは共通設定 `ROhta/apm-config`（base / mcp-toolkit）、`github/awesome-copilot/instructions/code-review-generic.instructions.md` (汎用コードレビュー指示)、`obra/superpowers` (汎用スキル群) を採用 → [`apm-plugins.instructions.md`](./apm-plugins.instructions.md)
+- **APM パッケージ (`dependencies.apm`)**: Skills / commands / prompts / hooks / instructions 等を含む APM プラグイン (またはその中の単一プリミティブファイル) を GitHub から取得する。このリポジトリでは共通設定 `ROhta/apm-config`（base / mcp-toolkit）、`github/awesome-copilot/instructions/code-review-generic.instructions.md` (汎用コードレビュー指示)、`obra/superpowers` (汎用スキル群) を採用 → [`apm-plugins.instructions.md`](../../.apm/instructions/apm-plugins.instructions.md)
 - **APM スキル (`--skill` フラグ)**: SKILL_BUNDLE から個別の SKILL.md を選択的にインストール

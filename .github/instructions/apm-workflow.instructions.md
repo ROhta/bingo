@@ -13,7 +13,7 @@ applyTo: ".apm/**"
 
 ## APM CLI 本体のバージョン
 
-APM CLI 本体 (`apm` バイナリ) のバージョンは `mise.toml` (`github:microsoft/apm`) を SSoT として管理する。更新は `mise.toml` の version を上げて `mise install` する。`apm self-update` や `apm doctor` の更新催促には従わない (mise 管理外のグローバルインストールを増やさないため)。導入手順は [`setup.instructions.md`](./setup.instructions.md) を参照。
+APM CLI 本体 (`apm` バイナリ) のバージョンは `mise.toml` (`github:microsoft/apm`) を SSoT として管理する。更新は `mise.toml` の version を上げて `mise install` する。`apm self-update` や `apm doctor` の更新催促には従わない (mise 管理外のグローバルインストールを増やさないため)。導入手順は [`setup.instructions.md`](../../.apm/instructions/setup.instructions.md) を参照。
 
 ## ファイルの管理方針
 
@@ -41,9 +41,9 @@ pnpm apm-install   # = apm install && scripts/dedupe-apm-lock.mjs (lockfile 重�
 apm compile        # CLAUDE.md / AGENTS.md を更新
 ```
 
-生成物のうち `apm.lock.yaml` と `.github/instructions/*.instructions.md`（クラウド Copilot 経路確保のための例外）は追跡対象としてコミットする。それ以外の生成物（`CLAUDE.md` / `AGENTS.md` / `.claude/rules/` など）は `.gitignore` 対象のためコミットには含まれない。 `pnpm apm-install` を `apm install` 直接呼びで代用しないこと (APM CLI v0.14.1 の既知不具合で `deployed_files:` に重複が残るため。詳細は [`apm-plugins.instructions.md`](./apm-plugins.instructions.md))。
+生成物のうち `apm.lock.yaml` と `.github/instructions/*.instructions.md`（クラウド Copilot 経路確保のための例外）は追跡対象としてコミットする。それ以外の生成物（`CLAUDE.md` / `AGENTS.md` / `.claude/rules/` など）は `.gitignore` 対象のためコミットには含まれない。 `pnpm apm-install` を `apm install` 直接呼びで代用しないこと (APM CLI v0.14.1 の既知不具合で `deployed_files:` に重複が残るため。詳細は [`apm-plugins.instructions.md`](../../.apm/instructions/apm-plugins.instructions.md))。
 
-MCP サーバーの追加・運用手順は [`mcp-servers.instructions.md`](./mcp-servers.instructions.md) を参照。APM プラグイン (Skills / commands 等) の追加・運用手順は [`apm-plugins.instructions.md`](./apm-plugins.instructions.md) を参照。
+MCP サーバーの追加・運用手順は [`mcp-servers.instructions.md`](../../.apm/instructions/mcp-servers.instructions.md) を参照。APM プラグイン (Skills / commands 等) の追加・運用手順は [`apm-plugins.instructions.md`](../../.apm/instructions/apm-plugins.instructions.md) を参照。
 
 ## GitHub Copilot Code Review への指示伝達
 

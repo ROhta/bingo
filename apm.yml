@@ -10,36 +10,9 @@ targets:
   - copilot
 includes: auto
 dependencies:
-  mcp:
-    - name: semgrep
-      registry: false
-      transport: stdio
-      command: uvx
-      args:
-        - semgrep-mcp
-    - name: chrome-devtools
-      registry: false
-      transport: stdio
-      command: npx
-      args:
-        - -y
-        - chrome-devtools-mcp@1.0.1
-    - name: serena
-      registry: false
-      transport: stdio
-      command: uvx
-      args:
-        - --from
-        - git+https://github.com/oraios/serena@c3a8d5a9c54622c8ce771a54e5feffd6efda8749
-        - serena
-        - start-mcp-server
-    - name: context7
-      registry: false
-      transport: stdio
-      command: npx
-      args:
-        - -y
-        - "@upstash/context7-mcp"
+  mcp: []
   apm:
+    - ROhta/apm-config/base#main
+    - ROhta/apm-config/mcp-toolkit#main
     - github/awesome-copilot/instructions/code-review-generic.instructions.md#5b049e4e196c10aab8ddfd9e492323d08cf985b0
     - obra/superpowers#f2cbfbefebbfef77321e4c9abc9e949826bea9d7

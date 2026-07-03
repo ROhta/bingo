@@ -126,4 +126,4 @@ query($owner: String!, $repo: String!, $pr: Int!, $threadsCursor: String, $comme
 ## 関連ルール
 
 - レビュー応答の文章ルールは共通パッケージ `ROhta/apm-config/base`（`pr-review.instructions.md`）から配信。生成物は `.github/instructions/pr-review.instructions.md` / `.claude/rules/pr-review.md`
-- 開発フローの高レベル順序は [`dev-workflow.instructions.md`](./dev-workflow.instructions.md) を参照
+- 開発フローの高レベル順序は [`dev-workflow.instructions.md`](../../.apm/instructions/dev-workflow.instructions.md) を参照
