@@ -19,10 +19,12 @@ defaults:
   run:
     shell: bash
 
-# ワークフローが複数起動したら自動キャンセル
+# Pages のデプロイ先はリポジトリで1つのため全体で直列化する。
+# 進行中の実行をキャンセルすると Pages 側のデプロイが孤立して後続が
+# "in progress deployment" で 400 になるため、cancel-in-progress は false にする。
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   Build:
