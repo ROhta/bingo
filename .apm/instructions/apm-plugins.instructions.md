@@ -80,7 +80,7 @@ apm install <owner>/<repo>/<path-to-file>.<ext>.md#<sha>
 
 ## 生成物の場所
 
-`apm install` がプラグインを展開する先。すべて `.gitignore` 対象。
+`apm install` がプラグインを展開する先。原則すべて `.gitignore` 対象（例外は `.github/instructions/{pr-review,language}.instructions.md` のみ。クラウド Copilot 経路確保のため追跡）。
 
 | パス                          | 由来                                                                         |
 | ----------------------------- | ---------------------------------------------------------------------------- |
@@ -92,7 +92,7 @@ apm install <owner>/<repo>/<path-to-file>.<ext>.md#<sha>
 | `.claude/hooks/`              | Claude Code フックスクリプト                                                 |
 | `.claude/apm-hooks.json`      | APM がフック登録に用いる索引                                                 |
 | `.claude/settings.json`       | フック有効化等のクライアント設定                                             |
-| `.github/instructions/`       | GitHub Copilot 用 instructions (`*.instructions.md`)                         |
+| `.github/instructions/`       | GitHub Copilot 用 instructions (`*.instructions.md`)。うち base 由来の pr-review / language のみ追跡 |
 | `.github/prompts/`            | GitHub Copilot プロンプト (`*.prompt.md`)                                    |
 | `.github/hooks/`              | GitHub 用フック (Copilot CLI 等)                                             |
 

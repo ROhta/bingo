@@ -7,7 +7,9 @@ applyTo: ".apm/**"
 
 ## Source of Truth
 
-`.apm/instructions/*.instructions.md` がすべての AI エージェント向け指示の Source of Truth。ここを編集することで、Claude Code / Codex CLI / GitHub Copilot すべてに同じ指示が届く。
+`.apm/instructions/*.instructions.md` がリポジトリ固有の AI エージェント向け指示の Source of Truth。ここを編集することで、Claude Code / Codex CLI / GitHub Copilot すべてに同じ指示が届く。
+
+全リポジトリ共通の指示（言語ルール・PR レビュー観点）は `apm.yml` の `dependencies.apm` で参照する共通パッケージ [`ROhta/apm-config/base`](https://github.com/ROhta/apm-config) が、共通 MCP サーバーセットは [`ROhta/apm-config/mcp-toolkit`](https://github.com/ROhta/apm-config) が Source of Truth。共通ルールを直したい場合は本リポジトリではなく apm-config を編集し、`apm update` で取り込む。
 
 ## APM CLI 本体のバージョン
 
@@ -18,10 +20,11 @@ APM CLI 本体 (`apm` バイナリ) のバージョンは `mise.toml` (`github:m
 | パス                                                                                                                                                                                 | 役割                                                                              | リポジトリ追跡 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | -------------- |
 | `.apm/instructions/*.instructions.md`                                                                                                                                                | **Source of Truth (instructions 用、人間が編集する)**                             | ✅ 追跡する    |
-| `apm.yml` の `dependencies.mcp`                                                                                                                                                      | **Source of Truth (MCP サーバー用、人間が編集する)**                              | ✅ 追跡する    |
+| `apm.yml` の `dependencies.mcp`                                                                                                                                                      | リポジトリ固有 MCP 用（人間が編集）。共通 MCP セットの SoT は apm-config/mcp-toolkit | ✅ 追跡する    |
 | `apm.yml` の `dependencies.apm`                                                                                                                                                      | **Source of Truth (Claude Code プラグイン用、人間が編集する)**                    | ✅ 追跡する    |
 | `.github/copilot-instructions.md`                                                                                                                                                    | Copilot Code Review に SoT への参照を伝えるスタブ                                 | ✅ 追跡する    |
-| `.github/instructions/*.instructions.md`                                                                                                                                             | `apm install` で生成 (Copilot 新形式)                                             | ❌ 追跡しない  |
+| `.github/instructions/pr-review.instructions.md` / `language.instructions.md`                                                                                                        | `apm install` で生成 (base 由来)。クラウドの Copilot Code Review 用に例外的に追跡 | ✅ 追跡する    |
+| `.github/instructions/` のその他 (`*.instructions.md`)                                                                                                                              | `apm install` で生成。SoT は `.apm/` にあり重複のため追跡しない | ❌ 追跡しない  |
 | `.claude/rules/*.md`                                                                                                                                                                 | `apm install` で生成 (Claude Code 補助)                                           | ❌ 追跡しない  |
 | `CLAUDE.md` / `AGENTS.md` (各所)                                                                                                                                                     | `apm compile` で生成                                                              | ❌ 追跡しない  |
 | `apm.lock.yaml`                                                                                                                                                                      | `apm install` で生成 (整合性検証・オーファン検出・厳密な再現性のため例外的に追跡) | ✅ 追跡する    |
@@ -39,7 +42,7 @@ pnpm apm-install   # = apm install && scripts/dedupe-apm-lock.mjs (lockfile 重�
 apm compile        # CLAUDE.md / AGENTS.md を更新
 ```
 
-ただし、`apm.lock.yaml` を除く生成物は `.gitignore` 対象のためコミットには含まれない。 `pnpm apm-install` を `apm install` 直接呼びで代用しないこと (APM CLI v0.14.1 の既知不具合で `deployed_files:` に重複が残るため。詳細は [`apm-plugins.instructions.md`](./apm-plugins.instructions.md))。
+生成物のうち `apm.lock.yaml` と `.github/instructions/{pr-review,language}.instructions.md`（クラウド Copilot 経路確保のための base 由来例外）は追跡対象としてコミットする。それ以外の生成物（`.github/instructions/` の他ファイル・`CLAUDE.md` / `AGENTS.md` / `.claude/rules/` など）は `.gitignore` 対象のためコミットには含まれない。 `pnpm apm-install` を `apm install` 直接呼びで代用しないこと (APM CLI v0.14.1 の既知不具合で `deployed_files:` に重複が残るため。詳細は [`apm-plugins.instructions.md`](./apm-plugins.instructions.md))。
 
 MCP サーバーの追加・運用手順は [`mcp-servers.instructions.md`](./mcp-servers.instructions.md) を参照。APM プラグイン (Skills / commands 等) の追加・運用手順は [`apm-plugins.instructions.md`](./apm-plugins.instructions.md) を参照。
 
@@ -47,7 +50,7 @@ MCP サーバーの追加・運用手順は [`mcp-servers.instructions.md`](./mc
 
 2026 年 5 月時点、GitHub Copilot Code Review エージェントは `AGENTS.md` を読まず、 `.github/copilot-instructions.md` または `.github/instructions/*.instructions.md` のみを読む仕様。
 
-このリポジトリでは `.github/copilot-instructions.md` をスタブとして配置し、SoT である `.apm/instructions/pr-review.instructions.md` を参照する形式で Copilot Code Review に指示の所在を伝えている。
+共通指示（pr-review / language）を apm-config/base へ移したため、その生成物 `.github/instructions/pr-review.instructions.md` / `language.instructions.md` のみ追跡対象にしてクラウド経路へ届ける（第三者依存や重複生成物は追跡しない。`.gitignore` 参照）。あわせて `.github/copilot-instructions.md` をスタブとして配置し、生成済みの `.github/instructions/pr-review.instructions.md` を参照する形式で Copilot Code Review に指示の所在を伝えている。
 
 参考:
 
