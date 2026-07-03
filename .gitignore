@@ -13,8 +13,11 @@ apm_modules/
 # APM コンパイル成果物 (.apm/ から `apm install` / `apm compile` で再生成されるため追跡しない)
 AGENTS.md
 CLAUDE.md
-# .github/instructions/ は生成物だが、クラウドの GitHub Copilot Code Review が読めるよう例外的に追跡する
-# (共通指示を apm-config/base へ移した後もクラウド経路にルールを届けるため)。
+# .github/instructions/ は生成物のため原則追跡しない。ただし共通指示 pr-review / language は
+# クラウドの GitHub Copilot Code Review に届けるため例外的に追跡する（第三者依存や重複生成物は対象外）。
+.github/instructions/*
+!.github/instructions/pr-review.instructions.md
+!.github/instructions/language.instructions.md
 
 # APM MCP 設定生成物 (apm.yml の dependencies.mcp から `apm install` で再生成されるため追跡しない)
 .codex/

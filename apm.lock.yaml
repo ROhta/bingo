@@ -1,11 +1,11 @@
 lockfile_version: '1'
-generated_at: '2026-07-03T07:20:33.052580+00:00'
+generated_at: '2026-07-03T08:30:25.512793+00:00'
 apm_version: 0.18.0
 dependencies:
 - repo_url: ROhta/apm-config
   host: github.com
   resolved_commit: 6db6099987990dbee05d8a34f00617467fb66d86
-  resolved_ref: main
+  resolved_ref: 6db6099987990dbee05d8a34f00617467fb66d86
   virtual_path: base
   is_virtual: true
   package_type: apm_package
@@ -23,7 +23,7 @@ dependencies:
 - repo_url: ROhta/apm-config
   host: github.com
   resolved_commit: 6db6099987990dbee05d8a34f00617467fb66d86
-  resolved_ref: main
+  resolved_ref: 6db6099987990dbee05d8a34f00617467fb66d86
   virtual_path: mcp-toolkit
   is_virtual: true
   package_type: apm_package
@@ -151,8 +151,8 @@ local_deployed_files:
 - .github/instructions/styling.instructions.md
 - .github/instructions/typescript.instructions.md
 local_deployed_file_hashes:
-  .claude/rules/apm-plugins.md: sha256:8e73f89b90baa5dabbdbd81f4722a42237363dfc04001d5dd29ad93d077be0b9
-  .claude/rules/apm-workflow.md: sha256:9277c4f60b9aa377b869bd232a81d2d9a7193f72cbbf2d7b39780930397c9903
+  .claude/rules/apm-plugins.md: sha256:62dc8058ccec17a415ebdb92588a8c25708c1f22acc75c814456bce7c5955f7b
+  .claude/rules/apm-workflow.md: sha256:5be5685cbf0ae5cb002da00e206911ce7641134b2a40ca47c865d455b194fad9
   .claude/rules/dev-workflow.md: sha256:359373b91118132a98756c98446268f568a0c636613127eba9b5858f521f87df
   .claude/rules/feature-spec.md: sha256:587be25e9fdf17d27c6d0f5baa92485ecb289d4c8a6eb41b7acbe3e76ce64eb8
   .claude/rules/github-ops.md: sha256:68e2a2eb425ae3bf6c033846ae0d640e411c37bdc6f1efcef84daa41b8dfc680
@@ -162,8 +162,8 @@ local_deployed_file_hashes:
   .claude/rules/setup.md: sha256:e80af0f0c2890bcc85001593965140d48fe207ed8b02f5bf3d827787658f87ad
   .claude/rules/styling.md: sha256:f35e25e78afd7a4b65c19104c999e55fbff12112ec4cba10abe55d3d05b36fce
   .claude/rules/typescript.md: sha256:6bf8ab3e30dc8184bf63622a9d03c084d17de76aac984fef29a98a6c9defe2d5
-  .github/instructions/apm-plugins.instructions.md: sha256:b133e05bc3030de96819585c3612f5780819639dc705a3220e6a6864d80685ba
-  .github/instructions/apm-workflow.instructions.md: sha256:c67b44c6f9dbd1b6678fc5f6674260bb313604ac89f51dcae9837af26b5828de
+  .github/instructions/apm-plugins.instructions.md: sha256:1a697631e8729d50c7b7ffa578019a3b667dd97e0507f20a671a41c974348add
+  .github/instructions/apm-workflow.instructions.md: sha256:137387425391d9bd0bce324958f59278622b76a0453c117e6cfbe3561af9ffe3
   .github/instructions/dev-workflow.instructions.md: sha256:b89c4649e75bdd78e9d9b626ee6e2c404cdb0b46cd64805c88d7ea53b89165d2
   .github/instructions/feature-spec.instructions.md: sha256:d641da9a56e032cef5b7d8d29a0cc2a472723b9848a5906bd02f1bf211165e07
   .github/instructions/github-ops.instructions.md: sha256:9b58eed993efdc6e299d0d0627c5baf0e85b21de708623af19b7e56b4b50f331

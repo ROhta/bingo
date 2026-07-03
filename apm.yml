@@ -12,7 +12,7 @@ includes: auto
 dependencies:
   mcp: []
   apm:
-    - ROhta/apm-config/base#main
-    - ROhta/apm-config/mcp-toolkit#main
+    - ROhta/apm-config/base#6db6099987990dbee05d8a34f00617467fb66d86
+    - ROhta/apm-config/mcp-toolkit#6db6099987990dbee05d8a34f00617467fb66d86
     - github/awesome-copilot/instructions/code-review-generic.instructions.md#5b049e4e196c10aab8ddfd9e492323d08cf985b0
     - obra/superpowers#f2cbfbefebbfef77321e4c9abc9e949826bea9d7
