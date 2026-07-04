@@ -18,3 +18,5 @@
 全リポジトリ共通の指示 (開発・リリースフロー / PR レビュー方針 / APM 運用・プラグイン管理 / ローカル開発ワークフロー / MCP 運用 / 言語ルール) は共通パッケージ [`ROhta/apm-config`](https://github.com/ROhta/apm-config) から `apm install` で配信され、ローカルの `.apm/instructions/` には保持しません。共通指示を変更したい場合は apm-config を編集します。
 
 これらは [microsoft/apm](https://github.com/microsoft/apm) によって管理され、`apm compile` で Claude Code / Codex / GitHub Copilot 向けファイル (`CLAUDE.md` / `AGENTS.md` / `.claude/rules/` / `.github/instructions/`) に展開されます。
+
+共通 MCP サーバー (context7 / serena / deepwiki / chrome-devtools) も apm-config/mcp-toolkit から配信されます。うち chrome-devtools は transitive なプラグイン参照のため、導入時は `apm install --trust-transitive-mcp` が必要です (初回は解決のみで、2 回目の実行で設定が完了することがあります)。
