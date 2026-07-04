@@ -21,8 +21,7 @@
 		"clean": "pnpm exec tsc -b --clean",
 		"copilot": "copilot",
 		"serve": "pnpm exec http-server -p 62800 -o src/index.html -s",
-		"prepare": "husky",
-		"apm-install": "apm install && node scripts/dedupe-apm-lock.mjs"
+		"prepare": "husky"
 	},
 	"husky": {
 		"hooks": {
