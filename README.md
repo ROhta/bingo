@@ -15,6 +15,13 @@
 | [`lint`](https://github.com/ROhta/bingo/blob/main/.apm/instructions/lint.instructions.md)             | Lint・整形ツールと `tsconfig` 方針                           |
 | [`github-ops`](https://github.com/ROhta/bingo/blob/main/.apm/instructions/github-ops.instructions.md) | GitHub Actions・セキュリティ・リリースノート・コードオーナー |
 
+### `instructions/` と `context/` の使い分け
+
+- **`.apm/instructions/*.instructions.md`（常時ロード）**: 常に効かせたい指示・ルール。`applyTo` で対象ファイルを絞り込み、`apm compile` / `apm install` で AGENTS.md・`.claude/rules/`・`.github/instructions/` に**本文がインライン展開**される（＝エージェントの常時コンテキストに載る）。
+- **`.apm/context/*.context.md`（オンデマンド参照）**: 実装時に随時参照する reference・背景知識。単体では配信されず、instruction からの markdown リンク経由で**リンク（ポインタ）だけが配信**され、本文はエージェントが必要時に開く（AGENTS.md には inline されない）。常時ロードから外して大きめの資料をオンデマンド化したいときに使う。
+- **判断基準**: パスに紐づく「常に守るルール」は `instructions/`、パスに強く紐づかない「必要時に開く資料」は `context/`。context は必ず参照元の instruction（薄いスタブでも可）を用意する — **未参照の context は配信されない**ため。
+- **例**: `feature-spec` は機能仕様の本文を `context/feature-spec.context.md` に置き、`applyTo: src/**` の薄い instruction スタブ `feature-spec.instructions.md` から参照している。
+
 全リポジトリ共通の指示 (開発・リリースフロー / PR レビュー方針 / APM 運用・プラグイン管理 / ローカル開発ワークフロー / MCP 運用 / 言語ルール) は共通パッケージ [`ROhta/apm-config`](https://github.com/ROhta/apm-config) から `apm install` で配信され、ローカルの `.apm/instructions/` には保持しません。共通指示を変更したい場合は apm-config を編集します。
 
 これらは [microsoft/apm](https://github.com/microsoft/apm) によって管理され、`apm compile` で Claude Code / Codex / GitHub Copilot 向けファイル (`CLAUDE.md` / `AGENTS.md` / `.claude/rules/` / `.github/instructions/`) に展開されます。
