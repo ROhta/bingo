@@ -15,4 +15,3 @@ dependencies:
     - ROhta/apm-config/base#7340f836d7db5cf737083cd2085da9d1f5285e0d
     - ROhta/apm-config/mcp-toolkit#7340f836d7db5cf737083cd2085da9d1f5285e0d
     - github/awesome-copilot/instructions/code-review-generic.instructions.md#5b049e4e196c10aab8ddfd9e492323d08cf985b0
-    - obra/superpowers#f2cbfbefebbfef77321e4c9abc9e949826bea9d7
