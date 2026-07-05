@@ -1,13 +1,13 @@
 lockfile_version: "1"
-generated_at: "2026-07-04T22:28:45.651440+00:00"
-apm_version: 0.23.1
+generated_at: "2026-07-05T21:43:21.419063+00:00"
+apm_version: 0.24.0
 dependencies:
   - repo_url: ROhta/apm-config
     name: apm-config-base
     host: github.com
-    resolved_commit: 7340f836d7db5cf737083cd2085da9d1f5285e0d
-    resolved_ref: 7340f836d7db5cf737083cd2085da9d1f5285e0d
-    version: 1.1.0
+    resolved_commit: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
+    resolved_ref: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
+    version: 1.3.1
     virtual_path: base
     is_virtual: true
     package_type: apm_package
@@ -26,25 +26,25 @@ dependencies:
       - .github/instructions/pr-review.instructions.md
     deployed_file_hashes:
       .claude/rules/apm-plugins.md: sha256:f95b68647254d211907f7b0bcb3a301282feb0f3ac43cea7c6583ecadfa856a3
-      .claude/rules/apm-workflow.md: sha256:31d4892879bac958998eb98b27e06827f04b1d65d170e0cf4536b345eae6bb07
+      .claude/rules/apm-workflow.md: sha256:c7c5c5513ff6ed00760324f916a06f546e39197b4b689e801939766c81755915
       .claude/rules/dev-workflow.md: sha256:3ed61551aa57fdbb638f4081bbdd2606f4b6b16fef86e5dc23c94adc4df6db32
       .claude/rules/language.md: sha256:ba3ab130598d94ac7e96e60a393f3d0fd9a00e69a3a6db7415690a53f5aea8ff
-      .claude/rules/local-dev-workflow.md: sha256:d58dc73d75cbc0c41664a52260025b52463cadac0d7f4929292e4d10fb50339b
+      .claude/rules/local-dev-workflow.md: sha256:eb8d50ccf74eb2dd754e660bca4ffd6c6e5805a66ef8a29e6aa1524b3aa86744
       .claude/rules/pr-review.md: sha256:a641b7cf37e1d054e09509311d21f5ce3bdaf96ff238159a8650676740bc00e8
       .github/instructions/apm-plugins.instructions.md: sha256:8698c902bcb3e82c4f6078b43d41b6fe704dd59fa6978e041ff33802c7668f85
-      .github/instructions/apm-workflow.instructions.md: sha256:d4b20cc78a3e126c934c7e7afe6873ed511c0e00feb0149449181904a463d068
+      .github/instructions/apm-workflow.instructions.md: sha256:f5523e2feb3f8da0159980ff83ea2153a8b86032dc8cd75cb4f85ace28b1707c
       .github/instructions/dev-workflow.instructions.md: sha256:ee54598c010cd3fb169203338f2b2bed38eee514096019352f9028880580b317
       .github/instructions/language.instructions.md: sha256:18d17cabd53bf121ee02a80acfd67e071e5f3b5523d15f5c156f8a993e831092
-      .github/instructions/local-dev-workflow.instructions.md: sha256:6ac6f0fefb0aafe72ee556eeb050dbb91f98957af978709d392738b7fc912f71
+      .github/instructions/local-dev-workflow.instructions.md: sha256:df40450d324a124e12bedaba05e7e062f5057aadfd2981f2974aa6692ada8c9d
       .github/instructions/pr-review.instructions.md: sha256:245fe9b9e85f80e89b0872c985a45a96983032d12dd705a42ff7542f66fd244f
-    content_hash: sha256:83ea9636250124ded1c54407ec6f6c786a0d7aee16b174af2311d52410bc9884
+    content_hash: sha256:3a79749375cbffd3ef2fdad2742076f1e42f99b3d1642f45501a587a8d72c9f8
     declared_license: GPL-3.0-or-later
   - repo_url: ROhta/apm-config
     name: apm-config-mcp-toolkit
     host: github.com
-    resolved_commit: 7340f836d7db5cf737083cd2085da9d1f5285e0d
-    resolved_ref: 7340f836d7db5cf737083cd2085da9d1f5285e0d
-    version: 1.1.0
+    resolved_commit: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
+    resolved_ref: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
+    version: 1.2.0
     virtual_path: mcp-toolkit
     is_virtual: true
     package_type: apm_package
@@ -52,9 +52,9 @@ dependencies:
       - .claude/rules/mcp-servers.md
       - .github/instructions/mcp-servers.instructions.md
     deployed_file_hashes:
-      .claude/rules/mcp-servers.md: sha256:5ab2cee11bd2ca43ca68f1a1b5f8f9670822fdd0d1aa8b8b87fa6a1835bc989d
-      .github/instructions/mcp-servers.instructions.md: sha256:7224fb6c0a2b537ea7d2ecf01e23fd135328d6dcdbdea8fc6100886dca846a4b
-    content_hash: sha256:4e40c950090a9e0b1d32d81be289cad8fc49e8dc765271df4585cd2f64efe9b3
+      .claude/rules/mcp-servers.md: sha256:a74fe80810a38530af06e4bba430002a54060e838f93f51a8a29bf18f8471774
+      .github/instructions/mcp-servers.instructions.md: sha256:cdeddcff5d85e9a794f5cea2a8aa82d8ed2bbccac6121a1ccf6b81606d700fbd
+    content_hash: sha256:393df665a96d4c97e75dd68072eb31ce5e38b27dbf618122b4484612e3603149
     declared_license: GPL-3.0-or-later
   - repo_url: github/awesome-copilot
     name: awesome-copilot-code-review-generic
@@ -229,6 +229,7 @@ dependencies:
       - .agents/skills/writing-skills/render-graphs.js
       - .agents/skills/writing-skills/testing-skills-with-subagents.md
       - .claude/hooks/superpowers/hooks/run-hook.cmd
+      - .claude/hooks/superpowers/hooks/session-start
       - .claude/skills/brainstorming
       - .claude/skills/brainstorming/SKILL.md
       - .claude/skills/brainstorming/scripts/frame-template.html
@@ -292,7 +293,9 @@ dependencies:
       - .claude/skills/writing-skills/render-graphs.js
       - .claude/skills/writing-skills/testing-skills-with-subagents.md
       - .codex/hooks/superpowers/hooks/run-hook.cmd
+      - .codex/hooks/superpowers/hooks/session-start
       - .github/hooks/scripts/superpowers/hooks/run-hook.cmd
+      - .github/hooks/scripts/superpowers/hooks/session-start
       - .github/hooks/superpowers-hooks.json
     deployed_file_hashes:
       .agents/skills/brainstorming/SKILL.md: sha256:e14914605f640e0841758e45d0ab2a53243b59b921f929e47921c99668f2e61d
@@ -344,6 +347,7 @@ dependencies:
       .agents/skills/writing-skills/render-graphs.js: sha256:ccda971a87bb185f8febf81c56b556a20d026fa980c17b35fa3e8824fbb37852
       .agents/skills/writing-skills/testing-skills-with-subagents.md: sha256:c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade
       .claude/hooks/superpowers/hooks/run-hook.cmd: sha256:d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb
+      .claude/hooks/superpowers/hooks/session-start: sha256:88a060272ca8047e0d1cd73a016e1cebba8396807a44be1e296d7c02dcbb9934
       .claude/skills/brainstorming/SKILL.md: sha256:e14914605f640e0841758e45d0ab2a53243b59b921f929e47921c99668f2e61d
       .claude/skills/brainstorming/scripts/frame-template.html: sha256:6a8a4e58bd6a44b904e2e3c57de774481d909204597e1498de53f1b2fecc4c4e
       .claude/skills/brainstorming/scripts/helper.js: sha256:43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3
@@ -393,7 +397,9 @@ dependencies:
       .claude/skills/writing-skills/render-graphs.js: sha256:ccda971a87bb185f8febf81c56b556a20d026fa980c17b35fa3e8824fbb37852
       .claude/skills/writing-skills/testing-skills-with-subagents.md: sha256:c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade
       .codex/hooks/superpowers/hooks/run-hook.cmd: sha256:d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb
+      .codex/hooks/superpowers/hooks/session-start: sha256:88a060272ca8047e0d1cd73a016e1cebba8396807a44be1e296d7c02dcbb9934
       .github/hooks/scripts/superpowers/hooks/run-hook.cmd: sha256:d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb
+      .github/hooks/scripts/superpowers/hooks/session-start: sha256:88a060272ca8047e0d1cd73a016e1cebba8396807a44be1e296d7c02dcbb9934
       .github/hooks/superpowers-hooks.json: sha256:414b2cda93dfd4523ea183cc02c29b17b7c92bbfd54ad89acd83aadac042ea5a
     content_hash: sha256:fcec2b6832dc4a4ce8fd0b7883fc72531fb402dd76537b62e495ab5c09742cf4
     declared_license: MIT
@@ -447,13 +453,13 @@ local_deployed_files:
   - .github/instructions/styling.instructions.md
   - .github/instructions/typescript.instructions.md
 local_deployed_file_hashes:
-  .claude/rules/feature-spec.md: sha256:587be25e9fdf17d27c6d0f5baa92485ecb289d4c8a6eb41b7acbe3e76ce64eb8
+  .claude/rules/feature-spec.md: sha256:3225c0f15396f44a9b09882f0e91204255f5643324f952feea73190e4b809551
   .claude/rules/github-ops.md: sha256:68e2a2eb425ae3bf6c033846ae0d640e411c37bdc6f1efcef84daa41b8dfc680
   .claude/rules/lint.md: sha256:1ff76e33314db0b04a26b13e3a7e61830f406485ad1da7607dc8b2c655c300d9
   .claude/rules/setup.md: sha256:e80af0f0c2890bcc85001593965140d48fe207ed8b02f5bf3d827787658f87ad
   .claude/rules/styling.md: sha256:f35e25e78afd7a4b65c19104c999e55fbff12112ec4cba10abe55d3d05b36fce
   .claude/rules/typescript.md: sha256:6bf8ab3e30dc8184bf63622a9d03c084d17de76aac984fef29a98a6c9defe2d5
-  .github/instructions/feature-spec.instructions.md: sha256:d641da9a56e032cef5b7d8d29a0cc2a472723b9848a5906bd02f1bf211165e07
+  .github/instructions/feature-spec.instructions.md: sha256:c3d55755804fb28045756b95530efd493513d4e94a08a78323c9fb105e908356
   .github/instructions/github-ops.instructions.md: sha256:9b58eed993efdc6e299d0d0627c5baf0e85b21de708623af19b7e56b4b50f331
   .github/instructions/lint.instructions.md: sha256:e4d1c252de1773dfe9aa7d7fa2a4f63e6ee9f07fa04cebabca3ff9a1ad72da1a
   .github/instructions/setup.instructions.md: sha256:7ccafc540d0af2ede0738bd8ad9f4166f01e9e79812404becc28646097e4ce55
