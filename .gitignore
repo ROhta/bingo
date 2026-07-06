@@ -1,5 +1,6 @@
 node_modules/
 src/js/*
+*.tsbuildinfo
 .vscode/settings.json
 .vscode/chrome-debug-profile/
 .vscode/edge-debug-profile/
