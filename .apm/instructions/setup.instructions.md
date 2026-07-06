@@ -21,4 +21,4 @@ applyTo: "**/{mise.toml,package.json,pnpm-lock.yaml,tsconfig.json}"
 
 ## バージョン管理 (mise)
 
-node / pnpm / apm CLI 本体のバージョンは `mise.toml` を唯一の真実源 (SSoT) とする。バージョンを上げる際は `mise.toml` を編集して `mise install` する (apm の `apm self-update` や `apm doctor` の更新催促には従わない)。CI も `jdx/mise-action` (mise 本体は `version: 2026.6.1` にピン) 経由で同じ `mise.toml` を消費する。mise 本体は最低 2026.6.1 を要する (これ未満では pnpm 11.5.2 の aqua アセット解決に失敗する)。
+node / pnpm / apm CLI 本体のバージョンは `mise.toml` を唯一の真実源 (SSoT) とする。バージョンを上げる際は `mise.toml` を編集して `mise install` する (apm の `apm self-update` や `apm doctor` の更新催促には従わない)。CI も `jdx/mise-action` (mise 本体は `version: 2026.6.1` にピン) 経由で同じ `mise.toml` を消費する。mise 本体は最低 2026.6.1 を要する (これ未満では pnpm 11.5.2 以降の aqua アセット解決に失敗する)。
