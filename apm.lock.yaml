@@ -1,13 +1,13 @@
 lockfile_version: "1"
-generated_at: "2026-07-05T21:43:21.419063+00:00"
+generated_at: "2026-07-06T08:21:54.277820+00:00"
 apm_version: 0.24.0
 dependencies:
   - repo_url: ROhta/apm-config
     name: apm-config-base
     host: github.com
-    resolved_commit: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
-    resolved_ref: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
-    version: 1.3.1
+    resolved_commit: c150cfffc0199321928d524b15a91b95888ccfd6
+    resolved_ref: main
+    version: 1.4.1
     virtual_path: base
     is_virtual: true
     package_type: apm_package
@@ -18,33 +18,37 @@ dependencies:
       - .claude/rules/language.md
       - .claude/rules/local-dev-workflow.md
       - .claude/rules/pr-review.md
+      - .claude/rules/review-response-loop.md
       - .github/instructions/apm-plugins.instructions.md
       - .github/instructions/apm-workflow.instructions.md
       - .github/instructions/dev-workflow.instructions.md
       - .github/instructions/language.instructions.md
       - .github/instructions/local-dev-workflow.instructions.md
       - .github/instructions/pr-review.instructions.md
+      - .github/instructions/review-response-loop.instructions.md
     deployed_file_hashes:
       .claude/rules/apm-plugins.md: sha256:f95b68647254d211907f7b0bcb3a301282feb0f3ac43cea7c6583ecadfa856a3
       .claude/rules/apm-workflow.md: sha256:c7c5c5513ff6ed00760324f916a06f546e39197b4b689e801939766c81755915
       .claude/rules/dev-workflow.md: sha256:3ed61551aa57fdbb638f4081bbdd2606f4b6b16fef86e5dc23c94adc4df6db32
       .claude/rules/language.md: sha256:ba3ab130598d94ac7e96e60a393f3d0fd9a00e69a3a6db7415690a53f5aea8ff
-      .claude/rules/local-dev-workflow.md: sha256:eb8d50ccf74eb2dd754e660bca4ffd6c6e5805a66ef8a29e6aa1524b3aa86744
+      .claude/rules/local-dev-workflow.md: sha256:273b4a5ed434d389125bd3386a1a212d6b707fbf27892da38b28512fd8d25048
       .claude/rules/pr-review.md: sha256:a641b7cf37e1d054e09509311d21f5ce3bdaf96ff238159a8650676740bc00e8
+      .claude/rules/review-response-loop.md: sha256:8a403e07e2e29b7acc7309e83381e990c7d72ea417b3ab2bf4b405144701fea1
       .github/instructions/apm-plugins.instructions.md: sha256:8698c902bcb3e82c4f6078b43d41b6fe704dd59fa6978e041ff33802c7668f85
       .github/instructions/apm-workflow.instructions.md: sha256:f5523e2feb3f8da0159980ff83ea2153a8b86032dc8cd75cb4f85ace28b1707c
       .github/instructions/dev-workflow.instructions.md: sha256:ee54598c010cd3fb169203338f2b2bed38eee514096019352f9028880580b317
       .github/instructions/language.instructions.md: sha256:18d17cabd53bf121ee02a80acfd67e071e5f3b5523d15f5c156f8a993e831092
-      .github/instructions/local-dev-workflow.instructions.md: sha256:df40450d324a124e12bedaba05e7e062f5057aadfd2981f2974aa6692ada8c9d
+      .github/instructions/local-dev-workflow.instructions.md: sha256:f5a8670f7b7d6a0b23bac1443948fd472551cf5ef44ffab853048076dfd38f6d
       .github/instructions/pr-review.instructions.md: sha256:245fe9b9e85f80e89b0872c985a45a96983032d12dd705a42ff7542f66fd244f
-    content_hash: sha256:3a79749375cbffd3ef2fdad2742076f1e42f99b3d1642f45501a587a8d72c9f8
+      .github/instructions/review-response-loop.instructions.md: sha256:602254403a6890a64a55669472a1549f34e7383b3afb29f0fdb9989b8dfce5f8
+    content_hash: sha256:ae1d68b5b9c18c29224809795582b0a7905ecc4b8d150401f39501eeb60483e3
     declared_license: GPL-3.0-or-later
   - repo_url: ROhta/apm-config
     name: apm-config-mcp-toolkit
     host: github.com
-    resolved_commit: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
-    resolved_ref: 319d9bf9958bdf07c9074daaffdafbbbbb7ebb22
-    version: 1.2.0
+    resolved_commit: c150cfffc0199321928d524b15a91b95888ccfd6
+    resolved_ref: main
+    version: 1.2.1
     virtual_path: mcp-toolkit
     is_virtual: true
     package_type: apm_package
@@ -54,7 +58,7 @@ dependencies:
     deployed_file_hashes:
       .claude/rules/mcp-servers.md: sha256:a74fe80810a38530af06e4bba430002a54060e838f93f51a8a29bf18f8471774
       .github/instructions/mcp-servers.instructions.md: sha256:cdeddcff5d85e9a794f5cea2a8aa82d8ed2bbccac6121a1ccf6b81606d700fbd
-    content_hash: sha256:393df665a96d4c97e75dd68072eb31ce5e38b27dbf618122b4484612e3603149
+    content_hash: sha256:f1216e3378549db86cd96c5e82e40da5ced05eb0db153c70a505359e07653d36
     declared_license: GPL-3.0-or-later
   - repo_url: github/awesome-copilot
     name: awesome-copilot-code-review-generic
@@ -421,7 +425,7 @@ mcp_configs:
     transport: stdio
     args:
       - -y
-      - "@upstash/context7-mcp@3.2.0"
+      - "@upstash/context7-mcp@3.2.2"
     registry: false
     command: npx
   deepwiki:
@@ -434,7 +438,7 @@ mcp_configs:
     transport: stdio
     args:
       - --from
-      - git+https://github.com/oraios/serena@acee002dc498e5f4c368eb9d45ab67e480d77832
+      - git+https://github.com/oraios/serena@2449313c0d7427275c4c66aedff7d4881782f713
       - serena
       - start-mcp-server
     registry: false
