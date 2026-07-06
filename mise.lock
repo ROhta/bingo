@@ -15,27 +15,27 @@ url = "https://github.com/microsoft/apm/releases/download/v0.24.0/apm-darwin-arm
 url_api = "https://api.github.com/repos/microsoft/apm/releases/assets/467124802"
 
 [[tools.node]]
-version = "24.16.0"
+version = "24.18.0"
 backend = "core:node"
 
 [tools.node."platforms.linux-x64"]
-checksum = "sha256:2faf6a387e9b62b888e21c54f01249fb27537ffecf1842f29f4c919d0a59a0ff"
-url = "https://nodejs.org/dist/v24.16.0/node-v24.16.0-linux-x64.tar.gz"
+checksum = "sha256:783130984963db7ba9cbd01089eaf2c2efb055c7c1693c943174b967b3050cb8"
+url = "https://nodejs.org/dist/v24.18.0/node-v24.18.0-linux-x64.tar.gz"
 
 [tools.node."platforms.macos-arm64"]
-checksum = "sha256:39189dab4eeb15706c424af0ac08a3044c9e48f7db12a7d77f6b7aafc7dd5df6"
-url = "https://nodejs.org/dist/v24.16.0/node-v24.16.0-darwin-arm64.tar.gz"
+checksum = "sha256:e1a97e14c99c803e96c7339403282ea05a499c32f8d83defe9ef5ec66f979ed1"
+url = "https://nodejs.org/dist/v24.18.0/node-v24.18.0-darwin-arm64.tar.gz"
 
 [[tools.pnpm]]
-version = "11.5.2"
+version = "11.10.0"
 backend = "aqua:pnpm/pnpm"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:2033a702618c8576dc6bb0f6adb3a67ab506031351ddd59ca50d1bcaf5d13dc5"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.5.2/pnpm-linux-x64.tar.gz"
+checksum = "sha256:cf22c9f1ba90f67c9a5cfb1cbe9c2087cf4c3a5c409dad738c1f8a38b8137666"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.10.0/pnpm-linux-x64.tar.gz"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:54993dae26bea0f3c1b0e15f9427f6f6a86827d56f32d1d1554d8cda59a62399"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.5.2/pnpm-darwin-arm64.tar.gz"
+checksum = "sha256:d0d8a55b47dbe07a80d13fec7ee5af9bdca36187e61f9562d72d81dd637178c4"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.10.0/pnpm-darwin-arm64.tar.gz"
 provenance = "github-attestations"

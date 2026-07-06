@@ -1,6 +1,6 @@
 [tools]
-node = "24.16.0"
-pnpm = "11.5.2"
+node = "24.18.0"
+pnpm = "11.10.0"
 "github:microsoft/apm" = { version = "0.24.0", extract_all = "true" }
 
 [settings]
