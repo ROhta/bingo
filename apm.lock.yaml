@@ -1,5 +1,5 @@
 lockfile_version: "1"
-generated_at: "2026-07-12T03:47:58.317438+00:00"
+generated_at: "2026-07-12T04:04:56.074339+00:00"
 apm_version: 0.24.1
 dependencies:
   - repo_url: github/awesome-copilot
@@ -408,10 +408,18 @@ dependencies:
     content_hash: sha256:fcec2b6832dc4a4ce8fd0b7883fc72531fb402dd76537b62e495ab5c09742cf4
     declared_license: MIT
 mcp_servers:
+  - chrome-devtools
   - context7
   - deepwiki
   - serena
 mcp_configs:
+  chrome-devtools:
+    name: chrome-devtools
+    transport: stdio
+    args:
+      - chrome-devtools-mcp@1.5.0
+    registry: false
+    command: npx
   context7:
     name: context7
     transport: stdio
@@ -436,6 +444,7 @@ mcp_configs:
     registry: false
     command: uvx
 mcp_config_provenance:
+  chrome-devtools: chrome-devtools-mcp
   context7: apm-config-mcp-toolkit
   deepwiki: apm-config-mcp-toolkit
   serena: apm-config-mcp-toolkit
