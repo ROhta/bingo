@@ -1,8 +1,24 @@
 lockfile_version: "1"
-generated_at: "2026-07-06T08:21:54.277820+00:00"
-apm_version: 0.24.0
+generated_at: "2026-07-12T03:47:58.317438+00:00"
+apm_version: 0.24.1
 dependencies:
-  - repo_url: ROhta/apm-config
+  - repo_url: github/awesome-copilot
+    name: awesome-copilot-code-review-generic
+    host: github.com
+    resolved_commit: 5b049e4e196c10aab8ddfd9e492323d08cf985b0
+    resolved_ref: 5b049e4e196c10aab8ddfd9e492323d08cf985b0
+    version: 1.0.0
+    virtual_path: instructions/code-review-generic.instructions.md
+    is_virtual: true
+    package_type: apm_package
+    deployed_files:
+      - .claude/rules/code-review-generic.md
+      - .github/instructions/code-review-generic.instructions.md
+    deployed_file_hashes:
+      .claude/rules/code-review-generic.md: sha256:438a95faf5d7e0c1d52f0be55ca6d751a133a30f07cd95f09390803635267e5d
+      .github/instructions/code-review-generic.instructions.md: sha256:e6917309e3e986cde1650768cc871f54e5d054e90c4518afb5c937941ee212a9
+    content_hash: sha256:31212689590950d38ab751ad947ac94078ec57eb71a497c5b126135bc05dc7e1
+  - repo_url: rohta/apm-config
     name: apm-config-base
     host: github.com
     resolved_commit: c150cfffc0199321928d524b15a91b95888ccfd6
@@ -43,7 +59,7 @@ dependencies:
       .github/instructions/review-response-loop.instructions.md: sha256:602254403a6890a64a55669472a1549f34e7383b3afb29f0fdb9989b8dfce5f8
     content_hash: sha256:ae1d68b5b9c18c29224809795582b0a7905ecc4b8d150401f39501eeb60483e3
     declared_license: GPL-3.0-or-later
-  - repo_url: ROhta/apm-config
+  - repo_url: rohta/apm-config
     name: apm-config-mcp-toolkit
     host: github.com
     resolved_commit: c150cfffc0199321928d524b15a91b95888ccfd6
@@ -60,30 +76,14 @@ dependencies:
       .github/instructions/mcp-servers.instructions.md: sha256:cdeddcff5d85e9a794f5cea2a8aa82d8ed2bbccac6121a1ccf6b81606d700fbd
     content_hash: sha256:f1216e3378549db86cd96c5e82e40da5ced05eb0db153c70a505359e07653d36
     declared_license: GPL-3.0-or-later
-  - repo_url: github/awesome-copilot
-    name: awesome-copilot-code-review-generic
-    host: github.com
-    resolved_commit: 5b049e4e196c10aab8ddfd9e492323d08cf985b0
-    resolved_ref: 5b049e4e196c10aab8ddfd9e492323d08cf985b0
-    version: 1.0.0
-    virtual_path: instructions/code-review-generic.instructions.md
-    is_virtual: true
-    package_type: apm_package
-    deployed_files:
-      - .claude/rules/code-review-generic.md
-      - .github/instructions/code-review-generic.instructions.md
-    deployed_file_hashes:
-      .claude/rules/code-review-generic.md: sha256:438a95faf5d7e0c1d52f0be55ca6d751a133a30f07cd95f09390803635267e5d
-      .github/instructions/code-review-generic.instructions.md: sha256:e6917309e3e986cde1650768cc871f54e5d054e90c4518afb5c937941ee212a9
-    content_hash: sha256:31212689590950d38ab751ad947ac94078ec57eb71a497c5b126135bc05dc7e1
-  - repo_url: ChromeDevTools/chrome-devtools-mcp
+  - repo_url: chromedevtools/chrome-devtools-mcp
     name: chrome-devtools-mcp
     host: github.com
     resolved_commit: 913308263bdc8042af74924b68dc39a374ad071d
     resolved_ref: 913308263bdc8042af74924b68dc39a374ad071d
     version: 1.5.0
     depth: 2
-    resolved_by: ROhta/apm-config
+    resolved_by: rohta/apm-config
     package_type: marketplace_plugin
     deployed_files:
       - .agents/skills/a11y-debugging
@@ -167,7 +167,7 @@ dependencies:
     resolved_ref: d884ae04edebef577e82ff7c4e143debd0bbec99
     version: 6.1.1
     depth: 2
-    resolved_by: ROhta/apm-config
+    resolved_by: rohta/apm-config
     package_type: marketplace_plugin
     deployed_files:
       - .agents/skills/brainstorming
@@ -408,18 +408,10 @@ dependencies:
     content_hash: sha256:fcec2b6832dc4a4ce8fd0b7883fc72531fb402dd76537b62e495ab5c09742cf4
     declared_license: MIT
 mcp_servers:
-  - chrome-devtools
   - context7
   - deepwiki
   - serena
 mcp_configs:
-  chrome-devtools:
-    name: chrome-devtools
-    transport: stdio
-    args:
-      - chrome-devtools-mcp@1.5.0
-    registry: false
-    command: npx
   context7:
     name: context7
     transport: stdio
@@ -443,6 +435,10 @@ mcp_configs:
       - start-mcp-server
     registry: false
     command: uvx
+mcp_config_provenance:
+  context7: apm-config-mcp-toolkit
+  deepwiki: apm-config-mcp-toolkit
+  serena: apm-config-mcp-toolkit
 local_deployed_files:
   - .claude/rules/feature-spec.md
   - .claude/rules/github-ops.md
@@ -460,12 +456,12 @@ local_deployed_file_hashes:
   .claude/rules/feature-spec.md: sha256:3225c0f15396f44a9b09882f0e91204255f5643324f952feea73190e4b809551
   .claude/rules/github-ops.md: sha256:68e2a2eb425ae3bf6c033846ae0d640e411c37bdc6f1efcef84daa41b8dfc680
   .claude/rules/lint.md: sha256:1ff76e33314db0b04a26b13e3a7e61830f406485ad1da7607dc8b2c655c300d9
-  .claude/rules/setup.md: sha256:e80af0f0c2890bcc85001593965140d48fe207ed8b02f5bf3d827787658f87ad
+  .claude/rules/setup.md: sha256:2b6e4f1e0a0c714aa294405dc67ab20dd9c089a81945fa25c6291f07fc07fe9e
   .claude/rules/styling.md: sha256:f35e25e78afd7a4b65c19104c999e55fbff12112ec4cba10abe55d3d05b36fce
   .claude/rules/typescript.md: sha256:6bf8ab3e30dc8184bf63622a9d03c084d17de76aac984fef29a98a6c9defe2d5
   .github/instructions/feature-spec.instructions.md: sha256:c3d55755804fb28045756b95530efd493513d4e94a08a78323c9fb105e908356
   .github/instructions/github-ops.instructions.md: sha256:9b58eed993efdc6e299d0d0627c5baf0e85b21de708623af19b7e56b4b50f331
   .github/instructions/lint.instructions.md: sha256:e4d1c252de1773dfe9aa7d7fa2a4f63e6ee9f07fa04cebabca3ff9a1ad72da1a
-  .github/instructions/setup.instructions.md: sha256:7ccafc540d0af2ede0738bd8ad9f4166f01e9e79812404becc28646097e4ce55
+  .github/instructions/setup.instructions.md: sha256:480171b1e6c5d60f2d035072f5208210897d5e3b42ec5928ecc065b9bcb55a7e
   .github/instructions/styling.instructions.md: sha256:cfb5373ec78a677e02ba28c87774ac78a172790aae88eae3b23dd7837398d9b1
   .github/instructions/typescript.instructions.md: sha256:eb50e1ca4f5e22c9fc142e8d112f2635016d8fc872beb870f3e9eb333b9dc392
