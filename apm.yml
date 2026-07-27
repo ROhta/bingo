@@ -14,4 +14,4 @@ dependencies:
   apm:
     - ROhta/apm-config/base#main
     - ROhta/apm-config/mcp-toolkit#main
-    - github/awesome-copilot/instructions/code-review-generic.instructions.md#5b049e4e196c10aab8ddfd9e492323d08cf985b0
+    - github/awesome-copilot/instructions/code-review-generic.instructions.md#83fe668a7c8a5eeed990af7b8e19bda8d73c120d

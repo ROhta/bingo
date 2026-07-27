@@ -11,7 +11,6 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types:
-          - "version-update:semver-minor"
           - "version-update:semver-patch"
     labels:
       - "dependencies"
@@ -32,7 +31,6 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types:
-          - "version-update:semver-minor"
           - "version-update:semver-patch"
     commit-message:
       prefix: "check ci status"
