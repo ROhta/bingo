@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # node / pnpm のバージョンは mise.toml を SSoT とする。apm は CI で不要なので install 対象外。
       # mise 本体の版は pnpm の aqua アセット解決に影響する実績があるため version をピンする。
-      - uses: jdx/mise-action@9e7f7633ff6f6d6048a9418a68d48f288f50eb14 # v4.2.3
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
           version: 2026.6.1
           install_args: "node pnpm"
