@@ -12,6 +12,7 @@ updates:
       - dependency-name: "*"
         update-types:
           - "version-update:semver-patch"
+          - "version-update:semver-minor"
     labels:
       - "dependencies"
     open-pull-requests-limit: 10
@@ -32,6 +33,7 @@ updates:
       - dependency-name: "*"
         update-types:
           - "version-update:semver-patch"
+          - "version-update:semver-minor"
     commit-message:
       prefix: "check ci status"
       include: "scope"
