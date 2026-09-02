@@ -13,13 +13,15 @@ updates:
         update-types:
           - "version-update:semver-patch"
           - "version-update:semver-minor"
+      - dependency-name: "typescript"
+        versions: ["7.x"]
     labels:
       - "dependencies"
     open-pull-requests-limit: 10
     pull-request-branch-name:
       separator: "_"
     rebase-strategy: "auto"
-    versioning-strategy: increase-if-necessary
+    versioning-strategy: increase
   - package-ecosystem: "github-actions"
     schedule:
       interval: "weekly"
