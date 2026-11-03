@@ -43,7 +43,7 @@ jobs:
           docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:1.7.12
       # node / pnpm のバージョンは mise.toml を SSoT とする。apm は CI で不要なので install 対象外。
       # mise 本体の版は pnpm の aqua アセット解決に影響する実績があるため version をピンする。
-      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5.0.0
+      - uses: jdx/mise-action@6612f0ef07ed2a736cd1e00a94a065522dd41195 # v5.2.5
         with:
           version: 2026.6.1
           install_args: "node pnpm"
