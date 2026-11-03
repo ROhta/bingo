@@ -28,4 +28,4 @@ AI エージェント向け指示と人間用ドキュメントを共通化し�
 
 ## MCP
 
-共通 MCP サーバー (context7 / serena / deepwiki / chrome-devtools) も apm-config/mcp-toolkit から配信されます。うち chrome-devtools は transitive なプラグイン参照のため、導入時は `apm install --trust-transitive-mcp` が必要です (初回は解決のみで、2 回目の実行で設定が完了することがあります)。
+共通 MCP サーバー (context7 / serena / deepwiki / chrome-devtools) も apm-config/mcp-toolkit から配信されます。すべて直接定義の MCP のため、`--trust-transitive-mcp` は不要です (apm-config/mcp-toolkit 1.4.0 以降)。

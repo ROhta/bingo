@@ -23,6 +23,9 @@ CLAUDE.md
 # APM MCP 設定生成物 (apm.yml の dependencies.mcp から `apm install` で再生成されるため追跡しない)
 .codex/
 .vscode/mcp.json
+# apm 0.29+ の copilot target が生成する Copilot CLI 用 MCP 設定・ネイティブ Agent Plugin 登録
+.github/mcp.json
+.github/copilot/
 .mcp.json
 
 # APM プラグイン (skills / commands / prompts / hooks / settings) の展開先 (apm.yml の dependencies.apm から `apm install` で再生成されるため追跡しない)
