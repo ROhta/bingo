@@ -29,3 +29,9 @@ AI エージェント向け指示と人間用ドキュメントを共通化し�
 ## MCP
 
 共通 MCP サーバー (context7 / serena / deepwiki / chrome-devtools) も apm-config/mcp-toolkit から配信されます。すべて直接定義の MCP のため、`--trust-transitive-mcp` は不要です (apm-config/mcp-toolkit 1.4.0 以降)。
+
+apm 0.26 以前で生成した MCP 設定が残っている既存クローンでは、`apm install` が `conflicts with the existing claude connection` などで失敗します。次の順で移行してください。
+
+1. `.mcp.json` / `.codex/config.toml` をバックアップする
+2. 各ファイルから apm 由来のエントリ (context7 / serena / deepwiki / chrome-devtools) だけを削除する (独自に追加したエントリは残す)
+3. `apm install` を実行する
